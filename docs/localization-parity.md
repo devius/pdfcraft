@@ -1,6 +1,6 @@
 # Localization parity
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-10 · **Change:** major (first per-language status, measured from the catalogs) · **Target:** Adobe Acrobat Pro (Acrobat DC, continuous track 26.002.21931, macOS)
+> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-12 · **Change:** minor (Georgian added; earlier: first per-language status, measured from the catalogs) · **Target:** Adobe Acrobat Pro (Acrobat DC, continuous track 26.002.21931, macOS)
 
 Per-language status of PdfCraft's interface against Acrobat Pro's. How translations work and how to
 add a language: [localization.md](localization.md). Summary in [ROADMAP.md](../ROADMAP.md).
@@ -60,6 +60,7 @@ none has translated help.
 | Hungarian | `hu` | 2,126 (99.2%) | partial | yes |
 | Ukrainian | `uk` | 2,142 (100%) | partial | yes |
 | Italian | `it` | 2,130 (99.4%) | partial | yes |
+| Georgian | `ka` | 2,415 (every key of the current catalogs, 2026-10-12) | partial (desktop only: drawn with an installed Georgian system face; the web build has none) | no |
 
 **8 other languages** ship (15 catalogs plus English, 16 interface languages in Preferences).
 Acrobat languages PdfCraft lacks: Danish, Dutch, Finnish, Norwegian, Polish, Swedish, Turkish,
@@ -69,4 +70,5 @@ Hebrew.
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-12 | minor | Georgian (`ka`) row added |
 | 2026-10-10 | major | Created. Catalog counts measured from `crates/ui-egui/src/i18n/*.tsv` against the 2,143-key union; Acrobat's localizations from its bundle's `.lproj` and Sequences folder names |

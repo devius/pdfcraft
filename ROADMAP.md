@@ -135,6 +135,7 @@ Ranked; detail and the full milestone table in [docs/roadmap.md](docs/roadmap.md
 
 ## Progress log
 
+- **2026-10-12 (M14, Georgian):** Georgian (`ka`, ქართული) interface language: a complete clean-room catalog (2,415 entries: every command, menu, All tools label, `tl!` literal and engine wording), `ka`/`ka_GE` locales resolve to it, Georgian month and weekday names in Preferences ▸ Date format. The desktop app draws Georgian with an installed system face (SF Georgian, Sylfaen, Noto Sans Georgian, DejaVu Sans), and comment initials no longer turn Georgian letters into Mtavruli capitals. Still missing: a Georgian face for the web build, and writing Georgian text into PDFs (Fill & Sign, Edit text). Estimates unchanged.
 - **2026-10-11 (M10.5, focused follow-up to #599):** Carry the architectural/ANSI/large ISO paper presets, current-page matching at 100%, and previewed PDF scale into the current print dialog and `doc_print`. Retains the #847/#1007 spooler and background discovery. Driver substitution, physical calibration, vector Windows printing and managed-endpoint restrictions remain separate gaps. Overall estimates unchanged.
 
 Newest first: the date, what moved, and the new overall estimate.
