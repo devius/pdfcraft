@@ -136,7 +136,7 @@ fn plural_sl(n: u64) -> usize {
 }
 
 /// The registry. English first: it is the fallback and the source language.
-pub static LANGUAGES: [LangInfo; 21] = [
+pub static LANGUAGES: [LangInfo; 22] = [
     LangInfo { code: "en", name: "English", source: "", plural: plural_one_other, rtl: false, catalog: OnceLock::new() },
     LangInfo { code: "ja", name: "日本語", source: include_str!("ja.tsv"), plural: plural_none, rtl: false, catalog: OnceLock::new() },
     // Simplified Chinese; `zh`, `zh-CN`, `zh-SG` and `zh-Hans-*` locales resolve here (see `candidates`).
@@ -194,6 +194,9 @@ pub static LANGUAGES: [LangInfo; 21] = [
     LangInfo { code: "el", name: "Ελληνικά", source: include_str!("el.tsv"), plural: plural_one_other, rtl: false, catalog: OnceLock::new() },
     // Turkish; every `tr-*` locale (`tr-TR`, `tr_TR.UTF-8`) resolves here.
     LangInfo { code: "tr", name: "Türkçe", source: include_str!("tr.tsv"), plural: plural_none, rtl: false, catalog: OnceLock::new() },
+    // Georgian; every `ka-*` locale (`ka-GE`, `ka_GE.UTF-8`) resolves here. Nouns stay singular after
+    // a numeral, so one plural form.
+    LangInfo { code: "ka", name: "ქართული", source: include_str!("ka.tsv"), plural: plural_none, rtl: false, catalog: OnceLock::new() },
 ];
 
 impl LangInfo {
@@ -396,6 +399,17 @@ pub fn set_current(lang: Lang) {
 /// that capitalise nouns (German), where lowercasing would misspell it.
 pub fn in_sentence(label: &str) -> std::borrow::Cow<'_, str> {
     if current().code() == "de" { std::borrow::Cow::Borrowed(label) } else { std::borrow::Cow::Owned(label.to_lowercase()) }
+}
+
+/// `text` in capitals, for section labels and initials. Georgian has no capitals in ordinary
+/// writing (Mtavruli is a display style, not upper case), so its letters stay as they are.
+pub fn upper(text: &str) -> String {
+    text.chars().map(|c| if capitalizes(c) { c.to_uppercase().collect() } else { c.to_string() }).collect()
+}
+
+/// Whether [`upper`] capitalises `c`: not Georgian (Mkhedruli, Mtavruli, Asomtavruli, Nuskhuri).
+fn capitalizes(c: char) -> bool {
+    !matches!(c, '\u{10A0}'..='\u{10FF}' | '\u{1C90}'..='\u{1CBF}' | '\u{2D00}'..='\u{2D2F}')
 }
 
 pub fn current() -> Lang {
@@ -780,7 +794,7 @@ mod tests {
         let error = pdfcraft_engine::ocr::OcrError::NoModels.to_string();
         let notice = "Text recognition isn't installed: its model files are missing. Reinstall PdfCraft, or set PDFCRAFT_MODELS to the folder that holds them.";
         assert!(include_str!("../ocr_ui.rs").contains(notice), "keep in step with ocr_ui.rs");
-        for code in ["bg", "cs", "de", "es", "fr", "hu", "ja", "ru", "te", "uk", "zh-hans", "zh-hant"] {
+        for code in ["bg", "cs", "de", "es", "fr", "hu", "ja", "ka", "ru", "te", "uk", "zh-hans", "zh-hant"] {
             let lang = Lang::from_code(code).expect("registered");
             assert!(has(lang, notice) && has(lang, &error), "{code}");
         }
@@ -843,7 +857,7 @@ mod tests {
             labels.insert(label.to_string());
         }
         assert!(labels.len() > 20 && labels.contains("Comb of characters"), "the scan found the dialog's labels: {labels:?}");
-        for code in ["bg", "cs", "de", "es", "fr", "hu", "it", "ja", "pt-br", "ru", "te", "tr", "uk", "zh-hans", "zh-hant"] {
+        for code in ["bg", "cs", "de", "es", "fr", "hu", "it", "ja", "ka", "pt-br", "ru", "te", "tr", "uk", "zh-hans", "zh-hant"] {
             let lang = Lang::from_code(code).expect("registered");
             let missing: Vec<_> = labels.iter().filter(|l| !has(lang, l)).collect();
             assert!(missing.is_empty(), "{code} lacks Shared Field Properties labels: {missing:#?}");
@@ -963,6 +977,13 @@ mod tests {
         assert_eq!(menu_label("file.open", "Open…"), "開く…");
         set_current(Lang::EN);
         assert_eq!(command_label("Undo Fill in Save {e}"), "Undo Fill in Save {e}");
+    }
+
+    #[test]
+    fn upper_leaves_georgian_uncapitalised() {
+        assert_eq!(upper("Privacy"), "PRIVACY");
+        assert_eq!(upper("კონფიდენციალურობა"), "კონფიდენციალურობა");
+        assert_eq!(upper("pdf-ის ექსპორტი"), "PDF-ის ექსპორტი");
     }
 
     #[test]
@@ -1482,6 +1503,92 @@ mod tests {
         let tr_lang = Lang::from_code("tr").expect("tr registered");
         let missing: Vec<_> = literals.iter().filter(|label| !has(tr_lang, label)).collect();
         assert!(missing.is_empty(), "untranslated Turkish UI literals: {missing:#?}");
+    }
+
+    /// Georgian is registered for every `ka` locale, keeps one plural form, and translates every
+    /// registered command, menu, All tools label and `tl!` literal, with no English left over.
+    #[test]
+    fn georgian_is_registered_and_complete() {
+        let ka = Lang::from_code("ka").expect("ka registered");
+        assert_eq!(ka.name(), "ქართული");
+        for tag in ["ka", "ka_GE", "ka_GE.UTF-8", "ka-GE"] {
+            assert_eq!(lang_from_tag(tag), Some(ka), "{tag}");
+        }
+        assert_eq!(tr(ka, "File"), "ფაილი");
+        assert_eq!(trn(ka, 5, "{n} page", "{n} pages"), "5 გვერდი");
+        for command in pdfcraft_engine::commands::COMMANDS {
+            assert!(has(ka, command.label), "missing command: {}", command.label);
+            if let Some(menu) = command.menu {
+                assert!(has(ka, menu), "missing menu: {menu}");
+            }
+        }
+        for group in pdfcraft_engine::catalog::TOOL_GROUPS {
+            assert!(has(ka, group.label), "missing group: {}", group.label);
+            for section in group.sections {
+                assert!(has(ka, section.title), "missing section: {}", section.title);
+                for item in section.items {
+                    assert!(has(ka, item.label), "missing item: {}", item.label);
+                }
+            }
+        }
+        let missing: Vec<_> = ui_literals().into_iter().filter(|label| !has(ka, label)).collect();
+        assert!(missing.is_empty(), "untranslated Georgian UI literals: {missing:#?}");
+        let lists: [&[&str]; 8] = [
+            pdfcraft_engine::a11y::WORDINGS,
+            pdfcraft_engine::a11y::REPORT_WORDS,
+            pdfcraft_engine::pdfa::WORDINGS,
+            pdfcraft_engine::sign::pdf::WORDINGS,
+            pdfcraft_engine::sign::pdf::kind::ALL,
+            pdfcraft_engine::print::WORDINGS,
+            pdfcraft_engine::EDIT_LABELS,
+            pdfcraft_engine::BATCH_LABELS,
+        ];
+        for wording in lists.into_iter().flatten() {
+            assert!(has(ka, wording), "missing engine wording: {wording}");
+            assert_eq!(wording.matches("{}").count(), tr(ka, wording).matches("{}").count(), "{wording:?} loses a hole");
+        }
+        const KEEP_AS_IS: &[&str] = &[
+            "OK",
+            "PDF/A…",
+            "JavaScript",
+            "ZIP",
+            "Microsoft Word (.docx)",
+            "Rich Text Format (.rtf)",
+            "PostScript / EPS",
+            "{n} {kind}",
+            "{rule} - {status}",
+            "{field}: {e}",
+            "`{command}` {when}",
+            "{0}: {1}",
+            "{month} {y}",
+            "+LOC",
+            "−LOC",
+            "+Bin",
+            "−Bin",
+            "Home / End",
+            "English",
+            "CheckBox",
+            "Radio",
+            "PushButton",
+            "Keychain  ·  ",
+        ];
+        let (entries, errors) = parse_entries(ka.0.source, ka.0.plural_forms());
+        assert!(errors.is_empty(), "Georgian catalog errors: {errors:?}");
+        for e in &entries {
+            assert!(
+                e.source != e.translation
+                    || KEEP_AS_IS.contains(&e.source.as_str())
+                    || (e.context == "key" && KEY_CAP_NAMES.contains(&e.source.as_str())),
+                "{:?} is untranslated",
+                e.source
+            );
+            assert!(!e.translation.chars().any(|c| matches!(c, '\u{1C90}'..='\u{1CBF}')), "no Mtavruli capitals: {:?}", e.translation);
+        }
+        let mut app = crate::PdfCraftApp::default();
+        app.set_option("language", "ka").unwrap();
+        let mut restored = crate::PdfCraftApp::default();
+        restored.restore(&app.persist());
+        assert_eq!(restored.language, "ka");
     }
 
     #[test]

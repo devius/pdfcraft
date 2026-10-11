@@ -220,6 +220,17 @@ usage = "Turkish UI strings, compiled in by crates/ui-egui/src/i18n/mod.rs"
 sha256 = "b4e90e5929a95a8c85cf88099003cb772e45591759e192f89026cd883a8149c7"
 
 [[asset]]
+path = "crates/ui-egui/src/i18n/ka.tsv"
+title = "Georgian interface translation catalog"
+author = "PdfCraft contributors"
+source = "Contributor-original: clean-room translations of PdfCraft's English UI labels, no proprietary localisation resources"
+licence = "MIT OR Apache-2.0"
+licence_file = "LICENSE-MIT"
+kind = "translation"
+usage = "Georgian UI strings, compiled in by crates/ui-egui/src/i18n/mod.rs"
+sha256 = "2822e936140ae1da8229597d3108648182b1fca83c9011b0194365c1b5717d9d"
+
+[[asset]]
 path = "assets/icons/accessibility.svg"
 title = "Lucide icon \"accessibility\""
 author = "Lucide Contributors (portions Cole Bemis, Feather)"
