@@ -147,6 +147,39 @@ fn system_fallback_fills_missing_scripts() {
     assert!(layout_widths(&mut fonts, ARABIC).iter().all(|w| w.is_finite() && *w > 0.0));
 }
 
+/// With a Georgian face installed (SF Georgian, Sylfaen, Noto Sans Georgian, DejaVu Sans …), every
+/// Georgian letter of the Georgian catalog has a glyph in every interface family, from that face,
+/// which comes after the app's own fonts; the embedded-only definitions never name it.
+#[test]
+fn georgian_ui_uses_an_installed_georgian_face() {
+    assert!(!theme::font_definitions().font_data.contains_key(theme::GEORGIAN_FALLBACK));
+    let defs = theme::installed_font_definitions(theme::CjkPreference::Default);
+    if !defs.font_data.contains_key(theme::GEORGIAN_FALLBACK) {
+        eprintln!("skipping georgian_ui_uses_an_installed_georgian_face: no installed Georgian face (or PDFCRAFT_SYSTEM_FONTS=0)");
+        return;
+    }
+    for (family, stack) in &defs.families {
+        let georgian = stack.iter().position(|n| n == theme::GEORGIAN_FALLBACK).expect("in every family");
+        let own = stack.iter().position(|n| n.starts_with("Inter") || n == "JetBrainsMono").expect("the app's own font");
+        assert!(own < georgian, "{family:?}: {stack:?}");
+    }
+    let mut letters: Vec<char> = include_str!("../src/i18n/ka.tsv")
+        .lines()
+        .filter(|l| !l.starts_with('#'))
+        .filter_map(|l| l.split('\t').nth(2))
+        .flat_map(str::chars)
+        .filter(|c| matches!(*c, '\u{10a0}'..='\u{10ff}'))
+        .collect();
+    letters.sort_unstable();
+    letters.dedup();
+    assert!(letters.len() > 30, "the catalog is Georgian");
+    let mut fonts = Fonts::new(TextOptions::default(), defs);
+    for id in families() {
+        let missing: String = letters.iter().filter(|c| !fonts.has_glyphs(&id, &c.to_string())).collect();
+        assert!(missing.is_empty(), "{id:?} lacks {missing}");
+    }
+}
+
 /// The Han characters of a catalog's translations.
 fn catalog_han(catalog: &str) -> String {
     let mut han: Vec<char> = catalog

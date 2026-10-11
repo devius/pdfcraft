@@ -164,6 +164,10 @@ pub fn install_fonts_for(ctx: &egui::Context, cjk: CjkPreference) {
 /// The name of the installed face [`installed_font_definitions`] may add after the embedded ones.
 pub const SYSTEM_FALLBACK: &str = "system-fallback";
 
+/// The name of the installed Georgian face [`installed_font_definitions`] may add: no embedded
+/// face has Georgian, so without it the Georgian interface is replacement boxes.
+pub const GEORGIAN_FALLBACK: &str = "system-fallback-georgian";
+
 /// What [`install_fonts_for`] installs: [`font_definitions_for`], then, on desktop, one face
 /// already installed on this machine. It only draws characters no embedded face has.
 ///
@@ -175,13 +179,25 @@ pub const SYSTEM_FALLBACK: &str = "system-fallback";
 /// - Otherwise it is the last fallback of every family (an Arabic file name in a build without
 ///   craft-fonts).
 ///
-/// `PDFCRAFT_SYSTEM_FONTS=0` leaves it out.
+/// A Georgian system face (SF Georgian, Sylfaen, Noto Sans Georgian …) also goes right after the
+/// app's own face in every family, so Georgian labels and file names draw in any interface
+/// language.
+///
+/// `PDFCRAFT_SYSTEM_FONTS=0` leaves them out.
 pub fn installed_font_definitions(cjk: CjkPreference) -> FontDefinitions {
     #[cfg_attr(target_arch = "wasm32", expect(unused_mut))]
     let mut fonts = font_definitions_for(cjk == CjkPreference::SimplifiedChinese);
     #[cfg(not(target_arch = "wasm32"))]
     {
         use crate::system_fonts::{Need, fallback};
+        if let Some(data) = fallback(Need::Georgian) {
+            fonts.font_data.insert(GEORGIAN_FALLBACK.to_owned(), data);
+            // Right after the app's own face: egui's Hack claims Georgian code points it can't
+            // draw, so a Georgian face after it would never be reached in monospace.
+            for stack in fonts.families.values_mut() {
+                stack.insert(stack.len().min(1), GEORGIAN_FALLBACK.to_owned());
+            }
+        }
         let need = match cjk {
             _ if !pdfcraft_fonts::ui_chinese_fonts().is_empty() => Need::Other,
             CjkPreference::SimplifiedChinese => Need::Hans,
@@ -193,7 +209,7 @@ pub fn installed_font_definitions(cjk: CjkPreference) -> FontDefinitions {
             let japanese: Vec<String> = pdfcraft_fonts::ui_japanese_fonts().iter().map(|f| f.name()).collect();
             for stack in fonts.families.values_mut() {
                 let at = match need {
-                    Need::Other => None,
+                    Need::Other | Need::Georgian => None,
                     Need::Hans | Need::Hant => stack.iter().position(|n| japanese.contains(n)),
                 };
                 stack.insert(at.unwrap_or(stack.len()), SYSTEM_FALLBACK.to_owned());
