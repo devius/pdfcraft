@@ -41,7 +41,7 @@
 	Advanced search…	გაფართოებული ძებნა…
 	Copy pages	გვერდების კოპირება
 	Cut pages	გვერდების ამოჭრა
-	Paste pages	გვერდების ჩაწებება
+	Paste pages	გვერდების ჩასმა
 	Fit visible	ხილულზე მორგება
 	Marquee zoom	მასშტაბირება ჩარჩოთი
 	Take a snapshot	მომენტალური ასლის შექმნა
@@ -75,7 +75,7 @@
 	Previous / next page	წინა / შემდეგი გვერდი
 	Delete selected pages (Organize)	მონიშნული გვერდების წაშლა (ორგანიზება)
 	Select all pages (Organize)	ყველა გვერდის მონიშვნა (ორგანიზება)
-	Home	მთავარი
+	Home	საწყისი ეკრანი
 	Open	გახსნა
 	Open a PDF ({key})	PDF-ის გახსნა ({key})
 	Dark gray theme	მუქი ნაცრისფერი თემა
@@ -546,7 +546,7 @@
 	Named Destinations	დასახელებული დანიშნულებები
 	Color Spaces	ფერთა სივრცეები
 	Shadings	დაჩრდილვები
-	Patterns (graphics objects)	ორნამენტები (გრაფიკული ობიექტები)
+	Patterns (graphics objects)	პატერნები (გრაფიკული ობიექტები)
 	Extended Graphics States	გრაფიკის გაფართოებული მდგომარეობები
 	Embedded Files	ჩაშენებული ფაილები
 	Document Overhead	დოკუმენტის დამხმარე მონაცემები
@@ -581,7 +581,7 @@
 	Width:	სიგანე:
 	Height:	სიმაღლე:
 	Rotation:	შემობრუნება:
-	Points from the page's bottom-left corner.	წერტილები გვერდის ქვედა მარცხენა კუთხიდან.
+	Points from the page's bottom-left corner.	პუნქტები გვერდის ქვედა მარცხენა კუთხიდან.
 	Alignment:	სწორება:
 	Default Value:	ნაგულისხმევი მნიშვნელობა:
 	Multi-line	მრავალსტრიქონიანი
@@ -613,7 +613,7 @@
 	Special	სპეციალური
 	Select format category:	აირჩიეთ ფორმატის კატეგორია:
 	The value is shown as typed.	მნიშვნელობა ნაჩვენებია ისე, როგორც აიკრიფა.
-	Decimal places:	ათწილადი ნიშნები:
+	Decimal places:	ათწილადი ნიშნები მძიმის შემდეგ:
 	Separator style:	გამყოფის სტილი:
 	Currency symbol:	ვალუტის სიმბოლო:
 	Before the number	რიცხვის წინ
@@ -1068,7 +1068,7 @@
 	Pages from	გვერდები დან
 	Single word or phrase	ერთი სიტყვა ან ფრაზა
 	Text to find	მოსაძებნი ტექსტი
-	Patterns	ორნამენტები
+	Patterns	პატერნები
 	Phone Numbers	ტელეფონის ნომრები
 	Email Addresses	ელფოსტის მისამართები
 	Credit Cards	საკრედიტო ბარათები
@@ -1292,7 +1292,7 @@
 	All pages	ყველა გვერდი
 	Odd pages	კენტი გვერდები
 	Even pages	ლუწი გვერდები
-	Landscape pages	ალბომისებური გვერდები
+	Landscape pages	ჰორიზონტალური გვერდები
 	Portrait pages	ვერტიკალური გვერდები
 	Move earlier	წინ გადატანა
 	Move later	უკან გადატანა
@@ -1356,8 +1356,8 @@
 	Even and Odd Pages	ლუწი და კენტი გვერდები
 	Even Pages Only	მხოლოდ ლუწი გვერდები
 	Odd Pages Only	მხოლოდ კენტი გვერდები
-	Landscape and Portrait Pages	ალბომისებური და ვერტიკალური გვერდები
-	Landscape Pages	ალბომისებური გვერდები
+	Landscape and Portrait Pages	ჰორიზონტალური და ვერტიკალური გვერდები
+	Landscape Pages	ჰორიზონტალური გვერდები
 	Portrait Pages	ვერტიკალური გვერდები
 	Duplicate Field	ველის დუბლირება
 	Duplicate "{name}" onto:	„{name}“-ის დუბლირება:
@@ -1677,7 +1677,7 @@
 	Select pages	გვერდების მონიშვნა
 	Cut	ამოჭრა
 	Copy	კოპირება
-	Paste after	ჩაწებება შემდეგ
+	Paste after	ჩასმა შემდეგ
 	Rename	გადარქმევა
 	Set to current page ({n})	მიმდინარე გვერდზე დაყენება ({n})
 	Move up	ზემოთ გადატანა
@@ -1759,7 +1759,7 @@
 	Button Style:	ღილაკის სტილი:
 	Check	თოლია
 	Circle	წრე
-	Diamond	რომბი
+	Diamond	ბრილიანტი
 	Square	კვადრატი
 	Star	ვარსკვლავი
 	{month} {y}	{month} {y}
@@ -1875,7 +1875,7 @@
 	Paths	კონტურები
 	Sensitivity	მგრძნობელობა
 	Unit	ერთეული
-	Decimals	ათწილადები
+	Decimals	ათწილადი ნიშნები მძიმის შემდეგ
 	Calibrate from two points	დაკალიბრება ორი წერტილით
 	Entire page	მთელი გვერდი
 	Viewport rectangle in page points (x, y, width, height)	ხედის მართკუთხედი გვერდის პუნქტებში (x, y, სიგანე, სიმაღლე)
@@ -2029,10 +2029,10 @@
 	Choose a PNG or JPEG image (up to 4 MiB). Transparency is preserved.	აირჩიეთ PNG ან JPEG გამოსახულება (4 MiB-მდე). გამჭვირვალობა შენარჩუნდება.
 	Couldn't import the signature image: {e}	ხელმოწერის გამოსახულების იმპორტი ვერ მოხერხდა: {e}
 	Open Recent	ბოლოდროინდელის გახსნა
-	Pin folder to Home…	საქაღალდის მთავარზე მიმაგრება…
+	Pin folder to Home…	საქაღალდის საწყის ეკრანზე მიმაგრება…
 	Folders	საქაღალდეები
 	Pin a folder…	საქაღალდის მიმაგრება…
-	Pin a folder to Home	საქაღალდის მთავარზე მიმაგრება
+	Pin a folder to Home	საქაღალდის საწყის ეკრანზე მიმაგრება
 	Pin a folder to list its newest PDFs here, such as where your scanner or a synced cloud drive saves them.	მიამაგრეთ საქაღალდე, რომ მისი უახლესი PDF-ები აქ ჩანდეს — მაგალითად, სადაც თქვენი სკანერი ან სინქრონიზებული ღრუბლოვანი დისკი ინახავს მათ.
 	Unpin	მოხსნა
 	Unpin {folder}	{folder}-ის მოხსნა
@@ -2044,9 +2044,9 @@
 	The newest {n} of {total} PDFs	უახლესი {n} PDF ({total}-დან)
 	Pinned folders need the desktop app	მიმაგრებულ საქაღალდეებს სამაგიდო აპლიკაცია სჭირდება
 	Choose a folder on this computer to pin	აირჩიეთ ამ კომპიუტერზე მისამაგრებელი საქაღალდე
-	{folder} is already pinned to Home	{folder} უკვე მიმაგრებულია მთავარზე
+	{folder} is already pinned to Home	{folder} უკვე მიმაგრებულია საწყის ეკრანზე
 	You can pin up to {n} folders. Unpin one first.	შეგიძლიათ მიამაგროთ მაქსიმუმ {n} საქაღალდე. ჯერ ერთი მოხსენით.
-	Pinned {folder} to Home	{folder} მიმაგრდა მთავარზე
+	Pinned {folder} to Home	{folder} მიმაგრდა საწყის ეკრანზე
 	No recent files	ბოლოდროინდელი ფაილები არ არის
 	Go to page…	გვერდზე გადასვლა…
 	About	პროგრამის შესახებ
@@ -2105,7 +2105,7 @@ action wizard	Start	დაწყება
 	Reset page size	გვერდის ზომის ჩამოყრა
 	Date format	თარიღის ფორმატი
 	Fill & Sign dates	შევსებისა და ხელმოწერის თარიღები
-	Pattern	ორნამენტი
+	Pattern	პატერნი
 	Today: {date}	დღეს: {date}
 	yyyy or yy year · m or mm month · mmm or mmmm month name · d or dd day · ddd or dddd weekday. H, h, M, s and t are time letters and can't be used on their own: put {escape} before a letter to show it as is.	yyyy ან yy წელი · m ან mm თვე · mmm ან mmmm თვის სახელი · d ან dd დღე · ddd ან dddd კვირის დღე. H, h, M, s და t დროის ასოებია და ცალკე ვერ გამოიყენება: ასოს უცვლელად საჩვენებლად მის წინ დასვით {escape}.
 	Same as interface ({language})	როგორც ინტერფეისში ({language})
