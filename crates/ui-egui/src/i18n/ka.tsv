@@ -669,7 +669,6 @@
 	Centre	ცენტრში
 	Align right	მარჯვნივ სწორება
 	Justify	ორმხრივი სწორება
-	Standard fonts; text outside Windows-1252 isn't supported yet.	სტანდარტული შრიფტები; Windows-1252-ის გარეთ არსებული ტექსტი ჯერ არ არის მხარდაჭერილი.
 	Edit image	გამოსახულების რედაქტირება
 	Rotate counterclockwise	შემობრუნება საათის ისრის საწინააღმდეგოდ
 	Rotate clockwise	შემობრუნება საათის ისრის მიმართულებით
@@ -1488,7 +1487,6 @@
 	Couldn't optimize the file: {e}	ფაილის ოპტიმიზაცია ვერ მოხერხდა: {e}
 	Couldn't write {path}: {e}	{path}-ში ჩაწერა ვერ მოხერხდა: {e}
 	The form asks to be submitted to {u}; PdfCraft doesn't send form data. Save the document to keep your entries.	ფორმა ითხოვს, რომ გაიგზავნოს მისამართზე {u}; PdfCraft ფორმის მონაცემებს არ აგზავნის. შეყვანილის შესანარჩუნებლად შეინახეთ დოკუმენტი.
-	{s} actions run in the JavaScript engine (M6)	{s} ქმედებები JavaScript-ის ძრავაში სრულდება (M6)
 	{name}: the {other} action isn't supported yet	{name}: ქმედება {other} ჯერ არ არის მხარდაჭერილი
 	{name} submits the form to {url}; PdfCraft doesn't send form data. Save the document to keep your entries.	{name} ფორმას მისამართზე {url} აგზავნის; PdfCraft ფორმის მონაცემებს არ აგზავნის. შეყვანილის შესანარჩუნებლად შეინახეთ დოკუმენტი.
 	Export stopped: {e}	ექსპორტი შეწყდა: {e}
@@ -2434,3 +2432,169 @@ calendar date	May	მაისი
 calendar date	November	ნოემბერი
 calendar date	October	ოქტომბერი
 calendar date	September	სექტემბერი
+# Sync 2026-10-13: strings added upstream
+	 on page {label}	 {label} გვერდზე
+	Actual text	ფაქტობრივი ტექსტი
+	Add comment	კომენტარის დამატება
+	Also recognize pages that already have text	იმ გვერდების ამოცნობაც, რომლებსაც უკვე აქვს ტექსტი
+	Always	ყოველთვის
+	Animation effects	ანიმაციის ეფექტები
+	Automatically	ავტომატურად
+	Black on white	შავი თეთრზე
+	Browser's print dialog	ბრაუზერის ბეჭდვის დიალოგი
+	Change tag properties	ტეგის თვისებების შეცვლა
+	Change the colour of line art as well as text	ტექსტთან ერთად ხაზოვანი გრაფიკის ფერის შეცვლა
+	Choose a file…	ფაილის არჩევა…
+	Choose a folder…	საქაღალდის არჩევა…
+	Choose photo…	ფოტოს არჩევა…
+	Choose…	არჩევა…
+	Close Tab	ჩანართის დახურვა
+	Collapse tag	ტეგის ჩაკეცვა
+	Color	ფერი
+	Colours are remapped while rendering; the document itself never changes.	ფერები ჩვენებისას გადაიწერება; თავად დოკუმენტი არასოდეს იცვლება.
+	Comment	კომენტარი
+	Comment and review	კომენტირება და რეცენზირება
+	Copied to clipboard	დაკოპირდა გაცვლის ბუფერში
+	Copies, two-sided printing and colour are chosen in the browser's print dialog.	ასლები, ორმხრივი ბეჭდვა და ფერი ბრაუზერის ბეჭდვის დიალოგში აირჩევა.
+	Copy Image	გამოსახულების კოპირება
+	Copy Image in Original Format	გამოსახულების კოპირება ორიგინალ ფორმატში
+	Copy to clipboard	გაცვლის ბუფერში კოპირება
+	Couldn't copy the image: {e}	გამოსახულების კოპირება ვერ მოხერხდა: {e}
+	Couldn't follow linked PDF: {reason}	დაკავშირებული PDF-ის გახსნა ვერ მოხერხდა: {reason}
+	Couldn't print from the browser ({e}); downloaded {name} to print instead	ბრაუზერიდან ბეჭდვა ვერ მოხერხდა ({e}); სანაცვლოდ ჩამოიტვირთა {name} დასაბეჭდად
+	Couldn't use the photo: {e}	ფოტოს გამოყენება ვერ მოხერხდა: {e}
+	Create folder	საქაღალდის შექმნა
+	Create separate PDFs…	ცალკეული PDF-ების შექმნა…
+	Disabled	გამორთულია
+	Document properties (⌘D)	დოკუმენტის თვისებები (⌘D)
+	Duplicate	დუბლირება
+	Enabled	ჩართულია
+	Error	შეცდომა
+	Expand tag	ტეგის გაშლა
+	Export to PowerPoint…	ექსპორტი PowerPoint-ში…
+	Find a tag	ტეგის ძებნა
+	Finding document fonts…	დოკუმენტის შრიფტების ძებნა…
+	Folder	საქაღალდე
+	Font	შრიფტი
+	Green on black	მწვანე შავზე
+	Help…	დახმარება…
+	Import	იმპორტი
+	Information	ინფორმაცია
+	Ink sensitivity	მელნის მგრძნობელობა
+	Insert pages from {name} — 1 field renamed	გვერდების ჩასმა {name}-დან — 1 ველს სახელი გადაერქვა
+	Insert pages from {name} — fields renamed	გვერდების ჩასმა {name}-დან — ველებს სახელები გადაერქვა
+	Installed fonts…	დაინსტალირებული შრიფტები…
+	Keep source fonts	წყაროს შრიფტების შენარჩუნება
+	Left out: {names}	გამოტოვებულია: {names}
+	Load document font	დოკუმენტის შრიფტის ჩატვირთვა
+	Load font…	შრიფტის ჩატვირთვა…
+	Loading…	იტვირთება…
+	Local cross-PDF links require the desktop app	სხვა ლოკალურ PDF-ზე ბმულებს დესკტოპის აპლიკაცია სჭირდება
+	Move	გადატანა
+	Never	არასოდეს
+	New bookmark (⌘B)	ახალი სანიშნე (⌘B)
+	Next	შემდეგი
+	Next (⌘G)	შემდეგი (⌘G)
+	No links to remove	წასაშლელი ბმულები არ არის
+	No openly licensed document fonts found. Load a font file.	ღია ლიცენზიის მქონე დოკუმენტის შრიფტები ვერ მოიძებნა. ჩატვირთეთ შრიფტის ფაილი.
+	No photo chosen	ფოტო არჩეული არ არის
+	No results	შედეგები არ არის
+	No signature was found in the frame. Move the frame over the signature or raise the ink sensitivity.	ჩარჩოში ხელმოწერა ვერ მოიძებნა. გადაიტანეთ ჩარჩო ხელმოწერაზე ან გაზარდეთ მელნის მგრძნობელობა.
+	On	ჩართული
+	Only change the colour of black text or line art	მხოლოდ შავი ტექსტის ან ხაზოვანი გრაფიკის ფერის შეცვლა
+	Open a PDF (⌘O)	PDF-ის გახსნა (⌘O)
+	Open folder	საქაღალდის გახსნა
+	Opening the browser's print dialog…	იხსნება ბრაუზერის ბეჭდვის დიალოგი…
+	Organize	ორგანიზება
+	Other colour…	სხვა ფერი…
+	Page background	გვერდის ფონი
+	Page {n}	გვერდი {n}
+	Page {n} of {total}	გვერდი {n} / {total}
+	Paste	ჩასმა
+	Photo	ფოტო
+	Pictures on those pages are recognized too; words already in the page's text are not added again	ამ გვერდებზე სურათებიც ამოიცნობა; სიტყვები, რომლებიც უკვე გვერდის ტექსტშია, ხელახლა არ დაემატება
+	Preparing sheet {done} of {total} for printing…	ფურცლის მომზადება დასაბეჭდად: {done} / {total}…
+	Preparing {n} sheets for printing…	ფურცლების მომზადება დასაბეჭდად: {n}…
+	Previous	წინა
+	Previous (⇧⌘G)	წინა (⇧⌘G)
+	Print (⌘P)	ბეჭდვა (⌘P)
+	Reading colours	კითხვის ფერები
+	Recent colours	ბოლოდროინდელი ფერები
+	Refresh	განახლება
+	Removed 1 link	წაიშალა 1 ბმული
+	Removed {n} links	წაშლილი ბმულები: {n}
+	Reopen Closed Tab	დახურული ჩანართის ხელახლა გახსნა
+	Replace document colours	დოკუმენტის ფერების ჩანაცვლება
+	Reveal in File Explorer	File Explorer-ში ჩვენება
+	Reveal in Finder	Finder-ში ჩვენება
+	Revert changes	ცვლილებების გაუქმება
+	Save changes?	შევინახო ცვლილებები?
+	Save file	ფაილის შენახვა
+	Save or revert changes before selecting another tag.	სხვა ტეგის არჩევამდე შეინახეთ ან გააუქმეთ ცვლილებები.
+	Save tag properties	ტეგის თვისებების შენახვა
+	Scan	სკანირება
+	Search results	ძებნის შედეგები
+	Select all	ყველაფრის მონიშვნა
+	Separate PDFs	ცალკეული PDF-ები
+	Sign a sheet of white paper and take a photo of it in bright, even light (use the flash). Choose the photo or drop it here: PdfCraft finds the signature and removes the paper.	მოაწერეთ ხელი თეთრ ფურცელზე და გადაუღეთ ფოტო კაშკაშა, თანაბარ განათებაში (გამოიყენეთ ფლეში). აირჩიეთ ფოტო ან ჩააგდეთ აქ: PdfCraft იპოვის ხელმოწერას და ქაღალდს მოაცილებს.
+	Success	წარმატება
+	System	სისტემური
+	Tag type	ტეგის ტიპი
+	Tags	ტეგები
+	Tags panel	ტეგების პანელი
+	Text recognition isn't installed: its models are missing (run `cargo xtask models`, or set PDFCRAFT_MODELS).	ტექსტის ამოცნობა დაყენებული არ არის: მისი მოდელები აკლია (გაუშვით `cargo xtask models` ან მიუთითეთ PDFCRAFT_MODELS).
+	Thai and Arabic use regular fallback fonts when available.	ტაილანდური და არაბული, თუ ხელმისაწვდომია, ჩვეულებრივ სარეზერვო შრიფტებს იყენებს.
+	The PDF text fonts can't draw “{c}” ({code}). Choose supported text.	PDF-ის ტექსტის შრიფტებს „{c}“ ({code}) სიმბოლოს დახატვა არ შეუძლია. აირჩიეთ მხარდაჭერილი ტექსტი.
+	The existing action will be preserved.	არსებული ქმედება შენარჩუნდება.
+	The image has been copied ({w} × {h} pixels)	გამოსახულება დაკოპირდა ({w} × {h} პიქსელი)
+	The image has been copied as a {ext} file	გამოსახულება დაკოპირდა {ext} ფაილის სახით
+	The linked PDF opened, but its named destination was not applied.	დაკავშირებული PDF გაიხსნა, მაგრამ მისი დასახელებული დანიშნულება არ გამოყენებულა.
+	The linked PDF opened, but its page destination was out of range.	დაკავშირებული PDF გაიხსნა, მაგრამ დანიშნულების გვერდი დიაპაზონის გარეთაა.
+	The page has changed; select the image again	გვერდი შეიცვალა; მონიშნეთ გამოსახულება ხელახლა
+	Theme	თემა
+	This PDF uses the unsupported {s} action.	ეს PDF იყენებს მხარდაუჭერელ ქმედებას: {s}.
+	This document has no editable structure tags.	ამ დოკუმენტს სტრუქტურის რედაქტირებადი ტეგები არ აქვს.
+	This form's scripts are turned off because one ran too long. Reopen the document to run them again.	ამ ფორმის სკრიპტები გამოირთო, რადგან ერთ-ერთი ზედმეტად დიდხანს მუშაობდა. მათ ხელახლა გასაშვებად დოკუმენტი თავიდან გახსენით.
+	This printer's driver doesn't take two-sided settings from other programs, so its own setting applies. Change it in Properties…	ამ პრინტერის დრაივერი ორმხრივი ბეჭდვის პარამეტრებს სხვა პროგრამებიდან არ იღებს, ამიტომ მისი საკუთარი პარამეტრი მოქმედებს. შეცვალეთ ის აქ: თვისებები…
+	Tools panel side	ხელსაწყოების პანელის მხარე
+	Warning	გაფრთხილება
+	White on black	თეთრი შავზე
+	Yellow on black	ყვითელი შავზე
+	Zoom in (⌘+)	გადიდება (⌘+)
+	Zoom out (⌘−)	დაპატარავება (⌘−)
+	already a PDF	უკვე PDF-ია
+	no output folder was chosen	გამოსატანი საქაღალდე არჩეული არ არის
+	no unused output name	გამოსატანი ფაილისთვის თავისუფალი სახელი არ არის
+	of	 /
+	{n} tags	ტეგები: {n}
+	ΔLOC	ΔLOC
+@plural	Downloaded {n} PDF|Downloaded {n} PDFs	ჩამოიტვირთა PDF: {n}
+@plural	{n} comment|{n} comments	{n} კომენტარი
+@plural	{n} field name collides with earlier files and will be renamed: {list}|{n} field names collide with earlier files and will be renamed: {list}	წინა ფაილებთან დამთხვეული ველის სახელები გადაერქმევა ({n}): {list}
+@plural	{n} file|{n} files	{n} ფაილი
+@plural	{n} result|{n} results	{n} შედეგი
+animation effects	Off	გამორთული
+animation effects	On	ჩართული
+calendar weekday	Fr	პარ
+calendar weekday	Mo	ორ
+calendar weekday	Sa	შაბ
+calendar weekday	Su	კვ
+calendar weekday	Th	ხუთ
+calendar weekday	Tu	სამ
+calendar weekday	We	ოთხ
+certificate	Basic constraints	ძირითადი შეზღუდვები
+certificate	Intended usage	დანიშნულება
+certificate	Issued by	გამცემი
+certificate	Issued to	ვისზეა გაცემული
+certificate	Issuer	გამცემი
+certificate	Key usage	გასაღების გამოყენება
+certificate	Public key	საჯარო გასაღები
+certificate	SHA-1 digest	SHA-1 დაიჯესტი
+certificate	SHA-256 digest	SHA-256 დაიჯესტი
+certificate	Self-signed	თვითხელმოწერილი
+certificate	Serial number	სერიული ნომერი
+certificate	Valid from	მოქმედების დასაწყისი
+certificate	Valid to	მოქმედების დასასრული
+certificate	Validity ends	მოქმედების დასასრული
+certificate	Validity starts	მოქმედების დასაწყისი
+certificate	Version	ვერსია
