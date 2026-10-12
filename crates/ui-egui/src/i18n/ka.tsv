@@ -110,7 +110,7 @@
 	Layers	შრეები
 	Attachments	დანართები
 	Signatures	ხელმოწერები
-	Accessibility Checker	ხელმისაწვდომობის შემმოწმებელი
+	Accessibility Checker	ხელმისაწვდომობის შემოწმება
 	Search	ძებნა
 	Compare	შედარება
 	Page thumbnails	გვერდების მინიატურები
@@ -245,7 +245,7 @@
 	Remove watermark	ჭვირნიშნის წაშლა
 	Add background…	ფონის დამატება…
 	Update background…	ფონის განახლება…
-	Remove background	ფონის წაშლა
+	Remove background	ფონის მოშორება
 	Protect using password…	პაროლით დაცვა…
 	Remove security	დაცვის მოხსნა
 	Security properties…	უსაფრთხოების თვისებები…
@@ -327,7 +327,7 @@
 	More	მეტი
 	Set page boxes	გვერდის ჩარჩოების დაყენება
 	Page labels	გვერდის ჭდეები
-	Page transitions	გვერდის გადასვლები
+	Page transitions	გვერდების გადასვლები
 	Add comments	კომენტარების დამატება
 	Markup	მარკირება
 	Sticky note	შენიშვნა
@@ -444,7 +444,7 @@
 	Edit fields	ველების რედაქტირება
 	Try the form as people filling it in will see it	ფორმის ნახვა ისე, როგორც შემვსები დაინახავს
 	Redact all	ყველაფრის ამოშლა
-	Clear all	ყველაფრის გასუფთავება
+	Clear all	ყველას გასუფთავება
 	Rotate page	გვერდის შემობრუნება
 	Delete page	გვერდის წაშლა
 	Move page	გვერდის გადატანა
@@ -454,7 +454,7 @@
 	Replace pages	გვერდების ჩანაცვლება
 	Crop page	გვერდის ჩამოჭრა
 	Cancel	გაუქმება
-	Don't save	არ შეინახოს
+	Don't save	არ შეინახო
 	Apply	გამოყენება
 	Run	გაშვება
 	Clear	გასუფთავება
@@ -809,7 +809,7 @@
 	Email Address	ელფოსტის მისამართი
 	Country/Region	ქვეყანა/რეგიონი
 	Key Algorithm	გასაღების ალგორითმი
-	Confirm Password	პაროლის დადასტურება
+	Confirm Password	გაიმეორეთ პაროლი
 	Valid for 5 years, for digital signatures. Self-signed IDs are usually not trusted by others.	მოქმედებს 5 წელი, ციფრული ხელმოწერებისთვის. თვითხელმოწერილ ID-ებს სხვები, როგორც წესი, არ ენდობიან.
 	File (.p12, .pfx)	ფაილი (.p12, .pfx)
 	Digital ID	ციფრული ID
@@ -903,7 +903,7 @@
 	Line ending	ხაზის ბოლო
 	Open arrow	ღია ისარი
 	Closed arrow	დახურული ისარი
-	Butt	სწორი ბოლო
+	Butt	ბლაგვი
 	Reverse open arrow	შებრუნებული ღია ისარი
 	Reverse closed arrow	შებრუნებული დახურული ისარი
 	Slash	დახრილი ხაზი
@@ -1248,7 +1248,7 @@
 	Pink	ვარდისფერი
 	Purple	იისფერი
 	Blue	ლურჯი
-	Light blue	ცისფერი
+	Light blue	ღია ლურჯი
 	Green	მწვანე
 	Gray	ნაცრისფერი
 	Black	შავი
@@ -2156,7 +2156,7 @@ key	Space	ჰარი
 	Shift-click to select several objects. Drag empty space to select an area.	რამდენიმე ობიექტის მოსანიშნად დააწკაპუნეთ Shift-ით. არის მოსანიშნად გადაათრიეთ ცარიელ ადგილზე.
 	Select at most 1000 objects at a time.	ერთდროულად მონიშნეთ მაქსიმუმ 1000 ობიექტი.
 	Finish or discard the text being edited before selecting several objects.	რამდენიმე ობიექტის მონიშვნამდე დაასრულეთ ან გააუქმეთ რედაქტირებადი ტექსტი.
-	Move object	ობიექტის გადატანა
+	Move object	ობიექტის გადაადგილება
 	Move objects	ობიექტების გადატანა
 	Vertical text cannot be moved with this selection.	ვერტიკალური ტექსტის ამ მონიშვნით გადატანა შეუძლებელია.
 	Text used as a clipping path cannot be moved with this selection.	ჩაჭრის კონტურად გამოყენებული ტექსტის ამ მონიშვნით გადატანა შეუძლებელია.
@@ -2195,7 +2195,7 @@ key	Space	ჰარი
 	Light	ღია
 	Dark	ბნელი
 	Active	აქტიური
-	Dark theme	მუქი თემა
+	Dark theme	ბნელი თემა
 	Appearance settings…	იერსახის პარამეტრები…
 	Save ({key})	შენახვა ({key})
 	Select page {label}	გვერდის {label} მონიშვნა
