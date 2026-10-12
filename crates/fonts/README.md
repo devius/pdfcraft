@@ -45,11 +45,15 @@ set). Without that variable `CRAFT_FONTS` is empty and everything below copes:
   default `document_japanese_font` / `japanese_glyph` APIs still use regular document Mincho.
 - `document_arabic_font` / `shape_arabic` / `arabic_glyph`: the first `Arab` face, shaped with
   harfrust (joining forms, ligatures, mark positions) into clusters for Arabic text written into
-  PDFs; the editor draws each cluster as one Type 3 glyph with a ToUnicode entry. Without the face
+  PDFs; the editor draws each cluster as one Type 3 glyph with a ToUnicode entry and per-line ActualText for logical copy/search order. Without the face
   they return `GlyphError::NoFont` and the editor reports a clear error.
 - `document_japanese_fonts_for_style`: every `Jpan` face in that order of preference, so the
   editor can use the first one that has all of the replacement's glyphs (the faces differ in
   coverage, e.g. of Cyrillic).
+- `ui_thai_fonts` / `document_thai_font` / `shape_thai`: the `Thai` faces for the interface
+  and shaped Thai Add Text content. Harfrust positions stacked vowel/tone marks and decomposes
+  Sara Am; cluster ToUnicode entries preserve the original text. The shared Type 3 writer
+  embeds outlines, so reopening does not depend on installed fonts.
 - `SHIPPORI_MINCHO`: Shippori Mincho's bytes, or `None`.
 
 Generated Japanese Type 3 fonts record the fallback face's family and style in an indirect
@@ -60,9 +64,15 @@ The descriptor does not change glyph programs or replace the Type 3 `FontBBox` m
 only Gothic Regular, so it cannot preserve bold. No new font assets or changes to that input are
 needed.
 
-wasm32 builds embed only BIZ UDPGothic Regular and any `Arab`, `Telu` or `Hebr` face, to keep the web build small: the web build
+wasm32 builds embed only BIZ UDPGothic Regular and any `Arab`, `Telu`, `Hebr` or `Thai` face, to keep the web build small: the web build
 currently has no Chinese face, so Chinese there still shows the replacement glyph.
 Font files are never
 committed here (`AGENTS.md` §1.4; team members: [craftrules `standards/fonts.md`](https://github.com/storytold/craftrules/blob/main/standards/fonts.md), internal).
 
 The full font subsystem (parsing, shaping, subsetting and embedding) arrives with M2.2/M7.
+
+
+Document font inputs use `embedding`: bounded static TrueType/OpenType-CFF validation,
+exact program preservation, Unicode/CID/GID mapping and full-face subset completion.
+`shaping` uses the same program with harfrust and UAX #9; source UI fallback fonts are
+never exported. See [existing-text editing](../../docs/editing-existing-text.md).

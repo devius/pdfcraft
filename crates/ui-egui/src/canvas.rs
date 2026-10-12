@@ -10,7 +10,7 @@ use std::sync::Arc;
 
 use egui::{Align2, Color32, CornerRadius, Pos2, Rect, Sense, Stroke, TextureHandle, TextureOptions, Vec2, pos2, vec2};
 use pdfcraft_engine::{DocId, Edit};
-use pdfcraft_render::{DestView, DocInfo, LayerOp, LinkTarget, PageText, RenderPool, RenderRequest, RequestKind, Tile, device_pixels};
+use pdfcraft_render::{DestView, DocInfo, LayerOp, LinkTarget, PRINT_TAG, PageText, RenderPool, RenderRequest, RequestKind, Tile, device_pixels};
 
 use crate::theme::{self, Tokens};
 use crate::{PdfCraftApp, QuickTool, RightPanel, comments, icons, widgets};
@@ -34,8 +34,6 @@ const TILE_THRESHOLD: f32 = 4096.0;
 const TILE: u32 = 1024;
 /// Longest side of the backdrop drawn under tiles, and of a live page preview (signature drag).
 pub(crate) const BASE_SIDE: f32 = 2048.0;
-/// Print-preview rasters (distinct from thumbnails and from organize-grid renders).
-const PRINT_TAG: u64 = 1 << 60;
 /// Thumbnail slot before density scaling. The pages panel draws at most 150 logical points and
 /// the organize grid about 146; when the byte budget allows, density reaches the screen so those
 /// images are sampled down instead of stretched.
@@ -302,6 +300,8 @@ pub struct DocView {
     pub highlight_fields: bool,
     pub page_input: String,
     pub notice_dismissed: bool,
+    /// The user has been told that the form's scripts were turned off (it is said once).
+    pub scripts_off_noted: bool,
     /// The file changed on disk while this document had unsaved changes: the notice bar asks
     /// before replacing it (#431).
     pub disk_changed: bool,
@@ -384,6 +384,7 @@ pub struct DocView {
     pub(crate) auto_scroll: crate::autoscroll::AutoScroll,
     /// Pages selected in the organize grid or the Pages panel (0-based). Empty means "the current page".
     pub selected: BTreeSet<usize>,
+    organize_range: crate::page_selection_ui::PageSelectionInput,
     /// Anchor for ⇧-click range selection in the organize grid.
     select_anchor: Option<usize>,
     /// An edit requested by the view (organize toolbar, keys), applied by the app this frame.
@@ -392,10 +393,13 @@ pub struct DocView {
     /// line being edited.
     pub(crate) edit_lines: HashMap<usize, (u64, Vec<pdfcraft_engine::TextBlock>)>,
     pub line_editor: Option<crate::edit_text_ui::LineEditor>,
+    pub(crate) text_background: crate::edit_text_ui::TextBackground,
     /// Edit text & images: the images per page (by document generation), and the selected one.
     pub(crate) edit_images: HashMap<usize, (u64, Vec<pdfcraft_engine::PageImage>)>,
     pub(crate) objects: crate::object_ui::ObjectSelection,
     pub image_selection: Option<crate::edit_text_ui::ImageSelection>,
+    /// Select tool: the picture clicked, to copy in its original format.
+    pub picked_image: Option<crate::image_pick::PickedImage>,
     /// A paragraph box being dragged (moved, or resized from its right edge) in Edit text.
     pub block_drag: Option<crate::edit_text_ui::BlockDrag>,
     /// Commenting state: selected comment, gestures, composer.
@@ -499,6 +503,8 @@ pub enum ViewAction {
     InsertFromFile,
     /// Insert files at a gap of the page grid (0 = before the first page).
     InsertFromFileAt(usize),
+    /// Replace the selected pages with pages from another file.
+    ReplacePages,
     /// Save the document as the grid shows it.
     Save,
     Extract,
@@ -579,6 +585,7 @@ impl DocView {
             highlight_fields: defaults.highlight_fields,
             page_input: "1".into(),
             notice_dismissed: false,
+            scripts_off_noted: false,
             disk_changed: false,
             cover: false,
             back: Vec::new(),
@@ -623,12 +630,15 @@ impl DocView {
             auto_scroll: Default::default(),
             selected: BTreeSet::new(),
             select_anchor: None,
+            organize_range: Default::default(),
             pending_edit: None,
             edit_lines: HashMap::new(),
             line_editor: None,
+            text_background: Default::default(),
             edit_images: HashMap::new(),
             objects: Default::default(),
             image_selection: None,
+            picked_image: None,
             block_drag: None,
             pending_action: None,
             insert_at: None,
@@ -727,6 +737,10 @@ impl DocView {
     }
 
     /// Select pages in the organize grid (tests, automation). Empty clears the selection.
+    pub(crate) fn page_count(&self) -> usize {
+        self.page_count
+    }
+
     pub fn select_pages(&mut self, pages: &[usize]) {
         self.selected = pages.iter().copied().filter(|p| *p < self.page_count).collect();
         if let Some(first) = self.selected.first() {
@@ -766,7 +780,7 @@ impl DocView {
     }
 
     pub fn render_pending(&self) -> bool {
-        !self.last_queue.is_empty()
+        !self.last_queue.is_empty() || self.text_background.pending()
     }
 
     /// Re-render every page and text layer (the document's appearance changed, e.g. a layer
@@ -830,10 +844,6 @@ impl DocView {
         if self.selection.is_some_and(|s| s.page == page) {
             self.selection = None;
         }
-        if let Some(f) = self.find.as_mut() {
-            f.matches.retain(|(p, _)| *p != page);
-            f.current = None;
-        }
     }
 
     /// Pages drawn last frame and their screen rectangles.
@@ -891,9 +901,24 @@ impl DocView {
         f.case_query = f.query.clone();
         f.matches.clear();
         f.current = None;
-        let pages: Vec<usize> = self.texts.keys().copied().collect();
-        for p in pages {
-            self.refresh_find_page(p);
+        if f.case_query.trim().is_empty() {
+            return;
+        }
+        let mut pages: Vec<usize> = self.texts.keys().copied().collect();
+        pages.sort();
+        for &p in &pages {
+            if let Some(text) = self.texts.get(&p) {
+                f.matches.extend(text.find_opts(&f.case_query, f.case_sensitive, f.whole_words).into_iter().map(|r| (p, r)));
+            }
+        }
+        f.matches.sort_by_key(|(p, r)| (*p, r.start));
+        if !f.matches.is_empty() {
+            // First match at or after the page being viewed.
+            let cur = self.current;
+            let i = f.matches.iter().position(|(p, _)| *p >= cur).unwrap_or(0);
+            f.current = Some(i);
+            let (p, _) = f.matches[i];
+            self.flash_match(p);
         }
     }
 
@@ -906,17 +931,16 @@ impl DocView {
         f.matches.retain(|(p, _)| *p != page);
         f.matches.extend(text.find_opts(&f.case_query, f.case_sensitive, f.whole_words).into_iter().map(|r| (page, r)));
         f.matches.sort_by_key(|(p, r)| (*p, r.start));
-        f.current = match current_key {
-            Some(k) => f.matches.iter().position(|m| *m == k),
-            None => None,
-        };
+        f.current = current_key.as_ref().and_then(|k| f.matches.iter().position(|m| m == k));
         if f.current.is_none() && !f.matches.is_empty() {
             // First match at or after the page being viewed.
             let cur = self.current;
             let i = f.matches.iter().position(|(p, _)| *p >= cur).unwrap_or(0);
             f.current = Some(i);
             let (p, _) = f.matches[i];
-            self.flash_match(p);
+            if current_key.is_none() {
+                self.flash_match(p);
+            }
         }
     }
 
@@ -1318,6 +1342,7 @@ impl DocView {
         self.waiting_since.clear();
         // Signature previews own a separate renderer and image/background textures.
         self.signature_drag = Default::default();
+        self.text_background = Default::default();
         if !self.last_queue.is_empty() {
             pool.set_queue(Vec::new());
             self.last_queue.clear();
@@ -1537,6 +1562,15 @@ impl DocView {
                 None => {
                     log::warn!("page {} text: {}", r.request.page + 1, r.error.unwrap_or_default());
                     self.text_failed.insert(r.request.page);
+                    if let Some(f) = self.find.as_mut() {
+                        let current_key = f.current.and_then(|c| f.matches.get(c).cloned());
+                        f.matches.retain(|(p, _)| *p != r.request.page);
+                        f.current = current_key.and_then(|k| f.matches.iter().position(|m| *m == k));
+                        if f.current.is_none() && !f.matches.is_empty() {
+                            let cur = self.current;
+                            f.current = Some(f.matches.iter().position(|(p, _)| *p >= cur).unwrap_or(0));
+                        }
+                    }
                 }
             }
             return 0;
@@ -1702,6 +1736,8 @@ impl DocView {
     }
 
     /// Queue sharp rasters for the print preview. Pages that leave the nearby sheets are dropped.
+    /// Previews render with reading colours off (the request's tag tells the renderer): they must
+    /// match the printout, which is imposed from the uncoloured document.
     pub(crate) fn queue_print_previews(&mut self, pages: &[(usize, f32)]) {
         self.print_pages.retain(|page, _| pages.iter().any(|(p, _)| p == page));
         for &(page, scale) in pages {
@@ -2018,7 +2054,8 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
     // The Prepare a form panel is open (or a field tool is picked): fields are edited, not filled.
     let preparing = app.is_preparing();
     // Edit a PDF: added text and images can be selected, moved and edited.
-    let editing_content = (app.left_open && app.left == crate::LeftPanel::Tool("edit")) || app.quick_tool == QuickTool::AddText;
+    let editing_content =
+        (app.left_open && app.left == crate::LeftPanel::Tool("edit")) || matches!(app.quick_tool, QuickTool::AddText | QuickTool::EditText);
     let text_style = app.text_style.clone();
     let view = &mut app.views[index];
     // Opened without the owner password and something is restricted.
@@ -2034,6 +2071,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
         Some(Notice::Unlock) => app.unlock_prompt = Some(crate::UnlockPrompt::new(doc, None)),
         Some(Notice::Signatures) => app.right = Some(RightPanel::Signatures),
         Some(Notice::FieldHighlights(on)) => app.view_defaults.highlight_fields = on,
+        Some(Notice::Console) => app.dialog = Some(crate::Dialog::JsConsole),
         None => {}
     }
     // No dialog, close prompt or palette over the page: only then does page input count.
@@ -2070,7 +2108,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
     }
 
     // Pinch / ctrl+scroll zoom, anchored on the current page.
-    let zoom_delta = ui.input(|i| i.zoom_delta());
+    let zoom_delta = crate::motion::zoom_delta(ui.ctx());
     // Exclude the previous frame's scrollbar tracks from gesture activation.
     let navigation_rect = if view.viewport_screen.is_positive() { avail.intersect(view.viewport_screen) } else { avail };
     let navigation_enabled = app.dialog.is_none() && app.close_request.is_none() && !app.palette_open && ui.is_enabled() && ui.input(|i| i.focused);
@@ -2288,6 +2326,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
         || app.pending_link.is_some()
         || app.updates.open;
     let mut clicked_link: Option<LinkTarget> = None;
+    let mut remote_open: Option<(pdfcraft_engine::DocId, String, pdfcraft_render::RemoteDestination)> = None;
     let mut canvas_action: Option<comments::CanvasAction> = None;
     let mut field_menu: Option<FieldMenu> = None;
     let mut open_props: Option<(usize, usize)> = None;
@@ -2300,6 +2339,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
         view.prepare.selected = None;
     }
     view.objects.prepare(doc, tool == QuickTool::EditText && can_modify, ui.ctx());
+    view.text_background.prepare(ui.ctx(), doc, view.line_editor.as_ref(), scale);
     let added = doc.added.clone();
     let doc_links = if tool == QuickTool::Link { doc.links.clone() } else { Vec::new() };
     if editing_content {
@@ -2361,6 +2401,10 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
         let mut current_overlap = -1.0f32;
         let mut current_height = f32::INFINITY;
         let pointer = ui.input(|i| i.pointer.hover_pos());
+        if resp.secondary_clicked() {
+            // Set again below when the right-click lands on a link.
+            view.links.context = None;
+        }
         for &i in &visible_pages {
             let r = snap_to_pixels(rects[i].translate(origin.to_vec2()), ppp);
             if !r.intersects(visible.expand(400.0)) {
@@ -2501,6 +2545,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
                     }
                 }
             }
+            view.text_background.paint(painter, &xf, i, view.line_editor.as_ref());
             painter.rect_stroke(r, CornerRadius::ZERO, Stroke::new(0.5, t.border.gamma_multiply(0.8)), egui::StrokeKind::Outside);
 
             // Comments: tools, selection, moving and resizing come before text selection.
@@ -2567,6 +2612,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
                     i,
                     info,
                     ft,
+                    app.fill_text_size,
                     view,
                     signature.as_ref(),
                     initials.as_ref(),
@@ -2622,12 +2668,15 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
                 };
                 crate::redact_ui::page_input(ui, &resp, &xf, i, info, over_text, view)
             };
-            let on_objects = tool == QuickTool::EditText && can_modify && crate::object_ui::page_input(ui, &resp, &xf, i, doc, view);
+            let image_owns_pointer = tool == QuickTool::EditText && crate::edit_text_ui::image_owns_pointer(ui, &xf, i, info, view);
+            let on_objects =
+                !image_owns_pointer && tool == QuickTool::EditText && can_modify && crate::object_ui::page_input(ui, &resp, &xf, i, doc, view);
             let on_content = !on_objects && editing_content && can_modify && {
                 crate::content_ui::page_input(ui, &resp, &xf, i, info, &added, tool == QuickTool::AddText, &text_style, view)
                     || tool == QuickTool::AddText
             };
-            let on_edit_text = !on_objects && tool == QuickTool::EditText && can_modify && {
+            // Added content owns its gesture; its source text must not queue a second edit.
+            let on_edit_text = !on_objects && !on_content && tool == QuickTool::EditText && can_modify && {
                 let generation = doc.edit_generation();
                 let lines = match view.edit_lines.get(&i) {
                     Some((g, l)) if *g == generation => l.clone(),
@@ -2645,11 +2694,22 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
                         l
                     }
                 };
-                // Images first (they can sit under text boxes' corners); then paragraphs.
-                crate::edit_text_ui::image_input(ui, &resp, &xf, i, info, &images, view, &mut image_action)
-                    || crate::edit_text_ui::page_input(ui, &resp, &xf, i, info, &lines, view)
+                // Editable text takes precedence over background/overlapping artwork. Both
+                // inventories are painted every frame, even when text owns the pointer.
+                let text_used = crate::edit_text_ui::page_input(ui, &resp, &xf, i, doc, &lines, view, !image_owns_pointer);
+                let image_used =
+                    crate::edit_text_ui::image_input(ui, &resp, &xf, i, info, &images, view, &mut image_action, image_owns_pointer || !text_used);
+                text_used || image_used
             };
             let on_link = tool == QuickTool::Link && can_modify && crate::link_ui::page_input(ui, &resp, &xf, i, info, &doc_links, view);
+            if tool == QuickTool::Select
+                && resp.secondary_clicked()
+                && can_modify
+                && let Some(p) = pointer.filter(|p| xf.rect.contains(*p))
+                && let Some(l) = doc.links.iter().find(|l| l.page == i && crate::link_ui::screen_rect(&xf, info, i, l.rect).expand(2.0).contains(p))
+            {
+                view.links.context = Some((i, l.index));
+            }
             let consumed = on_objects || on_edit_text || on_link || on_content || boxing || on_field || comments::page_input(ui, &resp, &pcx, view);
 
             let preview_target =
@@ -2801,6 +2861,10 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
                 }
             }
 
+            if tool == QuickTool::Select && !consumed {
+                crate::image_pick::page_input(&resp, &xf, i, info, doc, pointer, view);
+            }
+            crate::image_pick::paint(painter, &xf, i, info, view);
             comments::page_after_text(&resp, &pcx, view);
             if tool == QuickTool::Redact && can_modify {
                 crate::redact_ui::after_text(&resp, i, info, view);
@@ -2865,6 +2929,7 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
                             }
                             LinkTarget::Uri(u) => u.clone(),
                             LinkTarget::SetLayers { .. } => tl!("Set layer visibility").to_string(),
+                            LinkTarget::RemoteGoTo { file, .. } => file.clone(),
                             LinkTarget::Other(s) => crate::i18n::fmt(tl!("{s} action"), &[("s", s)]),
                         };
                         hover_text = Some((p, label));
@@ -2977,7 +3042,55 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
                 }
                 return;
             }
-            canvas_action = comments::context_menu(ui, view, info, prefs, allowed);
+            if let Some((page, index)) = view.links.context {
+                if ui.button(tl!("Properties…")).clicked() {
+                    view.links.open_existing = Some((page, index));
+                    ui.close();
+                }
+                if ui.add_enabled(can_modify, egui::Button::new(tl!("Delete"))).clicked() {
+                    view.pending_edit = Some(Edit::DeleteLink { page, index });
+                    view.links.selected = None;
+                    view.links.context = None;
+                    ui.close();
+                }
+                ui.separator();
+                if ui.add_enabled(can_modify, egui::Button::new(tl!("Remove all links"))).clicked() {
+                    view.pending_edit = Some(Edit::RemoveLinks { pages: None });
+                    view.links.selected = None;
+                    view.links.context = None;
+                    ui.close();
+                }
+                return;
+            }
+            // Over a picture (and no comment): Copy Image, as in Acrobat's page menu.
+            let mut copy_image = None;
+            if view.comments.selected.is_none()
+                && let Some((page, at)) = view.comments.context_at
+            {
+                // The page's content is parsed once per right-click, not on every frame the menu is open.
+                let key = egui::Id::new("copy-image-under-menu");
+                let cached = ui.data(|d| d.get_temp::<(usize, [f64; 2], Option<usize>)>(key)).filter(|c| c.0 == page && c.1 == at);
+                let hit = match cached {
+                    Some(c) => c.2,
+                    None => {
+                        let hit = doc.page_image_at(page, at);
+                        ui.data_mut(|d| d.insert_temp(key, (page, at, hit)));
+                        hit
+                    }
+                };
+                if let Some(image) = hit {
+                    if ui.button(tl!("Copy Image")).clicked() {
+                        copy_image = Some(comments::CanvasAction::CopyImage(page, image));
+                        ui.close();
+                    }
+                    if ui.button(tl!("Copy Image in Original Format")).clicked() {
+                        copy_image = Some(comments::CanvasAction::CopyImageFile(page, image));
+                        ui.close();
+                    }
+                    ui.separator();
+                }
+            }
+            canvas_action = comments::context_menu(ui, view, info, prefs, allowed).or(copy_image);
         });
         (wanted, visible_now)
     });
@@ -2991,6 +3104,9 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
 
     view.viewport_screen = out.inner_rect;
     view.auto_scroll.paint(ui, avail);
+    if unobstructed && matches!(tool, QuickTool::Select | QuickTool::ColumnSelect) {
+        selection_actions(ui, avail, view, info, prefs, allowed && !comments_hidden);
+    }
 
     // Collect all main-page demand, including cached surfaces, for byte admission later.
     // Pan-settle debounce for tiled pages: each tile costs a full page interpret, so holding
@@ -3155,13 +3271,16 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
             app.comments_panel_closed = false;
         }
         Some(comments::CanvasAction::Properties(p, i)) => open_props = Some((p, i)),
+        Some(comments::CanvasAction::CopyImage(p, i)) => image_action = Some(crate::edit_text_ui::ImageAction::Copy(p, i)),
+        Some(comments::CanvasAction::CopyImageFile(p, i)) => image_action = Some(crate::edit_text_ui::ImageAction::CopyFile(p, i)),
         None => {}
     }
     match clicked_link {
         Some(LinkTarget::Page(p, dest)) => view.go_to_dest(p, dest, info),
         Some(LinkTarget::Uri(u)) => app.request_document_url(&u, crate::LinkOrigin::Link),
         Some(LinkTarget::SetLayers { changes, preserve_rb }) => set_layers(app, index, &changes, preserve_rb),
-        Some(LinkTarget::Other(s)) => app.notify_fmt("{s} actions run in the JavaScript engine (M6)", &[("s", &s)]),
+        Some(LinkTarget::RemoteGoTo { file, destination, .. }) => remote_open = Some((view.id, file, destination)),
+        Some(LinkTarget::Other(s)) => app.notify_fmt("This PDF uses the unsupported {s} action.", &[("s", &s)]),
         None => {}
     }
     if tool == QuickTool::Crop && cropped {
@@ -3232,6 +3351,8 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
     match image_action {
         Some(crate::edit_text_ui::ImageAction::Replace(page, index)) => app.replace_page_image_dialog(page, index),
         Some(crate::edit_text_ui::ImageAction::Save(page, index)) => app.save_page_image(page, index),
+        Some(crate::edit_text_ui::ImageAction::Copy(page, index)) => app.copy_page_image(page, index),
+        Some(crate::edit_text_ui::ImageAction::CopyFile(page, index)) => app.copy_page_image_file(page, index),
         None => {}
     }
     if let Some(why) = refused {
@@ -3257,6 +3378,95 @@ pub fn document_area(app: &mut PdfCraftApp, index: usize, ui: &mut egui::Ui) {
         run_button(app, index, &name, action);
     }
     quick_bar(app, avail, ui);
+    if let Some((source, file, destination)) = remote_open {
+        app.open_remote_link(source, file, destination);
+    }
+}
+
+#[derive(Clone, Copy)]
+enum SelectionAction {
+    Note,
+    Markup(comments::CommentTool),
+    Replace,
+    Copy,
+}
+
+/// Actions on an existing text selection, next to the selected words.
+fn selection_actions(ui: &mut egui::Ui, viewport: Rect, view: &mut DocView, info: &DocInfo, prefs: &comments::CommentPrefs, can_comment: bool) {
+    if ui.input(|input| input.pointer.is_decidedly_dragging()) {
+        return;
+    }
+    let Some(selection) = view.selection else { return };
+    let Some(text) = view.texts.get(&selection.page) else { return };
+    let Some(xf) = view.page_xform(selection.page) else { return };
+    let Some(last) = selection.rects(text).last().copied() else { return };
+    let selected = selection.text(text);
+    if selected.is_empty() {
+        return;
+    }
+    let rect = xf.view_rect(last);
+    if !viewport.intersects(rect) {
+        return;
+    }
+    let x = rect.left().clamp(viewport.left() + 8.0, (viewport.right() - 520.0).max(viewport.left() + 8.0));
+    let y = if rect.bottom() + 48.0 < viewport.bottom() { rect.bottom() + 6.0 } else { (rect.top() - 44.0).max(viewport.top() + 6.0) };
+    let mut chosen = None;
+    egui::Area::new(egui::Id::new(("text-selection-actions", view.id.0))).order(egui::Order::Foreground).fixed_pos(pos2(x, y)).show(ui.ctx(), |ui| {
+        egui::Frame::popup(ui.style()).show(ui, |ui| {
+            ui.horizontal(|ui| {
+                for (label, action) in [
+                    (tl!("Add comment"), SelectionAction::Note),
+                    (tl!("Highlight"), SelectionAction::Markup(comments::CommentTool::Highlight)),
+                    (tl!("Underline"), SelectionAction::Markup(comments::CommentTool::Underline)),
+                    (tl!("Strikethrough"), SelectionAction::Markup(comments::CommentTool::StrikeOut)),
+                    (tl!("Replace text"), SelectionAction::Replace),
+                ] {
+                    if ui.add_enabled(can_comment, egui::Button::new(label)).clicked() {
+                        chosen = Some(action);
+                    }
+                }
+                if ui.button(tl!("Copy")).clicked() {
+                    chosen = Some(SelectionAction::Copy);
+                }
+            });
+        });
+    });
+    let Some(action) = chosen else { return };
+    if let SelectionAction::Copy = action {
+        ui.ctx().copy_text(selected);
+        return;
+    }
+    let Some((page, quads)) = view.selection_quads(info) else { return };
+    let last = quads.last().copied().unwrap_or_default();
+    let at = [last[2].max(last[6]), last[1].max(last[3])];
+    view.clear_selection();
+    match action {
+        SelectionAction::Note | SelectionAction::Replace => {
+            if matches!(action, SelectionAction::Replace) {
+                view.comments.replace = Some(quads);
+            }
+            view.comments.composer = Some(comments::Composer {
+                page,
+                at,
+                kind: if matches!(action, SelectionAction::Replace) { comments::ComposerKind::Replace } else { comments::ComposerKind::Note },
+                text: String::new(),
+                focus: true,
+            });
+        }
+        SelectionAction::Markup(tool) => {
+            // Every markup button carries a markup tool; anything else adds nothing.
+            let Some(kind) = tool.markup() else { return };
+            view.pending_edit = Some(Edit::AddAnnotation(pdfcraft_engine::NewAnnotation {
+                page,
+                shape: pdfcraft_engine::Shape::TextMarkup { kind, quads },
+                style: prefs.style(tool),
+                contents: String::new(),
+                author: prefs.author.clone(),
+            }));
+        }
+        // Copied above.
+        SelectionAction::Copy => {}
+    }
 }
 
 /// Run a push button's action (the ones that need no JavaScript engine).
@@ -3419,8 +3629,8 @@ fn find_bar(view: &mut DocView, pages: usize, area: Rect, ui: &mut egui::Ui, t: 
                         }
                         let opts = icons::button(ui, "settings-2", 26.0, find.case_sensitive || find.whole_words, tl!("Find options"));
                         egui::Popup::menu(&opts).show(|ui| {
-                            let a = ui.checkbox(&mut find.whole_words, tl!("Whole words only")).changed();
-                            let b = ui.checkbox(&mut find.case_sensitive, tl!("Case-sensitive")).changed();
+                            let a = ui.add(widgets::checkbox(&mut find.whole_words, tl!("Whole words only"))).changed();
+                            let b = ui.add(widgets::checkbox(&mut find.case_sensitive, tl!("Case-sensitive"))).changed();
                             if a || b {
                                 // Search again with the new options.
                                 find.case_query.clear();
@@ -3459,12 +3669,14 @@ enum Notice {
     Repairs,
     /// Highlight fields was turned on or off.
     FieldHighlights(bool),
+    /// Open the JavaScript console (the form's scripts were turned off; the error is there).
+    Console,
     /// Unlock… (enter the permissions password).
     Unlock,
 }
 
 /// The notice bar above the pages: the signature status first (Acrobat's signature bar), then
-/// security, forms and warnings.
+/// a form's scripts having been turned off, security, forms and warnings.
 fn notices(
     view: &mut DocView,
     doc: &pdfcraft_engine::Document,
@@ -3512,8 +3724,14 @@ fn notices(
     let mut open_security = false;
     let mut unlock = false;
     let mut open_repairs = false;
+    let mut open_console = false;
     let mut toggled = None;
-    let msg = if secured {
+    // A form whose scripts were turned off no longer calculates or answers its buttons: that
+    // comes before what else there is to say about the document.
+    let scripts_off = doc.xfa_scripts_off();
+    let msg = if scripts_off {
+        Some(("triangle-alert", crate::js_ui::scripts_off_notice(), true))
+    } else if secured {
         Some(("lock", tl!("This document is secured. Some changes are restricted by its security settings.").to_string(), false))
     } else if let Some(x) = xfa {
         let lang = crate::i18n::current();
@@ -3565,6 +3783,9 @@ fn notices(
                 toggled = Some(Notice::FieldHighlights(view.highlight_fields));
             }
         }
+        if scripts_off && crate::widgets::pill_button(ui, tl!("JavaScript Console"), false).clicked() {
+            open_console = true;
+        }
         if secured && crate::widgets::pill_button(ui, tl!("Security settings"), false).clicked() {
             open_security = true;
         }
@@ -3577,6 +3798,9 @@ fn notices(
     });
     if open_repairs {
         return Some(Notice::Repairs);
+    }
+    if open_console {
+        return Some(Notice::Console);
     }
     if unlock {
         return Some(Notice::Unlock);
@@ -3623,9 +3847,9 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
         egui::Frame::NONE
             .fill(t.card)
             .stroke(Stroke::new(1.0, t.border))
-            .corner_radius(CornerRadius::same(10))
-            .shadow(egui::Shadow { offset: [0, 2], blur: 10, spread: 0, color: Color32::from_black_alpha(if t.dark() { 80 } else { 22 }) })
-            .inner_margin(egui::Margin::same(4))
+            .corner_radius(CornerRadius::same(12))
+            .shadow(egui::Shadow { offset: [0, 4], blur: 16, spread: 0, color: Color32::from_black_alpha(if t.dark() { 100 } else { 28 }) })
+            .inner_margin(egui::Margin::same(6))
             .show(ui, |ui| {
                 ui.spacing_mut().item_spacing.y = 2.0;
                 ui.vertical(|ui| {
@@ -3644,7 +3868,7 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
                         // A small corner triangle marks the flyout.
                         let r = resp.rect;
                         let tri = [r.right_bottom() + vec2(-4.0, -4.0), r.right_bottom() + vec2(-9.0, -4.0), r.right_bottom() + vec2(-4.0, -9.0)];
-                        ui.painter().add(egui::Shape::convex_polygon(tri.to_vec(), if active { Color32::WHITE } else { t.text_muted }, Stroke::NONE));
+                        ui.painter().add(egui::Shape::convex_polygon(tri.to_vec(), if active { t.accent } else { t.text_faint }, Stroke::NONE));
                         let open = (resp.clicked() && active) || resp.secondary_clicked();
                         if resp.clicked() && !active {
                             app.execute(current.command());
@@ -3657,14 +3881,14 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
                                 for tool in comments::GROUPS[g] {
                                     let on = app.quick_tool == QuickTool::Comment(*tool);
                                     let (row, click) = ui.allocate_exact_size(vec2(180.0, 28.0), Sense::click());
-                                    if click.hovered() {
-                                        ui.painter().rect_filled(row, CornerRadius::same(4), t.hover);
-                                    }
-                                    icons::paint(ui, Rect::from_min_size(row.min + vec2(8.0, 6.0), vec2(16.0, 16.0)), tool.icon(), 16.0, t.text);
+                                    let press = theme::Press::track(ui, &click);
+                                    press.wash(ui, row, 4, on);
+                                    let body = row.translate(press.offset());
+                                    icons::paint(ui, Rect::from_min_size(body.min + vec2(8.0, 6.0), vec2(16.0, 16.0)), tool.icon(), 16.0, t.text);
                                     let reserve = if on { 28.0 } else { 8.0 };
                                     crate::widgets::paint_left(
                                         ui,
-                                        row.left_center() + vec2(34.0, 0.0),
+                                        body.left_center() + vec2(34.0, 0.0),
                                         tl!(tool.label()),
                                         theme::regular(13.0),
                                         t.text,
@@ -3673,13 +3897,13 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
                                     if on {
                                         icons::paint(
                                             ui,
-                                            Rect::from_min_size(row.right_top() + vec2(-24.0, 7.0), vec2(14.0, 14.0)),
+                                            Rect::from_min_size(body.right_top() + vec2(-24.0, 7.0), vec2(14.0, 14.0)),
                                             "check",
                                             14.0,
                                             t.accent,
                                         );
                                     }
-                                    let click = click.on_hover_cursor(egui::CursorIcon::PointingHand);
+                                    let click = theme::hand(click);
                                     let info = tl!(tool.label()).to_string();
                                     click.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::Button, true, on, info.clone()));
                                     if click.clicked() {
@@ -3706,7 +3930,7 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
                     let tri = [r.right_bottom() + vec2(-4.0, -4.0), r.right_bottom() + vec2(-9.0, -4.0), r.right_bottom() + vec2(-4.0, -9.0)];
                     ui.painter().add(egui::Shape::convex_polygon(
                         tri.to_vec(),
-                        if current_fill.is_some() { Color32::WHITE } else { t.text_muted },
+                        if current_fill.is_some() { t.accent } else { t.text_faint },
                         Stroke::NONE,
                     ));
                     if resp.clicked() && current_fill.is_none() {
@@ -3724,14 +3948,14 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
                                 }
                                 let on = current_fill == Some(tool);
                                 let (row, click) = ui.allocate_exact_size(vec2(180.0, 28.0), Sense::click());
-                                if click.hovered() {
-                                    ui.painter().rect_filled(row, CornerRadius::same(4), t.hover);
-                                }
-                                icons::paint(ui, Rect::from_min_size(row.min + vec2(8.0, 6.0), vec2(16.0, 16.0)), tool.icon(), 16.0, t.text);
+                                let press = theme::Press::track(ui, &click);
+                                press.wash(ui, row, 4, on);
+                                let body = row.translate(press.offset());
+                                icons::paint(ui, Rect::from_min_size(body.min + vec2(8.0, 6.0), vec2(16.0, 16.0)), tool.icon(), 16.0, t.text);
                                 let reserve = if on { 28.0 } else { 8.0 };
                                 crate::widgets::paint_left(
                                     ui,
-                                    row.left_center() + vec2(34.0, 0.0),
+                                    body.left_center() + vec2(34.0, 0.0),
                                     tl!(tool.label()),
                                     theme::regular(13.0),
                                     t.text,
@@ -3740,12 +3964,13 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
                                 if on {
                                     icons::paint(
                                         ui,
-                                        Rect::from_min_size(row.right_top() + vec2(-24.0, 7.0), vec2(14.0, 14.0)),
+                                        Rect::from_min_size(body.right_top() + vec2(-24.0, 7.0), vec2(14.0, 14.0)),
                                         "check",
                                         14.0,
                                         t.accent,
                                     );
                                 }
+                                let click = theme::hand(click);
                                 let info = tl!(tool.label()).to_string();
                                 click.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::Button, true, on, info.clone()));
                                 if click.clicked() {
@@ -3759,10 +3984,39 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
                                 ui.close();
                             }
                         });
+                    if matches!(current_fill, Some(crate::fill_sign::FillTool::Text | crate::fill_sign::FillTool::Date)) {
+                        ui.label(tl!("Font size:"));
+                        ui.add(
+                            egui::DragValue::new(&mut app.fill_text_size)
+                                .range(crate::fill_sign::MIN_TEXT_SIZE..=crate::fill_sign::MAX_TEXT_SIZE)
+                                .speed(0.25)
+                                .suffix(" pt"),
+                        );
+                    }
                     if let QuickTool::Comment(tool) = app.quick_tool {
                         let (r, _) = ui.allocate_exact_size(vec2(32.0, 9.0), Sense::hover());
                         ui.painter().hline(r.x_range().shrink(6.0), r.center().y, Stroke::new(1.0, t.divider));
-                        comments::quick_bar_controls(ui, tool, &mut app.comment_prefs);
+                        if let Some(color) = comments::quick_bar_controls(ui, tool, &mut app.comment_prefs)
+                            && let Some((index, id)) = app.active_ids()
+                            && let Some((page, annotation)) = app.views.get(index).and_then(|view| view.comments.selected)
+                            && app.session.get(id).is_some_and(|doc| {
+                                doc.allows_annotation()
+                                    && doc
+                                        .info
+                                        .annotations
+                                        .iter()
+                                        .any(|a| a.page == page && a.index == annotation && a.in_reply_to.is_none() && comments::made_by(a, tool))
+                            })
+                        {
+                            app.apply_edit(Edit::StyleAnnotation {
+                                page,
+                                index: annotation,
+                                color: Some(color),
+                                opacity: None,
+                                width: None,
+                                endings: None,
+                            });
+                        }
                     }
                 });
             });
@@ -3771,6 +4025,12 @@ fn quick_bar(app: &mut PdfCraftApp, area: Rect, ui: &mut egui::Ui) {
 
 /// The organize toolbar: page operations on the selection (Acrobat's Organize Pages bar).
 fn organize_toolbar(view: &mut DocView, info: &DocInfo, editable: bool, dirty: bool, unobstructed: bool, ui: &mut egui::Ui, t: &Tokens) {
+    egui::Frame::NONE.fill(t.chrome).inner_margin(egui::Margin::symmetric(16, 4)).show(ui, |ui| {
+        let pages = ui.add_enabled_ui(unobstructed, |ui| view.organize_range.show(ui, &view.selected, info.pages.len())).inner;
+        if let Some(pages) = pages {
+            view.select_pages(&pages);
+        }
+    });
     let targets = view.target_pages();
     let n = info.pages.len();
     let (first, last) = (targets.first().copied().unwrap_or(0), targets.last().copied().unwrap_or(0));
@@ -3802,6 +4062,9 @@ fn organize_toolbar(view: &mut DocView, info: &DocInfo, editable: bool, dirty: b
                 }
                 if icons::button(ui, "file-input", 30.0, false, tl!("Insert pages from a file…")).clicked() {
                     view.pending_action = Some(ViewAction::InsertFromFile);
+                }
+                if icons::button(ui, "replace", 30.0, false, tl!("Replace pages…")).clicked() {
+                    view.pending_action = Some(ViewAction::ReplacePages);
                 }
                 if icons::button(ui, "file-output", 30.0, false, tl!("Extract pages to a new document")).clicked() {
                     view.pending_action = Some(ViewAction::Extract);
@@ -4043,7 +4306,7 @@ fn organize_grid(view: &mut DocView, info: &DocInfo, editable: bool, dirty: bool
                 // outside the page image, including on very tall or wide pages.
                 let mut checked = view.selected.contains(&i);
                 let check_rect = Rect::from_min_size(c.min + vec2(8.0, 8.0), Vec2::splat(20.0));
-                let check = ui.push_id(("org-check", i), |ui| ui.put(check_rect, egui::Checkbox::without_text(&mut checked))).inner;
+                let check = ui.push_id(("org-check", i), |ui| ui.put(check_rect, widgets::checkbox_without_text(&mut checked))).inner;
                 let label = crate::i18n::fmt(tl!("Select page {label}"), &[("label", &p.label)]);
                 check.widget_info(|| egui::WidgetInfo::selected(egui::WidgetType::Checkbox, true, checked, label.clone()));
                 if check.on_hover_text(label).changed() {
@@ -4083,12 +4346,21 @@ fn organize_grid(view: &mut DocView, info: &DocInfo, editable: bool, dirty: bool
                 if resp.double_clicked() {
                     open_page = Some(i);
                 }
-                // Right-click: Cut, Copy, Paste (on the selection, or this page).
+                // Right-click: Extract, Replace, Cut, Copy, Paste (on the selection, or this page).
                 resp.context_menu(|ui| {
                     if !view.selected.contains(&i) {
                         view.selected = [i].into();
                         view.current = i;
                     }
+                    if ui.button(tl!("Extract pages")).clicked() {
+                        view.pending_action = Some(ViewAction::Extract);
+                        ui.close();
+                    }
+                    if ui.add_enabled(editable, egui::Button::new(tl!("Replace pages…"))).clicked() {
+                        view.pending_action = Some(ViewAction::ReplacePages);
+                        ui.close();
+                    }
+                    ui.separator();
                     if ui.add_enabled(editable, egui::Button::new(tl!("Cut"))).clicked() {
                         view.pending_action = Some(ViewAction::CopyPages { cut: true });
                         ui.close();
@@ -4181,7 +4453,7 @@ fn organize_grid(view: &mut DocView, info: &DocInfo, editable: bool, dirty: bool
     }
     view.auto_scroll.paint(ui, viewport);
     // Pinch, or Ctrl/⌘ with the wheel, zooms the grid about the page under the pointer.
-    let pinch = ui.input(|i| i.zoom_delta());
+    let pinch = crate::motion::zoom_delta(ui.ctx());
     if (pinch - 1.0).abs() > 0.001 && pointer.is_some() && !middle_gesture {
         view.grid_zoom_request = Some(view.grid_zoom * pinch);
     }
@@ -4979,5 +5251,38 @@ trailer << /Root 1 0 R >>
         let empty = pdfcraft_render::DocInfo::default();
         v.go_to_dest(1, DestView::FitH { top: Some(100.0) }, &empty);
         assert_eq!((v.current, v.goto_point), (1, None));
+    }
+
+    #[test]
+    fn page_text_failure_preserves_valid_search_match_without_jitter() {
+        let mut v = view(3, PageLayout::Single, true);
+        v.current = 1;
+        v.find = Some(Find {
+            query: "test".into(),
+            case_query: "test".into(),
+            matches: vec![(0, 0..4), (1, 5..9)],
+            current: Some(0),
+            ..Default::default()
+        });
+        let req = RenderRequest { page: 0, kind: RequestKind::Text, ..Default::default() };
+        v.last_queue = vec![req];
+        let ctx = egui::Context::default();
+        v.receive_result(
+            &ctx,
+            pdfcraft_render::RenderedPage {
+                request: req,
+                width: 0,
+                height: 0,
+                rgba: Default::default(),
+                error: Some("extraction failed".into()),
+                text: None,
+                warnings: Vec::new(),
+                millis: 0,
+            },
+        );
+        // Active match was on page 0 which failed: current should fall back to match on page 1 without jitter
+        assert_eq!(v.find.as_ref().unwrap().current, Some(0));
+        assert_eq!(v.find.as_ref().unwrap().matches, vec![(1, 5..9)]);
+        assert!(v.goto.is_none());
     }
 }

@@ -37,7 +37,7 @@ pub(crate) type UndrawableMemo = std::cell::RefCell<Option<(AddedText, Option<ch
 /// The warning shown for text with `c` in it.
 pub(crate) fn undrawable_message(c: char) -> String {
     crate::i18n::fmt(
-        tl!("The standard fonts can't draw “{c}” ({code}). Only Western European characters can be added as text for now."),
+        tl!("The PDF text fonts can't draw “{c}” ({code}). Choose supported text."),
         &[("c", &c.to_string()), ("code", &format!("U+{:04X}", u32::from(c)))],
     )
 }
@@ -466,7 +466,7 @@ pub(crate) fn format_panel(ui: &mut egui::Ui, t: &Tokens, style: &AddedText) -> 
     if let Some(picked) = crate::comments::swatch_grid(ui, Some(c)) {
         s.color = picked;
     }
-    ui.label(egui::RichText::new(tl!("Standard fonts; text outside Windows-1252 isn't supported yet.")).small().color(t.text_faint));
+    ui.label(egui::RichText::new(tl!("Thai and Arabic use regular fallback fonts when available.")).small().color(t.text_faint));
     (s != *style).then_some(s)
 }
 
@@ -546,6 +546,32 @@ impl crate::PdfCraftApp {
             }
             Some(Err(e)) => self.notify_fmt("Couldn't save the image: {e}", &[("e", &e.to_string())]),
             None => {}
+        }
+    }
+
+    /// Copy Image: image `index` on `page`, at its own resolution, to the clipboard.
+    pub(crate) fn copy_page_image(&mut self, page: usize, index: usize) {
+        let Some((_, id)) = self.active_ids() else { return };
+        if !self.may_copy(id) {
+            return;
+        }
+        let Some(pixels) = self.session.get(id).map(|d| d.page_image_rgba(page, index)) else { return };
+        let copied = pixels.and_then(|(w, h, rgba)| {
+            #[cfg(not(target_arch = "wasm32"))]
+            if self.system_clipboard {
+                let img = arboard::ImageData { width: w as usize, height: h as usize, bytes: std::borrow::Cow::Borrowed(&rgba) };
+                arboard::Clipboard::new().and_then(|mut c| c.set_image(img)).map_err(|e| e.to_string())?;
+            }
+            #[cfg(target_arch = "wasm32")]
+            if self.system_clipboard {
+                return Err("the web version can't put images on the clipboard yet; use Save Image As".to_string());
+            }
+            self.last_copied_image = Some((w, h, rgba));
+            Ok((w, h))
+        });
+        match copied {
+            Ok((w, h)) => self.notify_fmt("The image has been copied ({w} × {h} pixels)", &[("w", &w.to_string()), ("h", &h.to_string())]),
+            Err(e) => self.notify_fmt("Couldn't copy the image: {e}", &[("e", &e)]),
         }
     }
 
