@@ -32,7 +32,7 @@
 	Save as…	შენახვა სხვა სახელით…
 	Close file	ფაილის დახურვა
 	Close all	ყველას დახურვა
-	Revert	ბოლო შენახულზე დაბრუნება
+	Revert	წინა ვერსიაზე დაბრუნება
 	Print…	ბეჭდვა…
 	Document properties…	დოკუმენტის თვისებები…
 	Undo	დაბრუნება
@@ -180,9 +180,9 @@
 	Merge data files into spreadsheet…	მონაცემთა ფაილების ელცხრილში გაერთიანება…
 	Flatten form fields	ფორმის ველების გვერდში ჩაშენება
 	Prepare a form	ფორმის მომზადება
-	Tab order: by rows	გადასვლის რიგი: სტრიქონების მიხედვით
-	Tab order: by columns	გადასვლის რიგი: სვეტების მიხედვით
-	Tab order: by document structure	გადასვლის რიგი: დოკუმენტის სტრუქტურის მიხედვით
+	Tab order: by rows	ტაბულაციის რიგი: სტრიქონების მიხედვით
+	Tab order: by columns	ტაბულაციის რიგი: სვეტების მიხედვით
+	Tab order: by document structure	ტაბულაციის რიგი: დოკუმენტის სტრუქტურის მიხედვით
 	Add text	ტექსტის დამატება
 	Edit text & images	ტექსტისა და გამოსახულებების რედაქტირება
 	Add or edit links	ბმულების დამატება ან რედაქტირება
@@ -190,12 +190,12 @@
 	Remove all links	ყველა ბმულის წაშლა
 	Add Bates numbering…	ბეიტსის დანომვრის დამატება…
 	Add image…	გამოსახულების დამატება…
-	Redact text and images	ტექსტისა და გამოსახულებების ამოშლა
-	Redact pages…	გვერდების ამოშლა…
-	Find text and redact…	ტექსტის მოძებნა და ამოშლა…
-	Redaction properties…	ამოშლის თვისებები…
-	Apply redactions…	ამოშლის გამოყენება…
-	Clear redaction marks	ამოშლის ნიშნების გასუფთავება
+	Redact text and images	ტექსტისა და გამოსახულებების დაფარვა
+	Redact pages…	გვერდების დაფარვა…
+	Find text and redact…	ტექსტის მოძებნა და დაფარვა…
+	Redaction properties…	დაფარვის თვისებები…
+	Apply redactions…	დაფარვის გამოყენება…
+	Clear redaction marks	დაფარვის ნიშნების გასუფთავება
 	Remove hidden information…	ფარული ინფორმაციის წაშლა…
 	Sanitize document…	დოკუმენტის გაწმენდა…
 	Field properties…	ველის თვისებები…
@@ -263,7 +263,7 @@
 	Insert pages from file…	გვერდების ჩასმა ფაილიდან…
 	Replace pages…	გვერდების ჩანაცვლება…
 	Extract pages…	გვერდების ამოღება…
-	Split document…	დოკუმენტის დაყოფა…
+	Split document…	დოკუმენტის გაყოფა…
 	Number pages…	გვერდების დანომვრა…
 	Keyboard shortcuts	კლავიატურის მალსახმობები
 	Join the ArtCraft Discord	შემოუერთდით ArtCraft-ის Discord-ს
@@ -323,7 +323,7 @@
 	Extract	ამოღება
 	Insert	ჩასმა
 	Replace	ჩანაცვლება
-	Split	დაყოფა
+	Split	გაყოფა
 	More	მეტი
 	Set page boxes	გვერდის ჩარჩოების დაყენება
 	Page labels	გვერდის ჭდეები
@@ -356,10 +356,10 @@
 	Advanced options	დამატებითი პარამეტრები
 	Encrypt with certificate	სერტიფიკატით დაშიფვრა
 	Security properties	უსაფრთხოების თვისებები
-	Redact a PDF	PDF-ში ინფორმაციის ამოშლა
-	Redact	ამოშლა
-	Redact pages	გვერდების ამოშლა
-	Find text and redact	ტექსტის მოძებნა და ამოშლა
+	Redact a PDF	PDF-ში ინფორმაციის დაფარვა
+	Redact	დაფარვა
+	Redact pages	გვერდების დაფარვა
+	Find text and redact	ტექსტის მოძებნა და დაფარვა
 	Set properties	თვისებების დაყენება
 	Sanitize document	დოკუმენტის გაწმენდა
 	Compress a PDF	PDF-ის შეკუმშვა
@@ -369,8 +369,8 @@
 	Audit space usage	სივრცის გამოყენების ანალიზი
 	Field list	ველების სია
 	Field properties	ველის თვისებები
-	Tab order by rows	გადასვლის რიგი სტრიქონების მიხედვით
-	Tab order by columns	გადასვლის რიგი სვეტების მიხედვით
+	Tab order by rows	ტაბულაციის რიგი სტრიქონების მიხედვით
+	Tab order by columns	ტაბულაციის რიგი სვეტების მიხედვით
 	Import data	მონაცემების იმპორტი
 	Export data	მონაცემების ექსპორტი
 	Add form components	ფორმის კომპონენტების დამატება
@@ -387,7 +387,7 @@
 	Stamp palette	შტამპების პალიტრა
 	Use a certificate	სერტიფიკატის გამოყენება
 	Certificates	სერტიფიკატები
-	Timestamp	დროის ჭდე
+	Timestamp	დროის შტამპი
 	Use print production	საბეჭდი წარმოების გამოყენება
 	Print production	საბეჭდი წარმოება
 	Output preview	გამოტანის წინასწარი ნახვა
@@ -421,7 +421,7 @@
 	Save as PDF/X	შენახვა PDF/X-ად
 	Save as PDF/UA	შენახვა PDF/UA-ად
 	Add search index	საძიებო ინდექსის დამატება
-	Index	საძიებელი
+	Index	ინდექსი
 	Manage embedded index	ჩაშენებული ინდექსის მართვა
 	Use JavaScript	JavaScript-ის გამოყენება
 	JavaScript	JavaScript
@@ -443,7 +443,7 @@
 	Preview	წინასწარი ნახვა
 	Edit fields	ველების რედაქტირება
 	Try the form as people filling it in will see it	ფორმის ნახვა ისე, როგორც შემვსები დაინახავს
-	Redact all	ყველაფრის ამოშლა
+	Redact all	ყველაფრის დაფარვა
 	Clear all	ყველას გასუფთავება
 	Rotate page	გვერდის შემობრუნება
 	Delete page	გვერდის წაშლა
@@ -470,8 +470,8 @@
 	Password protection will be applied when you save	პაროლით დაცვა შენახვისას გამოიყენება
 	Saved the print-ready PDF to {path}	ბეჭდვისთვის მზა PDF შენახულია: {path}
 	Could not save: {e}	შენახვა ვერ მოხერხდა: {e}
-	Earlier in tab order	გადასვლის რიგში უფრო ადრე
-	Later in tab order	გადასვლის რიგში უფრო გვიან
+	Earlier in tab order	ტაბულაციის რიგში უფრო ადრე
+	Later in tab order	ტაბულაციის რიგში უფრო გვიან
 	From:	საიდან:
 	To:	სადამდე:
 	High Resolution	მაღალი გარჩევადობა
@@ -558,7 +558,7 @@
 	List Box Properties	სიის ველის თვისებები
 	Button Properties	ღილაკის თვისებები
 	Digital Signature Properties	ციფრული ხელმოწერის თვისებები
-	Position	მდებარეობა
+	Position	პოზიცია
 	Options	პარამეტრები
 	Validate	შემოწმება
 	Calculate	გამოთვლა
@@ -640,14 +640,14 @@
 	On Blur	ფოკუსის დაკარგვისას
 	Select Action:	აირჩიეთ ქმედება:
 	Open a web link	ვებბმულის გახსნა
-	Reset a form	ფორმის გადაყენება
+	Reset a form	ფორმის ჩამოყრა
 	Execute a menu item	მენიუს ბრძანების შესრულება
 	Show a field	ველის ჩვენება
 	Hide a field	ველის დამალვა
 	Submit a form	ფორმის გაგზავნა
-	Fields to reset (comma-separated; empty: all)	გადასაყენებელი ველები (მძიმით გამოყოფილი; ცარიელი: ყველა)
+	Fields to reset (comma-separated; empty: all)	ჩამოსაყრელი ველები (მძიმით გამოყოფილი; ცარიელი: ყველა)
 	Print, NextPage, PrevPage, FirstPage or LastPage	Print, NextPage, PrevPage, FirstPage ან LastPage
-	Field names (comma-separated)	ველების სახელები (მძიმით გამოყოფილი)
+	Field names (comma-separated)	ველების დასახელებები (მძიმით გამოყოფილი)
 	URL to submit to	გაგზავნის URL
 	Script:	სკრიპტი:
 	Value:	მნიშვნელობა:
@@ -661,14 +661,14 @@
 	maximum	მაქსიმუმი
 	of the following fields:	შემდეგი ველებისა:
 	Simplified field notation:	ველების გამარტივებული ჩანაწერი:
-	Field names with + - * / and parentheses; put \\ before spaces in names.	ველების სახელები + - * / ნიშნებითა და ფრჩხილებით; სახელებში ჰარის წინ დასვით \\.
+	Field names with + - * / and parentheses; put \\ before spaces in names.	ველების დასახელებები + - * / ნიშნებითა და ფრჩხილებით; დასახელებებში ჰარის წინ დასვით \\.
 	Format text	ტექსტის ფორმატირება
 	Bold	მუქი
 	Italic	დახრილი
 	Align left	მარცხნივ სწორება
 	Centre	ცენტრში
 	Align right	მარჯვნივ სწორება
-	Justify	სიგანეზე
+	Justify	ორმხრივი სწორება
 	Standard fonts; text outside Windows-1252 isn't supported yet.	სტანდარტული შრიფტები; Windows-1252-ის გარეთ არსებული ტექსტი ჯერ არ არის მხარდაჭერილი.
 	Edit image	გამოსახულების რედაქტირება
 	Rotate counterclockwise	შემობრუნება საათის ისრის საწინააღმდეგოდ
@@ -702,7 +702,7 @@
 	Delete stamp	შტამპის წაშლა
 	Create custom stamp…	საკუთარი შტამპის შექმნა…
 	From a PDF page or an image	PDF გვერდიდან ან გამოსახულებიდან
-	Line spacing	ინტერვალი
+	Line spacing	სტრიქონთა დაშორება
 	Character spacing	სიმბოლოთა ინტერვალი
 	Horizontal scale	ჰორიზონტალური მასშტაბი
 	Rotate Clockwise	შემობრუნება საათის ისრის მიმართულებით
@@ -780,7 +780,7 @@
 	Thick	სქელი
 	Line Style:	ხაზის სტილი:
 	Solid	უწყვეტი
-	Dashed	შტრიხიანი
+	Dashed	ტირეებიანი
 	Color:	ფერი:
 	Link Action	ბმულის ქმედება
 	Open a web page	ვებგვერდის გახსნა
@@ -1001,9 +1001,9 @@
 	Tagged annotations	ტეგირებული ანოტაციები
 	All annotations are tagged	ყველა ანოტაცია ტეგირებულია
 	Comments, links and fields must be in the tag tree to be announced. Tag the annotations.	კომენტარები, ბმულები და ველები ტეგების ხეში უნდა იყოს, რომ გახმოვანდეს. დაატეგეთ ანოტაციები.
-	Tab order	გადასვლის რიგი
-	Tab order is consistent with structure order	გადასვლის რიგი სტრუქტურის რიგს შეესაბამება
-	Pages with links, comments or fields should tab in structure order. The fix sets each page's tab order to Use Document Structure.	ბმულების, კომენტარების ან ველების მქონე გვერდებზე Tab-ით გადასვლა სტრუქტურის რიგით უნდა ხდებოდეს. გასწორება თითოეული გვერდის გადასვლის რიგს „დოკუმენტის სტრუქტურის გამოყენებაზე“ აყენებს.
+	Tab order	ტაბულაციის რიგი
+	Tab order is consistent with structure order	ტაბულაციის რიგი სტრუქტურის რიგს შეესაბამება
+	Pages with links, comments or fields should tab in structure order. The fix sets each page's tab order to Use Document Structure.	ბმულების, კომენტარების ან ველების მქონე გვერდებზე Tab-ით გადასვლა სტრუქტურის რიგით უნდა ხდებოდეს. გასწორება თითოეული გვერდის ტაბულაციის რიგს „დოკუმენტის სტრუქტურის გამოყენებაზე“ აყენებს.
 	Character encoding	სიმბოლოების კოდირება
 	Reliable character encoding is provided	სიმბოლოების საიმედო კოდირება უზრუნველყოფილია
 	Fonts must map their characters to Unicode so text can be read and copied. Fix the fonts or recreate the PDF.	შრიფტებმა თავიანთი სიმბოლოები Unicode-ს უნდა შეუსაბამონ, რომ ტექსტის წაკითხვა და კოპირება შესაძლებელი იყოს. გაასწორეთ შრიფტები ან თავიდან შექმენით PDF.
@@ -1076,27 +1076,27 @@
 	Dates	თარიღები
 	Text in images isn't found; recognise text (OCR) first.	გამოსახულებებში ტექსტი არ მოიძებნება; ჯერ ამოიცანით ტექსტი (OCR).
 	No matches.	დამთხვევა არ არის.
-	{n} match(es) marked for redaction.	ამოსაშლელად მონიშნული დამთხვევა: {n}.
+	{n} match(es) marked for redaction.	დასაფარად მონიშნული დამთხვევა: {n}.
 	Multiple words or phrases	რამდენიმე სიტყვა ან ფრაზა
 	One word or phrase per line	თითო სიტყვა ან ფრაზა თითო სტრიქონზე
 	Import list…	სიის იმპორტი…
 	{n} word(s) or phrase(s)	სიტყვა ან ფრაზა: {n}
 	{name} is too large for a word list (at most 1 MB).	{name} სიტყვების სიისთვის ზედმეტად დიდია (მაქსიმუმ 1 MB).
-	Redaction Tool Properties	ამოშლის ხელსაწყოს თვისებები
-	Redacted area fill colour:	ამოშლილი არის შევსების ფერი:
+	Redaction Tool Properties	დაფარვის ხელსაწყოს თვისებები
+	Redacted area fill colour:	დაფარული არის შევსების ფერი:
 	Use overlay text	ზედდებული ტექსტის გამოყენება
 	Custom text:	საკუთარი ტექსტი:
-	Redaction code:	ამოშლის კოდი:
+	Redaction code:	დაფარვის კოდი:
 	Font:	შრიფტი:
 	Font size:	შრიფტის ზომა:
-	Auto-size text to fit redaction region	ტექსტის ზომის ავტომორგება ამოშლის არეზე
+	Auto-size text to fit redaction region	ტექსტის ზომის ავტომორგება დაფარვის არეზე
 	Font colour:	შრიფტის ფერი:
 	Repeat overlay text	ზედდებული ტექსტის გამეორება
 	Text alignment:	ტექსტის სწორება:
 	Center	ცენტრში
-	Apply redactions	ამოშლის გამოყენება
-	You are about to apply 1 redaction mark. Text, images and drawings under the marks, and comments and form fields that overlap them, are removed permanently.	თქვენ აპირებთ 1 ამოშლის ნიშნის გამოყენებას. ნიშნების ქვეშ არსებული ტექსტი, გამოსახულებები და ნახაზები, ასევე მათზე გადამფარავი კომენტარები და ფორმის ველები სამუდამოდ წაიშლება.
-	You are about to apply {n} redaction marks. Text, images and drawings under the marks, and comments and form fields that overlap them, are removed permanently.	თქვენ აპირებთ ამოშლის ნიშნების გამოყენებას (რაოდენობა: {n}). ნიშნების ქვეშ არსებული ტექსტი, გამოსახულებები და ნახაზები, ასევე მათზე გადამფარავი კომენტარები და ფორმის ველები სამუდამოდ წაიშლება.
+	Apply redactions	დაფარვის გამოყენება
+	You are about to apply 1 redaction mark. Text, images and drawings under the marks, and comments and form fields that overlap them, are removed permanently.	თქვენ აპირებთ 1 დაფარვის ნიშნის გამოყენებას. ნიშნების ქვეშ არსებული ტექსტი, გამოსახულებები და ნახაზები, ასევე მათზე გადამფარავი კომენტარები და ფორმის ველები სამუდამოდ წაიშლება.
+	You are about to apply {n} redaction marks. Text, images and drawings under the marks, and comments and form fields that overlap them, are removed permanently.	თქვენ აპირებთ დაფარვის ნიშნების გამოყენებას (რაოდენობა: {n}). ნიშნების ქვეშ არსებული ტექსტი, გამოსახულებები და ნახაზები, ასევე მათზე გადამფარავი კომენტარები და ფორმის ველები სამუდამოდ წაიშლება.
 	Save the document afterwards: saving rewrites the whole file so no trace of the removed content stays in it.	შემდეგ შეინახეთ დოკუმენტი: შენახვა მთელ ფაილს თავიდან წერს, ასე რომ წაშლილი შიგთავსის კვალი არ რჩება.
 	Select the items to remove from this document.	აირჩიეთ ამ დოკუმენტიდან წასაშლელი ელემენტები.
 	Metadata	მეტამონაცემები
@@ -1170,8 +1170,8 @@
 	Removed 1 hidden item. Save to remove them from the file.	წაიშალა 1 დამალული ელემენტი. შეინახეთ, რომ ფაილიდანაც წაიშალოს.
 	Removed {n} hidden items. Save to remove them from the file.	წაიშალა დამალული ელემენტები: {n}. შეინახეთ, რომ ფაილიდანაც წაიშალოს.
 	Document sanitized. Save to finish: saving rewrites the whole file.	დოკუმენტი გაიწმინდა. დასასრულებლად შეინახეთ: შენახვა მთელ ფაილს თავიდან წერს.
-	Applied 1 redaction mark. Save to remove the content from the file.	გამოყენებულია 1 ამოშლის ნიშანი. შეინახეთ, რომ შიგთავსი ფაილიდანაც წაიშალოს.
-	Applied {n} redaction marks. Save to remove the content from the file.	გამოყენებულია ამოშლის ნიშნები: {n}. შეინახეთ, რომ შიგთავსი ფაილიდანაც წაიშალოს.
+	Applied 1 redaction mark. Save to remove the content from the file.	გამოყენებულია 1 დაფარვის ნიშანი. შეინახეთ, რომ შიგთავსი ფაილიდანაც წაიშალოს.
+	Applied {n} redaction marks. Save to remove the content from the file.	გამოყენებულია დაფარვის ნიშნები: {n}. შეინახეთ, რომ შიგთავსი ფაილიდანაც წაიშალოს.
 	JavaScript Console	JavaScript-ის კონსოლი
 	JavaScript is turned off (Preferences ▸ JavaScript).	JavaScript გამორთულია (პარამეტრები ▸ JavaScript).
 	Output appears here.	გამონატანი აქ გამოჩნდება.
@@ -1292,7 +1292,7 @@
 	All pages	ყველა გვერდი
 	Odd pages	კენტი გვერდები
 	Even pages	ლუწი გვერდები
-	Landscape pages	ჰორიზონტალური გვერდები
+	Landscape pages	ალბომისებური გვერდები
 	Portrait pages	ვერტიკალური გვერდები
 	Move earlier	წინ გადატანა
 	Move later	უკან გადატანა
@@ -1356,8 +1356,8 @@
 	Even and Odd Pages	ლუწი და კენტი გვერდები
 	Even Pages Only	მხოლოდ ლუწი გვერდები
 	Odd Pages Only	მხოლოდ კენტი გვერდები
-	Landscape and Portrait Pages	ჰორიზონტალური და ვერტიკალური გვერდები
-	Landscape Pages	ჰორიზონტალური გვერდები
+	Landscape and Portrait Pages	ალბომისებური და ვერტიკალური გვერდები
+	Landscape Pages	ალბომისებური გვერდები
 	Portrait Pages	ვერტიკალური გვერდები
 	Duplicate Field	ველის დუბლირება
 	Duplicate "{name}" onto:	„{name}“-ის დუბლირება:
@@ -1377,7 +1377,7 @@
 	Rotate:	შემობრუნება:
 	Repairs	შეკეთებები
 	Repair log	შეკეთების ჟურნალი
-	Split document	დოკუმენტის დაყოფა
+	Split document	დოკუმენტის გაყოფა
 	Number of pages	გვერდების რაოდენობა
 	Pages per file	გვერდები ფაილში
 	File size	ფაილის ზომა
@@ -1568,14 +1568,14 @@
 	Save image	გამოსახულების შენახვა
 	Export certificate	სერტიფიკატის ექსპორტი
 	Choose a folder for the extracted pages	აირჩიეთ საქაღალდე ამოღებული გვერდებისთვის
-	Choose a folder for the split files	აირჩიეთ საქაღალდე დაყოფილი ფაილებისთვის
+	Choose a folder for the split files	აირჩიეთ საქაღალდე გაყოფილი ფაილებისთვის
 	Couldn't use {name}: {e}	{name}-ის გამოყენება ვერ მოხერხდა: {e}
 	Couldn't extract pages: {e}	გვერდების ამოღება ვერ მოხერხდა: {e}
 	Couldn't write {name}: {e}	{name}-ის ჩაწერა ვერ მოხერხდა: {e}
 	Wrote 1 file to {dir}	1 ფაილი ჩაიწერა საქაღალდეში {dir}
 	Wrote {n} files to {dir}	ჩაწერილი ფაილები: {n}, საქაღალდეში {dir}
 	No pages match those choices	ამ არჩევანს არცერთი გვერდი არ შეესაბამება
-	Couldn't split: {e}	დაყოფა ვერ მოხერხდა: {e}
+	Couldn't split: {e}	გაყოფა ვერ მოხერხდა: {e}
 	Couldn't summarize comments: {e}	კომენტარების შეჯამება ვერ მოხერხდა: {e}
 	Couldn't open the result: {e}	შედეგის გახსნა ვერ მოხერხდა: {e}
 	Importing data arrives on the web with file pickers for data files	მონაცემების იმპორტი ვებში მონაცემთა ფაილის ამრჩევებთან ერთად გამოჩნდება
@@ -1619,7 +1619,7 @@
 	This document has no form fields you can fill in	ამ დოკუმენტს შესავსები ფორმის ველები არ აქვს
 	This document has no comments to flatten	ამ დოკუმენტს გვერდში ჩასაშენებელი კომენტარები არ აქვს
 	This document has no form fields to flatten	ამ დოკუმენტს გვერდში ჩასაშენებელი ფორმის ველები არ აქვს
-	There are no redaction marks (mark text, areas or pages first)	ამოშლის ნიშნები არ არის (ჯერ მონიშნეთ ტექსტი, არეები ან გვერდები)
+	There are no redaction marks (mark text, areas or pages first)	დაფარვის ნიშნები არ არის (ჯერ მონიშნეთ ტექსტი, არეები ან გვერდები)
 	This document has no {kind} to change	ამ დოკუმენტს არ აქვს შესაცვლელი {kind}
 	header or footer	კოლონტიტული
 	watermark	ჭვირნიშანი
@@ -1631,7 +1631,7 @@
 	Security will be removed when you save	დაცვა შენახვისას მოიხსნება
 	Click text or an image to edit it	დასარედაქტირებლად დააწკაპუნეთ ტექსტზე ან გამოსახულებაზე
 	Drag a rectangle to create a link; double-click a link to edit it	ბმულის შესაქმნელად გადაათრიეთ მართკუთხედი; ბმულის რედაქტირებისთვის ორჯერ დააწკაპუნეთ მასზე
-	There are no redaction marks to apply	გამოსაყენებელი ამოშლის ნიშნები არ არის
+	There are no redaction marks to apply	გამოსაყენებელი დაფარვის ნიშნები არ არის
 	Drag to draw the area where the signature should appear.	გადაათრიეთ, რომ მონიშნოთ არე, სადაც ხელმოწერა უნდა გამოჩნდეს.
 	Couldn't fit the visible content: {e}	ხილულ შიგთავსზე მორგება ვერ მოხერხდა: {e}
 	Drag a rectangle around the area to copy	გადაათრიეთ მართკუთხედი დასაკოპირებელი არის გარშემო
@@ -1673,7 +1673,7 @@
 	Insert a blank page after the selection	ცარიელი გვერდის ჩასმა მონიშნულის შემდეგ
 	Insert pages from a file…	გვერდების ჩასმა ფაილიდან…
 	Extract pages to a new document	გვერდების ამოღება ახალ დოკუმენტში
-	Split into files…	ფაილებად დაყოფა…
+	Split into files…	ფაილებად გაყოფა…
 	Select pages	გვერდების მონიშვნა
 	Cut	ამოჭრა
 	Copy	კოპირება
@@ -1685,7 +1685,7 @@
 	Indent	შეწევა
 	Outdent	შეწევის შემცირება
 	This document has no form fields.	ამ დოკუმენტს ფორმის ველები არ აქვს.
-	Tab order: move a field with its arrows.	გადასვლის რიგი: გადაიტანეთ ველი მისი ისრებით.
+	Tab order: move a field with its arrows.	ტაბულაციის რიგი: გადაიტანეთ ველი მისი ისრებით.
 	Unplaced	განუთავსებელი
 	Has JavaScript actions (run in M6)	აქვს JavaScript ქმედებები (სრულდება M6-ში)
 	Page	გვერდი
@@ -1704,7 +1704,7 @@
 	a bookmark cannot be moved inside itself	სანიშნის საკუთარ თავში გადატანა შეუძლებელია
 	the title must not be empty	სათაური ცარიელი არ უნდა იყოს
 	the document has no form fields	დოკუმენტს ფორმის ველები არ აქვს
-	there are no redaction marks to apply	გამოსაყენებელი ამოშლის ნიშნები არ არის
+	there are no redaction marks to apply	გამოსაყენებელი დაფარვის ნიშნები არ არის
 	there are no pages to print	დასაბეჭდი გვერდები არ არის
 	the document has no tags	დოკუმენტს ტეგები არ აქვს
 	{0}: {1}	{0}: {1}
@@ -1787,7 +1787,7 @@
 	Change field properties	ველის თვისებების შეცვლა
 	Delete field	ველის წაშლა
 	Duplicate field	ველის დუბლირება
-	Set tab order	გადასვლის რიგის დაყენება
+	Set tab order	ტაბულაციის რიგის დაყენება
 	Change initial view	საწყისი ხედის შეცვლა
 	Set alternate text	ალტერნატიული ტექსტის დაყენება
 	Mark figure as decorative	ფიგურის დეკორატიულად მონიშვნა
@@ -1807,7 +1807,7 @@
 	Add image	გამოსახულების დამატება
 	Edit content	შიგთავსის რედაქტირება
 	Delete content	შიგთავსის წაშლა
-	Remove redaction marks	ამოშლის ნიშნების მოხსნა
+	Remove redaction marks	დაფარვის ნიშნების მოხსნა
 	Add link	ბმულის დამატება
 	Change link properties	ბმულის თვისებების შეცვლა
 	Delete link	ბმულის წაშლა
@@ -1828,7 +1828,7 @@
 	Add cross	ჯვრის დამატება
 	Add dot	წერტილის დამატება
 	Add signature	ხელმოწერის დამატება
-	Add redaction mark	ამოშლის ნიშნის დამატება
+	Add redaction mark	დაფარვის ნიშნის დამატება
 	Add cloud	ღრუბლის დამატება
 	Add polygon	მრავალკუთხედის დამატება
 	Add connected lines	შეერთებული ხაზების დამატება
@@ -2004,7 +2004,7 @@
 	Password-protected	პაროლით დაცული
 	Protected: the combined file won't keep its security settings	დაცული: გაერთიანებული ფაილი მის უსაფრთხოების პარამეტრებს არ შეინარჩუნებს
 	Remove {n} files	ფაილების მოშორება ({n})
-	Reset columns	სვეტების გადაყენება
+	Reset columns	სვეტების ჩამოყრა
 	Select a file first	ჯერ აირჩიეთ ფაილი
 	Select a password-protected file first	ჯერ აირჩიეთ პაროლით დაცული ფაილი
 	Show password	პაროლის ჩვენება
@@ -2083,8 +2083,8 @@ action wizard	Start	დაწყება
 	Align fields	ველების სწორება
 	Distribute fields	ველების განაწილება
 	Match field sizes	ველების ზომების გათანაბრება
-	Mark for redaction	ამოსაშლელად მონიშვნა
-	Mark pages for redaction	გვერდების ამოსაშლელად მონიშვნა
+	Mark for redaction	დასაფარად მონიშვნა
+	Mark pages for redaction	გვერდების დასაფარად მონიშვნა
 	Change document properties	დოკუმენტის თვისებების შეცვლა
 	Mark differences	განსხვავებების მონიშვნა
 	Run form script	ფორმის სკრიპტის გაშვება
@@ -2102,7 +2102,7 @@ action wizard	Start	დაწყება
 	The standard fonts can't draw “{c}” ({code}). Only Western European characters can be added as text for now.	სტანდარტული შრიფტები ვერ ხატავს „{c}“-ს ({code}). ჯერჯერობით ტექსტად მხოლოდ დასავლეთევროპული სიმბოლოების დამატებაა შესაძლებელი.
 	Larger pages	უფრო დიდი გვერდები
 	Smaller pages	უფრო პატარა გვერდები
-	Reset page size	გვერდის ზომის გადაყენება
+	Reset page size	გვერდის ზომის ჩამოყრა
 	Date format	თარიღის ფორმატი
 	Fill & Sign dates	შევსებისა და ხელმოწერის თარიღები
 	Pattern	ორნამენტი
@@ -2181,8 +2181,8 @@ key	Space	ჰარი
 	Remove {n} pages	გვერდების მოშორება ({n})
 
 # Shared panel docking
-	Reset panel layout	პანელების განლაგების გადაყენება
-	Float panel	პანელის მოცურება
+	Reset panel layout	პანელების განლაგების ჩამოყრა
+	Float panel	მცურავი პანელი
 	Move to group	ჯგუფში გადატანა
 	Panels	პანელები
 	Resize panels	პანელების ზომის შეცვლა
@@ -2297,7 +2297,7 @@ scroll speed	Fast	სწრაფი
 	Enter a name.	შეიყვანეთ სახელი.
 	Enter a page number	შეიყვანეთ გვერდის ნომერი
 	Enter a URL	შეიყვანეთ URL
-	Enter the field names	შეიყვანეთ ველების სახელები
+	Enter the field names	შეიყვანეთ ველების დასახელებები
 	Field "{}" on page {p} has no description (tooltip)	ველს „{}“ გვერდზე {p} აღწერა (მინიშნება) არ აქვს
 	Filename	ფაილის სახელი
 	Flatten Fill & Sign	შევსებისა და ხელმოწერის გვერდში ჩაშენება
@@ -2353,11 +2353,11 @@ scroll speed	Fast	სწრაფი
 	The certificate of {} was not valid at the time of signing, so it is not used to vouch for {}.	{}-ის სერტიფიკატი ხელმოწერის დროს არ მოქმედებდა, ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
 	The checker found problems which may prevent the document from being fully accessible.	შემმოწმებელმა იპოვა პრობლემები, რომლებმაც შეიძლება დოკუმენტის სრულ ხელმისაწვდომობას შეუშალოს ხელი.
 	The document has been altered or corrupted since the signature was applied.	ხელმოწერის შემდეგ დოკუმენტი შეიცვალა ან დაზიანდა.
-	The document has been altered or corrupted since the timestamp was applied.	დროის ჭდის შემდეგ დოკუმენტი შეიცვალა ან დაზიანდა.
+	The document has been altered or corrupted since the timestamp was applied.	დროის შტამპის შემდეგ დოკუმენტი შეიცვალა ან დაზიანდა.
 	The document has been altered since this signature was applied in ways it does not permit ({}).	ამ ხელმოწერის შემდეგ დოკუმენტი შეიცვალა ისე, როგორც ხელმოწერა არ უშვებს ({}).
-	The document has been altered since this timestamp was applied in ways it does not permit ({}).	ამ დროის ჭდის შემდეგ დოკუმენტი შეიცვალა ისე, როგორც ჭდე არ უშვებს ({}).
+	The document has been altered since this timestamp was applied in ways it does not permit ({}).	ამ დროის შტამპის შემდეგ დოკუმენტი შეიცვალა ისე, როგორც შტამპი არ უშვებს ({}).
 	The document has been modified since this signature was applied, but the changes are permitted ({}).	ამ ხელმოწერის შემდეგ დოკუმენტი შეიცვალა, მაგრამ ცვლილებები დაშვებულია ({}).
-	The document has been modified since this timestamp was applied, but the changes are permitted ({}).	ამ დროის ჭდის შემდეგ დოკუმენტი შეიცვალა, მაგრამ ცვლილებები დაშვებულია ({}).
+	The document has been modified since this timestamp was applied, but the changes are permitted ({}).	ამ დროის შტამპის შემდეგ დოკუმენტი შეიცვალა, მაგრამ ცვლილებები დაშვებულია ({}).
 	The document has no tags (structure tree)	დოკუმენტს ტეგები (სტრუქტურის ხე) არ აქვს
 	The document has no title	დოკუმენტს სათაური არ აქვს
 	The document isn't marked as tagged (MarkInfo Marked)	დოკუმენტი ტეგირებულად მონიშნული არ არის (MarkInfo Marked)
@@ -2365,7 +2365,7 @@ scroll speed	Fast	სწრაფი
 	The document's embedded revocation information shows that the signer's certificate has not been revoked.	დოკუმენტის ჩაშენებული გაუქმების ინფორმაცია აჩვენებს, რომ ხელმომწერის სერტიფიკატი არ გაუქმებულა.
 	The ECDSA signature is not in canonical DER (trailing bytes, padding or a missing sign byte); it was read anyway.	ECDSA ხელმოწერა კანონიკურ DER-ში არ არის (ზედმეტი ბაიტები, შევსება ან გამოტოვებული ნიშნის ბაიტი); მაინც წაიკითხა.
 	The ECDSA signature is the raw r and s values instead of a DER sequence; it was read anyway.	ECDSA ხელმოწერა DER მიმდევრობის ნაცვლად r და s მნიშვნელობებია; მაინც წაიკითხა.
-	The embedded timestamp token is valid and its authority is trusted; trusted time is {}.	ჩაშენებული დროის ჭდის ტოკენი ვალიდურია და მისი ორგანო სანდოა; სანდო დრო: {}.
+	The embedded timestamp token is valid and its authority is trusted; trusted time is {}.	ჩაშენებული დროის შტამპის ტოკენი ვალიდურია და მისი ორგანო სანდოა; სანდო დრო: {}.
 	the first heading is an H{n}; headings should not skip levels	პირველი სათაური H{n}-ია; სათაურებმა დონეები არ უნდა გამოტოვონ
 	The font {} isn't embedded	შრიფტი {} ჩაშენებული არ არის
 	The metadata doesn't identify the file as {}	მეტამონაცემები ფაილს {}-ად არ ახასიათებს
@@ -2376,20 +2376,20 @@ scroll speed	Fast	სწრაფი
 	The RSA signature's DigestInfo has no NULL parameter (older signers write it so); it was read anyway.	RSA ხელმოწერის DigestInfo-ს NULL პარამეტრი არ აქვს (ძველი ხელმომწერები ასე წერენ); მაინც წაიკითხა.
 	The security settings don't allow screen readers to read the text	უსაფრთხოების პარამეტრები ეკრანის წამკითხველებს ტექსტის წაკითხვის საშუალებას არ აძლევს
 	The signature algorithm and the SignerInfo's digest algorithm name different hashes; the signature was made with the SignerInfo's.	ხელმოწერის ალგორითმი და SignerInfo-ს დაიჯესტის ალგორითმი სხვადასხვა ჰეშს ასახელებს; ხელმოწერა SignerInfo-ს ჰეშით შეიქმნა.
-	The signature carries an unverified timestamp ({}): the timestamp authority is not in your list of trusted certificates, so the signing time claimed by the signer is used instead.	ხელმოწერას აქვს გადაუმოწმებელი დროის ჭდე ({}): დროის ჭდის ორგანო თქვენს სანდო სერტიფიკატების სიაში არ არის, ამიტომ გამოიყენება ხელმომწერის მიერ მითითებული ხელმოწერის დრო.
+	The signature carries an unverified timestamp ({}): the timestamp authority is not in your list of trusted certificates, so the signing time claimed by the signer is used instead.	ხელმოწერას აქვს გადაუმოწმებელი დროის შტამპი ({}): დროის შტამპის ორგანო თქვენს სანდო სერტიფიკატების სიაში არ არის, ამიტომ გამოიყენება ხელმომწერის მიერ მითითებული ხელმოწერის დრო.
 	The signature contents are not hexadecimal.	ხელმოწერის შიგთავსი თექვსმეტობითი არ არის.
 	The signature could not be checked ({}).	ხელმოწერის შემოწმება ვერ მოხერხდა ({}).
 	The signature could not be read ({}).	ხელმოწერის წაკითხვა ვერ მოხერხდა ({}).
 	The signature could not be verified ({}).	ხელმოწერის გადამოწმება ვერ მოხერხდა ({}).
 	The signature has no valid byte range.	ხელმოწერას ბაიტების ვალიდური დიაპაზონი არ აქვს.
-	The signature includes an embedded timestamp.	ხელმოწერა ჩაშენებულ დროის ჭდეს შეიცავს.
+	The signature includes an embedded timestamp.	ხელმოწერა ჩაშენებულ დროის შტამპს შეიცავს.
 	The signature is BER-encoded (indefinite lengths) rather than DER; it was read leniently.	ხელმოწერა DER-ის ნაცვლად BER-კოდირებულია (განუსაზღვრელი სიგრძეები); წაიკითხა ლმობიერად.
 	The signature uses the legacy adbe.x509.rsa_sha1 format.	ხელმოწერა მოძველებულ adbe.x509.rsa_sha1 ფორმატს იყენებს.
 	The signature value does not match the signer's certificate: the signature is corrupt.	ხელმოწერის მნიშვნელობა ხელმომწერის სერტიფიკატს არ ემთხვევა: ხელმოწერა დაზიანებულია.
 	The signature's byte range does not exclude exactly its contents.	ხელმოწერის ბაიტების დიაპაზონი ზუსტად მის შიგთავსს არ გამორიცხავს.
 	The signature's byte range does not match the file.	ხელმოწერის ბაიტების დიაპაზონი ფაილს არ ემთხვევა.
-	The signature's timestamp token could not be verified ({}).	ხელმოწერის დროის ჭდის ტოკენის გადამოწმება ვერ მოხერხდა ({}).
-	The signature's timestamp token does not cover the signature value.	ხელმოწერის დროის ჭდის ტოკენი ხელმოწერის მნიშვნელობას არ ფარავს.
+	The signature's timestamp token could not be verified ({}).	ხელმოწერის დროის შტამპის ტოკენის გადამოწმება ვერ მოხერხდა ({}).
+	The signature's timestamp token does not cover the signature value.	ხელმოწერის დროის შტამპის ტოკენი ხელმოწერის მნიშვნელობას არ ფარავს.
 	The signed content is a constructed (segmented) OCTET STRING, as BER allows; it was read anyway.	ხელმოწერილი შიგთავსი შედგენილი (სეგმენტირებული) OCTET STRING-ია, როგორც BER უშვებს; მაინც წაიკითხა.
 	the signed version could not be read	ხელმოწერილი ვერსიის წაკითხვა ვერ მოხერხდა
 	The signer's certificate does not allow digital signatures (its key usage has neither digital signature nor non-repudiation).	ხელმომწერის სერტიფიკატი ციფრულ ხელმოწერებს არ უშვებს (მისი გასაღების გამოყენება არც ციფრულ ხელმოწერას შეიცავს და არც უარყოფის შეუძლებლობას).
@@ -2400,18 +2400,18 @@ scroll speed	Fast	სწრაფი
 	The signer's certificate was not valid at the time of signing.	ხელმომწერის სერტიფიკატი ხელმოწერის დროს არ მოქმედებდა.
 	The signer's identity is unknown because it has not been included in your list of trusted certificates and none of its parent certificates are trusted certificates.	ხელმომწერის ვინაობა უცნობია, რადგან ის თქვენს სანდო სერტიფიკატების სიაში არ არის და არცერთი მისი მშობელი სერტიფიკატი სანდო არ არის.
 	The signer's identity is valid.	ხელმომწერის ვინაობა ვალიდურია.
-	The timestamp authority's certificate was not valid at the time of timestamping.	დროის ჭდის ორგანოს სერტიფიკატი ჭდის დასმის დროს არ მოქმედებდა.
-	The timestamp contents are not hexadecimal.	დროის ჭდის შიგთავსი თექვსმეტობითი არ არის.
-	The timestamp has no valid byte range.	დროის ჭდეს ბაიტების ვალიდური დიაპაზონი არ აქვს.
-	The timestamp token could not be read ({}).	დროის ჭდის ტოკენის წაკითხვა ვერ მოხერხდა ({}).
-	The timestamp token is valid and its authority is trusted.	დროის ჭდის ტოკენი ვალიდურია და მისი ორგანო სანდოა.
-	The timestamp token is valid, but the timestamp authority is not in your list of trusted certificates.	დროის ჭდის ტოკენი ვალიდურია, მაგრამ დროის ჭდის ორგანო თქვენს სანდო სერტიფიკატების სიაში არ არის.
-	The timestamp's byte range does not exclude exactly its contents.	დროის ჭდის ბაიტების დიაპაზონი ზუსტად მის შიგთავსს არ გამორიცხავს.
-	The timestamp's byte range does not match the file.	დროის ჭდის ბაიტების დიაპაზონი ფაილს არ ემთხვევა.
+	The timestamp authority's certificate was not valid at the time of timestamping.	დროის შტამპის ორგანოს სერტიფიკატი შტამპის დასმის დროს არ მოქმედებდა.
+	The timestamp contents are not hexadecimal.	დროის შტამპის შიგთავსი თექვსმეტობითი არ არის.
+	The timestamp has no valid byte range.	დროის შტამპს ბაიტების ვალიდური დიაპაზონი არ აქვს.
+	The timestamp token could not be read ({}).	დროის შტამპის ტოკენის წაკითხვა ვერ მოხერხდა ({}).
+	The timestamp token is valid and its authority is trusted.	დროის შტამპის ტოკენი ვალიდურია და მისი ორგანო სანდოა.
+	The timestamp token is valid, but the timestamp authority is not in your list of trusted certificates.	დროის შტამპის ტოკენი ვალიდურია, მაგრამ დროის შტამპის ორგანო თქვენს სანდო სერტიფიკატების სიაში არ არის.
+	The timestamp's byte range does not exclude exactly its contents.	დროის შტამპის ბაიტების დიაპაზონი ზუსტად მის შიგთავსს არ გამორიცხავს.
+	The timestamp's byte range does not match the file.	დროის შტამპის ბაიტების დიაპაზონი ფაილს არ ემთხვევა.
 	The window shows the file name, not the title (Initial View > Show)	ფანჯარა სათაურის ნაცვლად ფაილის სახელს აჩვენებს (საწყისი ხედი > ჩვენება)
 	There is no folder to save the digital ID in.	ციფრული ID-ის შესანახი საქაღალდე არ არის.
 	This document has not been modified since this signature was applied.	ამ ხელმოწერის შემდეგ დოკუმენტი არ შეცვლილა.
-	This document has not been modified since this timestamp was applied.	ამ დროის ჭდის შემდეგ დოკუმენტი არ შეცვლილა.
+	This document has not been modified since this timestamp was applied.	ამ დროის შტამპის შემდეგ დოკუმენტი არ შეცვლილა.
 	This signature uses RIPEMD-160, a legacy 160-bit hash algorithm that is no longer recommended for signatures. It still validates, but it should not be relied on.	ეს ხელმოწერა იყენებს RIPEMD-160-ს — მოძველებულ 160-ბიტიან ჰეშის ალგორითმს, რომელიც ხელმოწერებისთვის აღარ არის რეკომენდებული. ის მაინც ვალიდურია, მაგრამ მას არ უნდა დაეყრდნოთ.
 	This signature uses SHA-1, a weak hash algorithm: collisions in it have been demonstrated. It still validates because many documents signed years ago use it, but it should not be relied on.	ეს ხელმოწერა იყენებს SHA-1-ს — სუსტ ჰეშის ალგორითმს, რომელშიც კოლიზიები დემონსტრირებულია. ის მაინც ვალიდურია, რადგან წლების წინ ხელმოწერილი ბევრი დოკუმენტი მას იყენებს, მაგრამ მას არ უნდა დაეყრდნოთ.
 	Unsigned signature field	ხელმოუწერელი ხელმოწერის ველი
