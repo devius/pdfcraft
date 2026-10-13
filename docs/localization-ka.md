@@ -40,11 +40,11 @@ they are translated.
 
 | Source | Georgian |
 |---|---|
-| File / Edit / View | ფაილი / რედაქტირება / ჩვენება |
+| File / Edit / View | ფაილი / რედაქტირება / ხედი |
 | All tools / Tools | ყველა ხელსაწყო / ხელსაწყოები |
 | Preferences… / Interface language | პარამეტრები… / ინტერფეისის ენა |
 | Save as… | შენახვა როგორც… |
-| Undo / Redo | დაბრუნება / ხელახლა შესრულება |
+| Undo / Redo | დაბრუნება / გამეორება |
 | Find… / Print… | ძებნა… / დაბეჭდვა… |
 | Zoom in / Zoom out | გადიდება / დაპატარავება |
 | Organize pages / Insert pages / Extract pages | გვერდების ორგანიზება / გვერდების ჩასმა / გვერდების ამოღება |

@@ -14,7 +14,7 @@
 	File	ფაილი
 	Edit	რედაქტირება
 	Pages	გვერდები
-	View	ჩვენება
+	View	ხედი
 	Help	დახმარება
 	Preferences	პარამეტრები
 	Preferences…	პარამეტრები…
@@ -36,13 +36,13 @@
 	Print…	დაბეჭდვა…
 	Document properties…	დოკუმენტის თვისებები…
 	Undo	დაბრუნება
-	Redo	ხელახლა შესრულება
+	Redo	გამეორება
 	Find…	ძებნა…
-	Advanced search…	გაფართოებული ძებნა…
+	Advanced search…	გაფართოებული ძიება…
 	Copy pages	გვერდების კოპირება
 	Cut pages	გვერდების ამოჭრა
 	Paste pages	გვერდების ჩასმა
-	Fit visible	ხილულზე მორგება
+	Fit visible	ხილულში ჩატევა
 	Marquee zoom	მასშტაბირება ჩარჩოთი
 	Take a snapshot	მომენტალური ასლის შექმნა
 	Full screen mode	სრულეკრანიანი რეჟიმი
@@ -55,7 +55,7 @@
 	Zoom	მასშტაბი
 	Actual size	რეალური ზომა
 	Zoom to page level	გვერდის დონემდე მასშტაბირება
-	Fit to width	სიგანეზე მორგება
+	Fit to width	სიგანეში ჩატევა
 	Display theme	ინტერფეისის თემა
 	Side panels	გვერდითი პანელები
 	Enable Acrobat JavaScript	Acrobat JavaScript-ის ჩართვა
@@ -88,7 +88,7 @@
 	Save (M4)	შენახვა (M4)
 	Document properties ({key})	დოკუმენტის თვისებები ({key})
 	Find tools and commands	ხელსაწყოებისა და ბრძანებების ძებნა
-	Fit to height	სიმაღლეზე მორგება
+	Fit to height	სიმაღლეში ჩატევა
 	Zoom in	გადიდება
 	Zoom out	დაპატარავება
 	Rotate view clockwise	ხედის შემობრუნება საათის ისრის მიმართულებით
@@ -111,14 +111,14 @@
 	Attachments	დანართები
 	Signatures	ხელმოწერები
 	Accessibility Checker	ხელმისაწვდომობის შემოწმება
-	Search	ძებნა
+	Search	ძიება
 	Compare	შედარება
-	Page thumbnails	გვერდების მინიატურები
+	Page thumbnails	გვერდების ესკიზები
 	Form fields	ფორმის ველები
 	Zoom out ({key})	დაპატარავება ({key})
 	Zoom in ({key})	გადიდება ({key})
 	Rotate view clockwise ({key})	ხედის შემობრუნება საათის ისრის მიმართულებით ({key})
-	Toggle fit page / fit width	გვერდზე / სიგანეზე მორგების გადართვა
+	Toggle fit page / fit width	გვერდში / სიგანეში ჩატევის გადართვა
 	Next page	შემდეგი გვერდი
 	Previous page	წინა გვერდი
 	Current page — type a page number or label (such as iv) and press Enter	მიმდინარე გვერდი — აკრიფეთ გვერდის ნომერი ან ჭდე (მაგ., iv) და დააჭირეთ Enter-ს
@@ -129,7 +129,7 @@
 	Recommended tools	რეკომენდებული ხელსაწყოები
 	Use now	გამოყენება
 	Open file	ფაილის გახსნა
-	Recent	ბოლოდროინდელი
+	Recent	ბოლოს გახსნილი
 	Files you open in PdfCraft appear here. Drop a PDF anywhere to open it.	PdfCraft-ში გახსნილი ფაილები აქ გამოჩნდება. PDF-ის გასახსნელად ჩააგდეთ ის ნებისმიერ ადგილას.
 	Privacy	კონფიდენციალურობა
 	PdfCraft works offline. No telemetry, no account, and no cloud processing unless you add a provider.	PdfCraft ხაზგარეშე მუშაობს. არანაირი ტელემეტრია, ანგარიში ან ღრუბლოვანი დამუშავება, თუ თავად არ დაამატებთ მომწოდებელს.
@@ -140,7 +140,7 @@
 	View more	მეტის ჩვენება
 	Available	ხელმისაწვდომი
 	Ready	მზადაა
-	Search tools and commands…	ხელსაწყოებისა და ბრძანებების ძებნა…
+	Search tools and commands…	ხელსაწყოებისა და ბრძანებების ძიება…
 	No matching tools	შესაბამისი ხელსაწყო არ მოიძებნა
 	Tool	ხელსაწყო
 	Command	ბრძანება
@@ -459,7 +459,7 @@
 	Run	გაშვება
 	Clear	გასუფთავება
 	Sanitize	გაწმენდა
-	Mark all	ყველას მონიშვნა
+	Mark all	ყველას მარკირება
 	Save changes to “{name}” before closing?	შეინახოს ცვლილებები „{name}“-ში დახურვამდე?
 	Your changes will be lost if you don't save them.	თუ ცვლილებებს არ შეინახავთ, ისინი დაიკარგება.
 	Password required	საჭიროა პაროლი
@@ -521,7 +521,7 @@
 	Each image is measured where pages draw it; an image is replaced only if the result is smaller.	ყოველი გამოსახულება იზომება იქ, სადაც გვერდი მას ხატავს; გამოსახულება მხოლოდ მაშინ იცვლება, თუ შედეგი უფრო მცირეა.
 	Discard all links, actions and JavaScript	ყველა ბმულის, ქმედებისა და JavaScript-ის მოშორება
 	Discard alternate images	ალტერნატიული გამოსახულებების მოშორება
-	Discard embedded page thumbnails	გვერდების ჩაშენებული მინიატურების მოშორება
+	Discard embedded page thumbnails	გვერდების ჩაშენებული ესკიზების მოშორება
 	Discard document tags	დოკუმენტის ტეგების მოშორება
 	Discard embedded print settings	ჩაშენებული ბეჭდვის პარამეტრების მოშორება
 	Discard bookmarks	სანიშნეების მოშორება
@@ -542,7 +542,7 @@
 	Content Streams	შიგთავსის ნაკადები
 	X Object Forms	XObject ფორმები
 	Structure Info	სტრუქტურის ინფორმაცია
-	Thumbnails	მინიატურები
+	Thumbnails	ესკიზები
 	Named Destinations	დასახელებული დანიშნულებები
 	Color Spaces	ფერთა სივრცეები
 	Shadings	დაჩრდილვები
@@ -613,7 +613,7 @@
 	Special	სპეციალური
 	Select format category:	აირჩიეთ ფორმატის კატეგორია:
 	The value is shown as typed.	მნიშვნელობა ნაჩვენებია ისე, როგორც აიკრიფა.
-	Decimal places:	ათწილადი ნიშნები მძიმის შემდეგ:
+	Decimal places:	ციფრები მძიმის შემდეგ:
 	Separator style:	გამყოფის სტილი:
 	Currency symbol:	ვალუტის სიმბოლო:
 	Before the number	რიცხვის წინ
@@ -739,7 +739,7 @@
 	{verb} Header and Footer	კოლონტიტულების {verb}
 	{verb} Watermark	ჭვირნიშნის {verb}
 	{verb} Background	ფონის {verb}
-	Margins (in)	არშიები (ინჩი)
+	Margins (in)	ველები (დუიმი)
 	Left Header Text	ზედა კოლონტიტულის ტექსტი მარცხნივ
 	Center Header Text	ზედა კოლონტიტულის ტექსტი ცენტრში
 	Right Header Text	ზედა კოლონტიტულის ტექსტი მარჯვნივ
@@ -750,7 +750,7 @@
 	Insert Date	თარიღის ჩასმა
 	Start page number	საწყისი გვერდის ნომერი
 	Source	წყარო
-	Fit to page	გვერდზე მორგება
+	Fit to page	გვერდში ჩატევა
 	Rotation	შემობრუნება
 	Appear behind page	გვერდის უკან განთავსება
 	Appear on top of page	გვერდის ზემოთ განთავსება
@@ -797,9 +797,9 @@
 	Issued by: 	გამცემი: 
 	, Expires: 	, ვადა: 
 	No digital IDs yet.	ციფრული ID-ები ჯერ არ არის.
-	Configure New Digital ID	ახალი ციფრული ID-ის კონფიგურირება
+	Configure New Digital ID	ახალი ციფრული ID-ის კონფიგურაცია
 	Continue	გაგრძელება
-	Configure a Digital ID for Signing	ციფრული ID-ის კონფიგურირება ხელმოწერისთვის
+	Configure a Digital ID for Signing	ციფრული ID-ის კონფიგურაცია ხელმოწერისთვის
 	Use a Digital ID from a file	ციფრული ID-ის გამოყენება ფაილიდან
 	Create a new Digital ID (self-signed, saved to a password-protected file)	ახალი ციფრული ID-ის შექმნა (თვითხელმოწერილი, პაროლით დაცულ ფაილში შენახული)
 	Name	სახელი
@@ -882,7 +882,7 @@
 	Make scans searchable, then make them smaller.	სკანების ძებნადად გადაქცევა და შემდეგ შემცირება.
 	Add Page Numbers	გვერდის ნომრების დამატება
 	Number every page in the footer.	ყველა გვერდის დანომვრა ქვედა კოლონტიტულში.
-	Mark as Confidential	კონფიდენციალურად მონიშვნა
+	Mark as Confidential	კონფიდენციალურად მარკირება
 	A diagonal CONFIDENTIAL watermark on every page.	დიაგონალური ჭვირნიშანი CONFIDENTIAL ყველა გვერდზე.
 	Sanitize Documents	დოკუმენტების გაწმენდა
 	Remove hidden information, metadata, scripts and embedded content, and rewrite the files.	ფარული ინფორმაციის, მეტამონაცემების, სკრიპტებისა და ჩაშენებული შიგთავსის წაშლა და ფაილების თავიდან ჩაწერა.
@@ -902,7 +902,7 @@
 	Line ending	ხაზის ბოლო
 	Open arrow	ღია ისარი
 	Closed arrow	დახურული ისარი
-	Butt	ბლაგვი
+	Butt	ბრტყელი
 	Reverse open arrow	შებრუნებული ღია ისარი
 	Reverse closed arrow	შებრუნებული დახურული ისარი
 	Slash	დახრილი ხაზი
@@ -920,7 +920,7 @@
 	Deleted	წაშლილი
 	Replaced	ჩანაცვლებული
 	Visual	ვიზუალური
-	Mark as comments	კომენტარებად მონიშვნა
+	Mark as comments	კომენტარებად მარკირება
 	Report…	ანგარიში…
 	{kind} · page {p}	{kind} · გვერდი {p}
 	Set Alternate Text	ალტერნატიული ტექსტის დაყენება
@@ -1063,7 +1063,7 @@
 	Heading levels shouldn't skip (an H1 followed by an H3). Retag the headings.	სათაურის დონეები არ უნდა გამოიტოვოს (H1-ს შემდეგ H3). თავიდან დაატეგეთ სათაურები.
 	TH and TD	TH და TD
 	TH and TD must be children of TR	TH და TD უნდა იყოს TR-ის შვილები
-	Mark Page Range	გვერდების დიაპაზონის მონიშვნა
+	Mark Page Range	გვერდების დიაპაზონის მარკირება
 	Pages from	გვერდები დან
 	Single word or phrase	ერთი სიტყვა ან ფრაზა
 	Text to find	მოსაძებნი ტექსტი
@@ -1075,7 +1075,7 @@
 	Dates	თარიღები
 	Text in images isn't found; recognise text (OCR) first.	გამოსახულებებში ტექსტი არ მოიძებნება; ჯერ ამოიცანით ტექსტი (OCR).
 	No matches.	დამთხვევა არ არის.
-	{n} match(es) marked for redaction.	დასაფარად მონიშნული დამთხვევა: {n}.
+	{n} match(es) marked for redaction.	დასაფარად მარკირებული დამთხვევა: {n}.
 	Multiple words or phrases	რამდენიმე სიტყვა ან ფრაზა
 	One word or phrase per line	თითო სიტყვა ან ფრაზა თითო სტრიქონზე
 	Import list…	სიის იმპორტი…
@@ -1208,7 +1208,7 @@
 	Unchecked	მოუნიშნავი
 	Marked	აღნიშნული
 	Locked	ჩაკეტილი
-	Search comments	კომენტარების ძებნა
+	Search comments	კომენტარების ძიება
 	Add a comment	კომენტარის დამატება
 	No comments yet.	კომენტარები ჯერ არ არის.
 	Pick a tool in the quick bar, or type above.	აირჩიეთ ხელსაწყო სწრაფ ზოლზე ან აკრიფეთ ზემოთ.
@@ -1216,7 +1216,7 @@
 	Unknown author	უცნობი ავტორი
 	No colour	ფერის გარეშე
 	Remove checkmark	თოლიის მოხსნა
-	Mark with checkmark	თოლიით მონიშვნა
+	Mark with checkmark	თოლიით მარკირება
 	Reply	პასუხი
 	Add a reply	პასუხის დამატება
 	Post	გამოქვეყნება
@@ -1252,7 +1252,7 @@
 	Gray	ნაცრისფერი
 	Black	შავი
 	Bookmark options	სანიშნეების პარამეტრები
-	Expand all bookmarks	ყველა სანიშნის გაშლა
+	Expand all bookmarks	ყველა სანიშნის ჩამოშლა
 	Expand top-level bookmarks	ზედა დონის სანიშნეების გაშლა
 	Collapse all bookmarks	ყველა სანიშნის აკეცვა
 	New bookmark ({key})	ახალი სანიშნე ({key})
@@ -1267,7 +1267,7 @@
 	This document has no pages.	ამ დოკუმენტს გვერდები არ აქვს.
 	Find text	ტექსტის ძებნა
 	No matches	დამთხვევა არ არის
-	Searching… {s}/{p}	ძებნა… {s}/{p}
+	Searching… {s}/{p}	ძიება… {s}/{p}
 	{c} of {n}{more}	{c} / {n}{more}
 	Previous ({key})	წინა ({key})
 	Next ({key})	შემდეგი ({key})
@@ -1301,7 +1301,7 @@
 	Viewing	ნახვისთვის
 	Editing	რედაქტირება
 	Type Password	აკრიფეთ პაროლი
-	Re-type Password	ხელახლა აკრიფეთ პაროლი
+	Re-type Password	გაიმეორეთ პაროლი
 	Strength: {s}	სიძლიერე: {s}
 	Strong	ძლიერი
 	Medium	საშუალო
@@ -1423,10 +1423,10 @@
 	Two-Up Continuous (Cover Page)	ორგვერდიანი გაშლა, უწყვეტი (თავფურცლით)
 	Magnification	გადიდების ხარისხი
 	Actual Size	რეალური ზომა
-	Fit Page	გვერდზე მორგება
-	Fit Width	სიგანეზე მორგება
-	Fit Height	სიმაღლეზე მორგება
-	Fit Visible	ხილულ არეზე მორგება
+	Fit Page	გვერდში ჩატევა
+	Fit Width	სიგანეში ჩატევა
+	Fit Height	სიმაღლეში ჩატევა
+	Fit Visible	ხილულ არეში ჩატევა
 	Open to page	გახსნა გვერდზე
 	of {pages}	/ {pages}
 	Window Options	ფანჯრის პარამეტრები
@@ -1496,7 +1496,7 @@
 	Exported the text of 1 page	ექსპორტირებულია 1 გვერდის ტექსტი
 	Exported the text of {n} pages	ექსპორტირებულია გვერდების ტექსტი: {n}
 	{msg} to {dir}	{msg} → {dir}
-	Exporting… {d} of {t}	ექსპორტი… {d} / {t}
+	Exporting… {d} of {t}	ექსპორტირდება… {d} / {t}
 	Choose a folder for the exported files	აირჩიეთ საქაღალდე ექსპორტირებული ფაილებისთვის
 	New {tool} comments will look like this one	ახალი {tool} კომენტარები ამის მსგავსი იქნება
 	This document can't be checked: it couldn't be read for editing	ამ დოკუმენტის შემოწმება შეუძლებელია: რედაქტირებისთვის ვერ წაიკითხა
@@ -1631,7 +1631,7 @@
 	Drag a rectangle to create a link; double-click a link to edit it	ბმულის შესაქმნელად გადაათრიეთ მართკუთხედი; ბმულის რედაქტირებისთვის ორჯერ დაწკაპეთ მასზე
 	There are no redaction marks to apply	გამოსაყენებელი დაფარვის ნიშნები არ არის
 	Drag to draw the area where the signature should appear.	გადაათრიეთ, რომ მონიშნოთ არე, სადაც ხელმოწერა უნდა გამოჩნდეს.
-	Couldn't fit the visible content: {e}	ხილულ შიგთავსზე მორგება ვერ მოხერხდა: {e}
+	Couldn't fit the visible content: {e}	ხილული შიგთავსის ჩატევა ვერ მოხერხდა: {e}
 	Drag a rectangle around the area to copy	გადაათრიეთ მართკუთხედი დასაკოპირებელი არის გარშემო
 	Click on the page to add a {tool}, or drag to set its size	{tool}-ის დასამატებლად დაწკაპეთ გვერდზე, ან ზომის მისაცემად გადაათრიეთ
 	Drag a rectangle on a page to crop it; double-click a page for Set Page Boxes	ჩამოსაჭრელად გადაათრიეთ მართკუთხედი გვერდზე; გვერდის ჩარჩოების დასაყენებლად ორჯერ დაწკაპეთ გვერდზე
@@ -1640,8 +1640,8 @@
 	Opacity	გაუმჭვირვალობა
 	Line thickness	ხაზის სისქე
 	What word or phrase would you like to search for?	რომელი სიტყვის ან ფრაზის მოძებნა გსურთ?
-	Searching… {s} of {p} pages	ძებნა… {s} / {p} გვერდი
-	 (searching… {s} of {p} pages)	 (ძებნა… {s} / {p} გვერდი)
+	Searching… {s} of {p} pages	ძიება… {s} / {p} გვერდი
+	 (searching… {s} of {p} pages)	 (ძიება… {s} / {p} გვერდი)
 	1 instance	1 შემთხვევა
 	{n} instances	შემთხვევა: {n}
 	Go to this result	ამ შედეგზე გადასვლა
@@ -1678,8 +1678,8 @@
 	Paste after	ჩასმა შემდეგ
 	Rename	გადარქმევა
 	Set to current page ({n})	მიმდინარე გვერდზე დაყენება ({n})
-	Move up	ზემოთ გადატანა
-	Move down	ქვემოთ გადატანა
+	Move up	აწევა
+	Move down	ჩამოწევა
 	Indent	შეწევა
 	Outdent	შეწევის შემცირება
 	This document has no form fields.	ამ დოკუმენტს ფორმის ველები არ აქვს.
@@ -1747,7 +1747,7 @@
 	An embedded file has no AFRelationship	ჩაშენებულ ფაილს AFRelationship არ აქვს
 	Select Icon	ხატულის არჩევა
 	Choose images	გამოსახულებების არჩევა
-	{dpi} pixels/inch	{dpi} პიქსელი/ინჩი
+	{dpi} pixels/inch	{dpi} პიქსელი/დუიმი
 	Type your {what}.	აკრიფეთ {what} ტექსტი.
 	Draw your {what} below.	ქვემოთ დახატეთ {what} ნიმუში.
 	Your name	თქვენი სახელი
@@ -1788,7 +1788,7 @@
 	Set tab order	ტაბულაციის რიგის დაყენება
 	Change initial view	საწყისი ხედის შეცვლა
 	Set alternate text	ალტერნატიული ტექსტის დაყენება
-	Mark figure as decorative	ფიგურის დეკორატიულად მონიშვნა
+	Mark figure as decorative	ფიგურის დეკორატიულად მარკირება
 	Run JavaScript	JavaScript-ის გაშვება
 	Delete document JavaScript	დოკუმენტის JavaScript-ის წაშლა
 	Edit document JavaScript	დოკუმენტის JavaScript-ის რედაქტირება
@@ -1873,7 +1873,7 @@
 	Paths	კონტურები
 	Sensitivity	მგრძნობელობა
 	Unit	ერთეული
-	Decimals	ათწილადი ნიშნები მძიმის შემდეგ
+	Decimals	ციფრები მძიმის შემდეგ
 	Calibrate from two points	დაკალიბრება ორი წერტილით
 	Entire page	მთელი გვერდი
 	Viewport rectangle in page points (x, y, width, height)	ხედის მართკუთხედი გვერდის პუნქტებში (x, y, სიგანე, სიმაღლე)
@@ -1921,7 +1921,7 @@
 @plural	{n} field|{n} fields	{n} ველი
 	Switch to two-page view first to show the cover page	თავფურცლის საჩვენებლად ჯერ ორგვერდიან ხედზე გადაერთეთ
 	Page display: {layout}	გვერდების ჩვენება: {layout}
-	Fit to width scrolling	სიგანეზე მორგებული გადახვევა
+	Fit to width scrolling	სიგანეში ჩატეული გადახვევა
 	Fit one full page	ერთი მთლიანი გვერდი
 	Default page display	გვერდების ჩვენება ნაგულისხმევად
 	Default zoom	მასშტაბი ნაგულისხმევად
@@ -2026,7 +2026,7 @@
 	{n} selected	მონიშნული: {n}
 	Choose a PNG or JPEG image (up to 4 MiB). Transparency is preserved.	აირჩიეთ PNG ან JPEG გამოსახულება (4 MiB-მდე). გამჭვირვალობა შენარჩუნდება.
 	Couldn't import the signature image: {e}	ხელმოწერის გამოსახულების იმპორტი ვერ მოხერხდა: {e}
-	Open Recent	ბოლოდროინდელის გახსნა
+	Open Recent	ბოლოს გახსნილი ფაილების გახსნა
 	Pin folder to Home…	საქაღალდის საწყის ეკრანზე მიმაგრება…
 	Folders	საქაღალდეები
 	Pin a folder…	საქაღალდის მიმაგრება…
@@ -2045,7 +2045,7 @@
 	{folder} is already pinned to Home	{folder} უკვე მიმაგრებულია საწყის ეკრანზე
 	You can pin up to {n} folders. Unpin one first.	შეგიძლიათ მიამაგროთ მაქსიმუმ {n} საქაღალდე. ჯერ ერთი მოხსენით.
 	Pinned {folder} to Home	{folder} მიმაგრდა საწყის ეკრანზე
-	No recent files	ბოლოდროინდელი ფაილები არ არის
+	No recent files	ბოლოს გახსნილი ფაილები არ არის
 	Go to page…	გვერდზე გადასვლა…
 	About	პროგრამის შესახებ
 	Contributors	მონაწილეები
@@ -2057,7 +2057,7 @@
 	Added the first {n} PDFs in {folder}	დაემატა პირველი {n} PDF საქაღალდიდან {folder}
 comment menu	Edit	რედაქტირება
 	Undo {action}	დაბრუნება: {action}
-	Redo {action}	ხელახლა შესრულება: {action}
+	Redo {action}	{action}-ის გამეორება
 signature pad	Type	ტიპი
 certificate	Subject	საგანი
 action wizard	Start	დაწყება
@@ -2081,10 +2081,10 @@ action wizard	Start	დაწყება
 	Align fields	ველების სწორება
 	Distribute fields	ველების განაწილება
 	Match field sizes	ველების ზომების გათანაბრება
-	Mark for redaction	დასაფარად მონიშვნა
-	Mark pages for redaction	გვერდების დასაფარად მონიშვნა
+	Mark for redaction	დასაფარად მარკირება
+	Mark pages for redaction	გვერდების დასაფარად მარკირება
 	Change document properties	დოკუმენტის თვისებების შეცვლა
-	Mark differences	განსხვავებების მონიშვნა
+	Mark differences	განსხვავებების მარკირება
 	Run form script	ფორმის სკრიპტის გაშვება
 	Scripted content must be usable with a keyboard and assistive technology. Check the document's scripts.	სკრიპტით მართული შიგთავსი კლავიატურითა და დამხმარე ტექნოლოგიებით უნდა იყოს გამოყენებადი. შეამოწმეთ დოკუმენტის სკრიპტები.
 	Table rows belong directly in a table or its head, body or foot. Fix the table's tags.	ცხრილის სტრიქონები უშუალოდ ცხრილში ან მის თავში, ტანში ან ბოლოში უნდა იყოს. გაასწორეთ ცხრილის ტეგები.
@@ -2094,9 +2094,9 @@ action wizard	Start	დაწყება
 	Squiggly	ტალღოვანი
 	Home / End	Home / End
 	H / Space (hold)	H / Space (დაჭერით)
-	Clear Recent Files	ბოლოდროინდელი ფაილების სიის გასუფთავება
-	Remove from Recent	ბოლოდროინდელებიდან ამოშლა
-	Remove {name} from Recent	{name}-ის ამოშლა ბოლოდროინდელებიდან
+	Clear Recent Files	ბოლოს გახსნილი ფაილების სიის გასუფთავება
+	Remove from Recent	ბოლოს გახსნილებიდან ამოშლა
+	Remove {name} from Recent	{name}-ის ამოშლა ბოლოს გახსნილებიდან
 	The standard fonts can't draw “{c}” ({code}). Only Western European characters can be added as text for now.	სტანდარტული შრიფტები ვერ ხატავს „{c}“-ს ({code}). ჯერჯერობით ტექსტად მხოლოდ დასავლეთევროპული სიმბოლოების დამატებაა შესაძლებელი.
 	Larger pages	უფრო დიდი გვერდები
 	Smaller pages	უფრო პატარა გვერდები
@@ -2173,7 +2173,7 @@ key	Space	ჰარი
 	Preview unavailable: {e}	გადახედვა მიუწვდომელია: {e}
 	Pages: {k} of {n}	გვერდები: {k} / {n}
 	Some bookmarks are not shown here: the panel lists a limited number, nested a limited depth.	ზოგიერთი სანიშნე აქ არ ჩანს: პანელი შეზღუდულ რაოდენობას აჩვენებს, შეზღუდული ჩადგმის სიღრმით.
-	Expand all	ყველას გაშლა
+	Expand all	ყველას ჩამოშლა
 	Collapse all	ყველას აკეცვა
 	Remove page	გვერდის მოშორება
 	Remove {n} pages	გვერდების მოშორება ({n})
@@ -2224,8 +2224,8 @@ key	Space	ჰარი
 	Every PDF, image and text file in the folder and the folders inside it	საქაღალდისა და მასში არსებული საქაღალდეების ყველა PDF, გამოსახულება და ტექსტური ფაილი
 	No PDFs, images or text files found in {folder}	{folder}-ში PDF-ები, გამოსახულებები ან ტექსტური ფაილები ვერ მოიძებნა
 	Added the first {n} files in {folder}	დაემატა პირველი {n} ფაილი საქაღალდიდან {folder}
-	Margins	არშიები
-	For page sizes and margins.	გვერდის ზომებისა და არშიებისთვის.
+	Margins	ველები
+	For page sizes and margins.	გვერდის ზომებისა და ველებისთვის.
 	PDF page: {size}	PDF გვერდი: {size}
 	Match page at 100%	გვერდის 100%-ით შესაბამისობა
 	PDF scale: {scale}%	PDF-ის მასშტაბი: {scale}%
@@ -2533,7 +2533,7 @@ calendar date	September	სექტემბერი
 	Save or revert changes before selecting another tag.	სხვა ტეგის არჩევამდე შეინახეთ ან გააუქმეთ ცვლილებები.
 	Save tag properties	ტეგის თვისებების შენახვა
 	Scan	სკანირება
-	Search results	ძებნის შედეგები
+	Search results	ძიების შედეგები
 	Select all	ყველაფრის მონიშვნა
 	Separate PDFs	ცალკეული PDF-ები
 	Sign a sheet of white paper and take a photo of it in bright, even light (use the flash). Choose the photo or drop it here: PdfCraft finds the signature and removes the paper.	მოაწერეთ ხელი თეთრ ფურცელზე და გადაუღეთ ფოტო კაშკაშა, თანაბარ განათებაში (გამოიყენეთ ფლეში). აირჩიეთ ფოტო ან ჩააგდეთ აქ: PdfCraft იპოვის ხელმოწერას და ქაღალდს მოაცილებს.
