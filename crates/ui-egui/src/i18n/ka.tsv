@@ -2570,7 +2570,7 @@ calendar date	September	სექტემბერი
 	ΔLOC	ΔLOC
 @plural	Downloaded {n} PDF|Downloaded {n} PDFs	ჩამოიტვირთა PDF: {n}
 @plural	{n} comment|{n} comments	{n} კომენტარი
-@plural	{n} field name collides with earlier files and will be renamed: {list}|{n} field names collide with earlier files and will be renamed: {list}	წინა ფაილებთან დამთხვეული ველის სახელები გადაერქმევა ({n}): {list}
+@plural	{n} field name collides with earlier files and will be renamed: {list}|{n} field names collide with earlier files and will be renamed: {list}	წინა ფაილებთან დამთხვეული ველის დასახელებები გადაერქმევა ({n}): {list}
 @plural	{n} file|{n} files	{n} ფაილი
 @plural	{n} result|{n} results	{n} შედეგი
 animation effects	Off	გამორთული
