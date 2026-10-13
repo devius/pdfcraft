@@ -36,7 +36,7 @@
 	Print…	დაბეჭდვა…
 	Document properties…	დოკუმენტის თვისებები…
 	Undo	დაბრუნება
-	Redo	გამეორება
+	Redo	ხელახლა შესრულება
 	Find…	ძებნა…
 	Advanced search…	გაფართოებული ძიება…
 	Copy pages	გვერდების კოპირება
@@ -2057,7 +2057,7 @@
 	Added the first {n} PDFs in {folder}	დაემატა პირველი {n} PDF საქაღალდიდან {folder}
 comment menu	Edit	რედაქტირება
 	Undo {action}	დაბრუნება: {action}
-	Redo {action}	{action}-ის გამეორება
+	Redo {action}	ხელახლა შესრულება: {action}
 signature pad	Type	ტიპი
 certificate	Subject	საგანი
 action wizard	Start	დაწყება
