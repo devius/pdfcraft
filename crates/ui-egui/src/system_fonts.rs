@@ -29,6 +29,8 @@ const TELUGU_PROBE: char = '\u{0C15}';
 const HANS_PROBE: char = '\u{6B22}';
 /// 說 (U+8AAA): Traditional only, absent from the Japanese craft-fonts faces.
 const HANT_PROBE: char = '\u{8AAA}';
+/// Georgian letter an (U+10D0): no embedded face has Georgian.
+const GEORGIAN_PROBE: char = '\u{10D0}';
 
 /// What the installed face is wanted for, from the interface language.
 #[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
@@ -40,6 +42,8 @@ pub enum Need {
     Hans,
     /// Traditional Chinese interface text.
     Hant,
+    /// Georgian (Mkhedruli) text: the Georgian interface, or a Georgian file name in any other.
+    Georgian,
 }
 
 /// The installed fallback face for `need`, read once per need. `None` when it is turned off or no
@@ -48,10 +52,12 @@ pub fn fallback(need: Need) -> Option<Arc<FontData>> {
     static OTHER: OnceLock<Option<Arc<FontData>>> = OnceLock::new();
     static HANS: OnceLock<Option<Arc<FontData>>> = OnceLock::new();
     static HANT: OnceLock<Option<Arc<FontData>>> = OnceLock::new();
+    static GEORGIAN: OnceLock<Option<Arc<FontData>>> = OnceLock::new();
     let cache = match need {
         Need::Other => &OTHER,
         Need::Hans => &HANS,
         Need::Hant => &HANT,
+        Need::Georgian => &GEORGIAN,
     };
     cache.get_or_init(|| load(need)).clone()
 }
@@ -64,6 +70,7 @@ fn load(need: Need) -> Option<Arc<FontData>> {
         Need::Other => (PROBE, MAX_BYTES),
         Need::Hans => (HANS_PROBE, MAX_HAN_BYTES),
         Need::Hant => (HANT_PROBE, MAX_HAN_BYTES),
+        Need::Georgian => (GEORGIAN_PROBE, MAX_BYTES),
     };
     candidates(need).iter().find_map(|path| read(path, probe, max))
 }
@@ -160,6 +167,27 @@ fn candidates(need: Need) -> Vec<PathBuf> {
     match need {
         Need::Other => other_candidates(),
         Need::Hans | Need::Hant => han_candidates(need == Need::Hant),
+        Need::Georgian => georgian_candidates(),
+    }
+}
+
+/// Faces with Georgian the operating system ships: SF Georgian (macOS), Sylfaen and Segoe UI
+/// (Windows), Noto Sans Georgian or DejaVu Sans (Linux, BSD).
+fn georgian_candidates() -> Vec<PathBuf> {
+    if cfg!(windows) {
+        ["sylfaen.ttf", "segoeui.ttf"].iter().map(|f| windows_fonts().join(f)).collect()
+    } else if cfg!(target_os = "macos") {
+        ["/System/Library/Fonts/SFGeorgian.ttf", "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"].iter().map(PathBuf::from).collect()
+    } else {
+        unix_fonts(&[
+            "truetype/noto/NotoSansGeorgian-Regular.ttf",
+            "noto/NotoSansGeorgian-Regular.ttf",
+            "google-noto/NotoSansGeorgian-Regular.ttf",
+            "truetype/dejavu/DejaVuSans.ttf",
+            "TTF/DejaVuSans.ttf",
+            "dejavu/DejaVuSans.ttf",
+            "dejavu-sans-fonts/DejaVuSans.ttf",
+        ])
     }
 }
 
@@ -266,6 +294,7 @@ mod tests {
         assert_eq!(face_with(inter, PROBE), None);
         assert_eq!(face_with(inter, HANS_PROBE), None);
         assert_eq!(face_with(inter, HANT_PROBE), None);
+        assert_eq!(face_with(inter, GEORGIAN_PROBE), None);
         assert_eq!(face_with(inter, 'A'), Some(0));
     }
 
@@ -278,7 +307,7 @@ mod tests {
 
     #[test]
     fn candidates_are_absolute_font_files() {
-        for need in [Need::Other, Need::Hans, Need::Hant] {
+        for need in [Need::Other, Need::Hans, Need::Hant, Need::Georgian] {
             let list = candidates(need);
             assert!(!list.is_empty(), "{need:?}");
             assert!(list.iter().all(|p| p.extension().is_some_and(|e| e == "ttf" || e == "ttc")), "{need:?}");

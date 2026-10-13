@@ -170,6 +170,31 @@ fn system_fallback_covers_devanagari() {
     assert!(layout_widths(&mut fonts, DEVANAGARI).iter().all(|w| w.is_finite() && *w > 0.0));
 }
 
+/// With a Georgian face installed (SF Georgian, Sylfaen, Noto Sans Georgian, DejaVu Sans …), every
+/// Mkhedruli letter has a glyph in every interface family, from that face, which comes after the
+/// app's own fonts; the embedded-only definitions never name it.
+#[test]
+fn georgian_ui_uses_an_installed_georgian_face() {
+    assert!(!theme::font_definitions().font_data.contains_key(theme::GEORGIAN_FALLBACK));
+    let defs = theme::installed_font_definitions(theme::CjkPreference::Default);
+    if !defs.font_data.contains_key(theme::GEORGIAN_FALLBACK) {
+        eprintln!("skipping georgian_ui_uses_an_installed_georgian_face: no installed Georgian face (or PDFCRAFT_SYSTEM_FONTS=0)");
+        return;
+    }
+    for (family, stack) in &defs.families {
+        let georgian = stack.iter().position(|n| n == theme::GEORGIAN_FALLBACK).expect("in every family");
+        let own = stack.iter().position(|n| n.starts_with("Inter") || n == "JetBrainsMono").expect("the app's own font");
+        assert!(own < georgian, "{family:?}: {stack:?}");
+    }
+    // The 33 letters of the modern Mkhedruli alphabet.
+    let letters: Vec<char> = ('\u{10D0}'..='\u{10F0}').collect();
+    let mut fonts = Fonts::new(TextOptions::default(), defs);
+    for id in families() {
+        let missing: String = letters.iter().filter(|c| !fonts.has_glyphs(&id, &c.to_string())).collect();
+        assert!(missing.is_empty(), "{id:?} lacks {missing}");
+    }
+}
+
 /// On a machine with an installed Telugu font, the installed definitions include it and Telugu
 /// text has glyphs, so the language's own name in Preferences is not boxes (#1531). macOS always
 /// ships Kohinoor Telugu, so there the test never skips.

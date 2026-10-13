@@ -23,6 +23,19 @@ fn main() {
                 options,
                 Box::new(|cc| {
                     let mut app = PdfCraftApp::new();
+                    // The Georgian interface face, when the site serves one beside the page (no
+                    // embedded face has Georgian); a missing file leaves the interface as it was.
+                    let ctx = cc.egui_ctx.clone();
+                    wasm_bindgen_futures::spawn_local(async move {
+                        match fetch_bytes("fonts/NotoSansGeorgian.ttf").await {
+                            // A host may answer a missing file with its index page.
+                            Ok(bytes) if matches!(bytes.get(..4), Some([0, 1, 0, 0] | b"OTTO" | b"true")) => {
+                                pdfcraft_ui_egui::theme::set_runtime_fallback_font(bytes);
+                                ctx.request_repaint();
+                            }
+                            _ => {}
+                        }
+                    });
                     // "printcraft": settings saved under the app's former name, PrintCraft.
                     if let Some(json) = cc.storage.and_then(|s| s.get_string("pdfcraft").or_else(|| s.get_string("printcraft"))) {
                         app.restore(&json);

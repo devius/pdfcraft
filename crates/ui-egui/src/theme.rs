@@ -221,6 +221,28 @@ pub const SYSTEM_DEVANAGARI_FALLBACK: &str = "system-devanagari-fallback";
 /// The name of the installed Telugu face [`installed_font_definitions`] may add.
 pub const SYSTEM_TELUGU_FALLBACK: &str = "system-telugu-fallback";
 
+/// The name of the installed Georgian face [`installed_font_definitions`] may add: no embedded
+/// face has Georgian, so without it the Georgian interface is replacement boxes.
+pub const GEORGIAN_FALLBACK: &str = "system-fallback-georgian";
+
+/// A Georgian face supplied at run time: the web build fetches one served beside the page.
+static RUNTIME_FALLBACK: std::sync::OnceLock<Arc<FontData>> = std::sync::OnceLock::new();
+/// The runtime face arrived and the installed fonts don't have it yet.
+static RUNTIME_FALLBACK_NEW: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Use `bytes` (a font file) as the Georgian interface face where no installed one can be read
+/// (the web); the app installs it on the next frame. Only the first call counts.
+pub fn set_runtime_fallback_font(bytes: Vec<u8>) {
+    if RUNTIME_FALLBACK.set(Arc::new(FontData::from_owned(bytes))).is_ok() {
+        RUNTIME_FALLBACK_NEW.store(true, std::sync::atomic::Ordering::Relaxed);
+    }
+}
+
+/// Whether a runtime fallback face arrived since the last call.
+pub(crate) fn take_new_runtime_fallback() -> bool {
+    RUNTIME_FALLBACK_NEW.swap(false, std::sync::atomic::Ordering::Relaxed)
+}
+
 /// What [`install_fonts_for`] installs: [`font_definitions_for`], then, on desktop, one face
 /// already installed on this machine. It only draws characters no embedded face has.
 ///
@@ -232,16 +254,36 @@ pub const SYSTEM_TELUGU_FALLBACK: &str = "system-telugu-fallback";
 /// - Otherwise it is the last fallback of every family (an Arabic file name in a build without
 ///   craft-fonts).
 ///
+/// A Georgian system face (SF Georgian, Sylfaen, Noto Sans Georgian …) also goes right after the
+/// app's own face in every family, so Georgian labels and file names draw in any interface
+/// language.
+///
 /// An installed Devanagari face and an installed Telugu face, when there are, end every family
 /// just before that one, so Hindi and Telugu text draw in a build without such faces (#1531).
 ///
 /// `PDFCRAFT_SYSTEM_FONTS=0` leaves them out.
 pub fn installed_font_definitions(cjk: CjkPreference) -> FontDefinitions {
-    #[cfg_attr(target_arch = "wasm32", expect(unused_mut))]
     let mut fonts = font_definitions_for(cjk == CjkPreference::SimplifiedChinese);
+    // The web build: the Georgian face the page fetched ([`set_runtime_fallback_font`]), placed
+    // as the installed one is on the desktop.
+    #[cfg(target_arch = "wasm32")]
+    if let Some(data) = RUNTIME_FALLBACK.get() {
+        fonts.font_data.insert(GEORGIAN_FALLBACK.to_owned(), data.clone());
+        for stack in fonts.families.values_mut() {
+            stack.insert(stack.len().min(1), GEORGIAN_FALLBACK.to_owned());
+        }
+    }
     #[cfg(not(target_arch = "wasm32"))]
     {
         use crate::system_fonts::{Need, fallback};
+        if let Some(data) = fallback(Need::Georgian) {
+            fonts.font_data.insert(GEORGIAN_FALLBACK.to_owned(), data);
+            // Right after the app's own face: egui's Hack claims Georgian code points it can't
+            // draw, so a Georgian face after it would never be reached in monospace.
+            for stack in fonts.families.values_mut() {
+                stack.insert(stack.len().min(1), GEORGIAN_FALLBACK.to_owned());
+            }
+        }
         // Before the general installed face, which stays the last fallback outside Chinese.
         for (name, data) in [
             (SYSTEM_DEVANAGARI_FALLBACK, crate::system_fonts::devanagari_fallback()),
@@ -264,7 +306,7 @@ pub fn installed_font_definitions(cjk: CjkPreference) -> FontDefinitions {
             let japanese: Vec<String> = pdfcraft_fonts::ui_japanese_fonts().iter().map(|f| f.name()).collect();
             for stack in fonts.families.values_mut() {
                 let at = match need {
-                    Need::Other => None,
+                    Need::Other | Need::Georgian => None,
                     Need::Hans | Need::Hant => stack.iter().position(|n| japanese.contains(n)),
                 };
                 stack.insert(at.unwrap_or(stack.len()), SYSTEM_FALLBACK.to_owned());
