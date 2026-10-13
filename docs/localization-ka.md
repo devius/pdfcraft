@@ -45,7 +45,7 @@ they are translated.
 | Preferences… / Interface language | პარამეტრები… / ინტერფეისის ენა |
 | Save as… | შენახვა სხვა სახელით… |
 | Undo / Redo | დაბრუნება / ხელახლა შესრულება |
-| Find… / Print… | ძებნა… / ბეჭდვა… |
+| Find… / Print… | ძებნა… / დაბეჭდვა… |
 | Zoom in / Zoom out | გადიდება / დაპატარავება |
 | Organize pages / Insert pages / Extract pages | გვერდების ორგანიზება / გვერდების ჩასმა / გვერდების ამოღება |
 | Rotate pages | გვერდების შემობრუნება |

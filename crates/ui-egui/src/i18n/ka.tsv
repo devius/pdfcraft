@@ -33,7 +33,7 @@
 	Close file	ფაილის დახურვა
 	Close all	ყველას დახურვა
 	Revert	წინა ვერსიაზე დაბრუნება
-	Print…	ბეჭდვა…
+	Print…	დაბეჭდვა…
 	Document properties…	დოკუმენტის თვისებები…
 	Undo	დაბრუნება
 	Redo	ხელახლა შესრულება
@@ -84,7 +84,7 @@
 	Read	წაკითხვა
 	Convert	გარდაქმნა
 	E-Sign	ელ-ხელმოწერა
-	Print ({key})	ბეჭდვა ({key})
+	Print ({key})	დაბეჭდვა ({key})
 	Save (M4)	შენახვა (M4)
 	Document properties ({key})	დოკუმენტის თვისებები ({key})
 	Find tools and commands	ხელსაწყოებისა და ბრძანებების ძებნა
@@ -341,7 +341,7 @@
 	Arrow	ისარი
 	Cloud	ღრუბელი
 	Stamp	შტამპი
-	Review	რეცენზირება
+	Review	განხილვა
 	Comment list	კომენტარების სია
 	Scan & OCR	სკანირება და OCR
 	Recognize text	ტექსტის ამოცნობა
@@ -475,7 +475,7 @@
 	From:	საიდან:
 	To:	სადამდე:
 	High Resolution	მაღალი გარჩევადობა
-	Print	ბეჭდვა
+	Print	დაბეჭდვა
 	Verify to see what the document needs.	შეამოწმეთ, რომ ნახოთ, რა სჭირდება დოკუმენტს.
 	Set Page Boxes	გვერდის ჩარჩოების დაყენება
 	Signature panel	ხელმოწერის პანელი
@@ -2453,7 +2453,7 @@ calendar date	September	სექტემბერი
 	Color	ფერი
 	Colours are remapped while rendering; the document itself never changes.	ფერები ჩვენებისას გადაიწერება; თავად დოკუმენტი არასოდეს იცვლება.
 	Comment	კომენტარი
-	Comment and review	კომენტირება და რეცენზირება
+	Comment and review	კომენტირება და განხილვა
 	Copied to clipboard	დაკოპირდა გაცვლის ბუფერში
 	Copies, two-sided printing and colour are chosen in the browser's print dialog.	ასლები, ორმხრივი ბეჭდვა და ფერი ბრაუზერის ბეჭდვის დიალოგში აირჩევა.
 	Copy Image	გამოსახულების კოპირება
@@ -2517,7 +2517,7 @@ calendar date	September	სექტემბერი
 	Preparing {n} sheets for printing…	ფურცლების მომზადება დასაბეჭდად: {n}…
 	Previous	წინა
 	Previous (⇧⌘G)	წინა (⇧⌘G)
-	Print (⌘P)	ბეჭდვა (⌘P)
+	Print (⌘P)	დაბეჭდვა (⌘P)
 	Reading colours	კითხვის ფერები
 	Recent colours	ბოლოდროინდელი ფერები
 	Refresh	განახლება
