@@ -225,6 +225,24 @@ pub const SYSTEM_TELUGU_FALLBACK: &str = "system-telugu-fallback";
 /// face has Georgian, so without it the Georgian interface is replacement boxes.
 pub const GEORGIAN_FALLBACK: &str = "system-fallback-georgian";
 
+/// A Georgian face supplied at run time: the web build fetches one served beside the page.
+static RUNTIME_FALLBACK: std::sync::OnceLock<Arc<FontData>> = std::sync::OnceLock::new();
+/// The runtime face arrived and the installed fonts don't have it yet.
+static RUNTIME_FALLBACK_NEW: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+/// Use `bytes` (a font file) as the Georgian interface face where no installed one can be read
+/// (the web); the app installs it on the next frame. Only the first call counts.
+pub fn set_runtime_fallback_font(bytes: Vec<u8>) {
+    if RUNTIME_FALLBACK.set(Arc::new(FontData::from_owned(bytes))).is_ok() {
+        RUNTIME_FALLBACK_NEW.store(true, std::sync::atomic::Ordering::Relaxed);
+    }
+}
+
+/// Whether a runtime fallback face arrived since the last call.
+pub(crate) fn take_new_runtime_fallback() -> bool {
+    RUNTIME_FALLBACK_NEW.swap(false, std::sync::atomic::Ordering::Relaxed)
+}
+
 /// What [`install_fonts_for`] installs: [`font_definitions_for`], then, on desktop, one face
 /// already installed on this machine. It only draws characters no embedded face has.
 ///
@@ -245,8 +263,16 @@ pub const GEORGIAN_FALLBACK: &str = "system-fallback-georgian";
 ///
 /// `PDFCRAFT_SYSTEM_FONTS=0` leaves them out.
 pub fn installed_font_definitions(cjk: CjkPreference) -> FontDefinitions {
-    #[cfg_attr(target_arch = "wasm32", expect(unused_mut))]
     let mut fonts = font_definitions_for(cjk == CjkPreference::SimplifiedChinese);
+    // The web build: the Georgian face the page fetched ([`set_runtime_fallback_font`]), placed
+    // as the installed one is on the desktop.
+    #[cfg(target_arch = "wasm32")]
+    if let Some(data) = RUNTIME_FALLBACK.get() {
+        fonts.font_data.insert(GEORGIAN_FALLBACK.to_owned(), data.clone());
+        for stack in fonts.families.values_mut() {
+            stack.insert(stack.len().min(1), GEORGIAN_FALLBACK.to_owned());
+        }
+    }
     #[cfg(not(target_arch = "wasm32"))]
     {
         use crate::system_fonts::{Need, fallback};

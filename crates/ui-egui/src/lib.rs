@@ -2761,7 +2761,7 @@ impl eframe::App for PdfCraftApp {
             self.styled = true;
         } else {
             self.fonts_ready = true;
-            if cjk != self.fonts_cjk {
+            if cjk != self.fonts_cjk || theme::take_new_runtime_fallback() {
                 // Same family names as before, so named fonts stay valid while the new set loads.
                 theme::install_fonts_for(ctx, cjk);
                 self.fonts_cjk = cjk;

@@ -390,9 +390,21 @@ fn first_supported(list: &str) -> Option<Lang> {
     list.split(['(', ')', ',', '"', '\n']).map(str::trim).filter(|s| !s.is_empty()).find_map(lang_from_tag)
 }
 
+/// The browser has no locale environment: the first supported one of the languages the web
+/// shell passed in ([`set_system_locales`]: `?lang=`, then `navigator.languages`), else English.
 #[cfg(target_arch = "wasm32")]
 fn detect_system_lang() -> Lang {
-    Lang::EN
+    SYSTEM_LOCALES.get().and_then(|tags| tags.iter().find_map(|t| lang_from_tag(t))).unwrap_or(Lang::EN)
+}
+
+/// The system's preferred languages, most preferred first, as the web shell knows them.
+#[cfg_attr(not(target_arch = "wasm32"), allow(dead_code))]
+static SYSTEM_LOCALES: OnceLock<Vec<String>> = OnceLock::new();
+
+/// Tell Auto the system's preferred languages (the web shell; the desktop reads its own). Set it
+/// before the first frame; only the first call counts.
+pub fn set_system_locales(tags: Vec<String>) {
+    let _ = SYSTEM_LOCALES.set(tags);
 }
 
 thread_local! {
