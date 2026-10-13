@@ -29,7 +29,7 @@
 	Create PDF from clipboard	PDF-ის შექმნა გაცვლის ბუფერიდან
 	Combine files…	ფაილების გაერთიანება…
 	Save	შენახვა
-	Save as…	შენახვა სხვა სახელით…
+	Save as…	შენახვა როგორც…
 	Close file	ფაილის დახურვა
 	Close all	ყველას დახურვა
 	Revert	წინა ვერსიაზე დაბრუნება
@@ -563,7 +563,7 @@
 	Validate	შემოწმება
 	Calculate	გამოთვლა
 	Actions	ქმედებები
-	This field is locked. Unlock it to change its properties.	ეს ველი დაბლოკილია. თვისებების შესაცვლელად განბლოკეთ.
+	This field is locked. Unlock it to change its properties.	ეს ველი ჩაკეტილია. თვისებების შესაცვლელად განბლოკეთ.
 	Tooltip:	მინიშნება:
 	Common Properties	საერთო თვისებები
 	Read Only	მხოლოდ წასაკითხი
@@ -672,11 +672,11 @@
 	Edit image	გამოსახულების რედაქტირება
 	Rotate counterclockwise	შემობრუნება საათის ისრის საწინააღმდეგოდ
 	Rotate clockwise	შემობრუნება საათის ისრის მიმართულებით
-	Flip horizontal	ჰორიზონტალურად ასახვა
-	Flip vertical	ვერტიკალურად ასახვა
+	Flip horizontal	ჰორიზონტალურად არეკვლა
+	Flip vertical	ვერტიკალურად არეკვლა
 	Replace image	გამოსახულების ჩანაცვლება
 	Crop (% trimmed from each side)	ჩამოჭრა (% თითოეული მხრიდან)
-	Click on the page to add text; each click starts a new box, and ✓ finishes. Drag items to move them, drag a corner to resize, double-click text to edit it.	ტექსტის დასამატებლად დააწკაპუნეთ გვერდზე; ყოველი დაწკაპუნება ახალ ბლოკს იწყებს, ✓ კი ასრულებს. ელემენტების გადასაადგილებლად გადაათრიეთ ისინი, ზომის შესაცვლელად — კუთხე, ტექსტის რედაქტირებისთვის ორჯერ დააწკაპუნეთ.
+	Click on the page to add text; each click starts a new box, and ✓ finishes. Drag items to move them, drag a corner to resize, double-click text to edit it.	ტექსტის დასამატებლად დაწკაპეთ გვერდზე; ყოველი დაწკაპუნება ახალ ბლოკს იწყებს, ✓ კი ასრულებს. ელემენტების გადასაადგილებლად გადაათრიეთ ისინი, ზომის შესაცვლელად — კუთხე, ტექსტის რედაქტირებისთვის ორჯერ დაწკაპეთ.
 	Choose an image	აირჩიეთ გამოსახულება
 	Export to Image	ექსპორტი გამოსახულებად
 	Export to Text	ექსპორტი ტექსტად
@@ -709,7 +709,7 @@
 	Flip Horizontal	ჰორიზონტალურად არეკვლა
 	Flip Vertical	ვერტიკალურად არეკვლა
 	Replace Image…	გამოსახულების ჩანაცვლება…
-	Save Image As…	გამოსახულების შენახვა სხვა სახელით…
+	Save Image As…	გამოსახულების შენახვა როგორც…
 	Check for updates	განახლებების შემოწმება
 	No check has run yet.	შემოწმება ჯერ არ ჩატარებულა.
 	Checking for a newer version…	ახალი ვერსიის შემოწმება…
@@ -848,8 +848,8 @@
 	This dialog shows the details of a certificate and its chain.	ეს დიალოგი სერტიფიკატისა და მისი ჯაჭვის დეტალებს აჩვენებს.
 	Trust	ნდობა
 	Issued to	ვისზეა გაცემული
-	Valid from	მოქმედებს დან
-	Valid to	მოქმედებს მდე
+	Valid from	ვალიდურია თარიღიდან
+	Valid to	ვალიდურია თარიღამდე
 	Intended usage	დანიშნულება
 	Any	ნებისმიერი
 	Version	ვერსია
@@ -1198,7 +1198,7 @@
 	Dynamic	დინამიკური
 	Sign Here	ხელი მოაწერეთ აქ
 	Standard Business	სტანდარტული საქმიანი
-	Choose a stamp, then click on the page to place it.	აირჩიეთ შტამპი, შემდეგ დასასმელად დააწკაპუნეთ გვერდზე.
+	Choose a stamp, then click on the page to place it.	აირჩიეთ შტამპი, შემდეგ დასასმელად დაწკაპეთ გვერდზე.
 	Note	შენიშვნა
 	Polyline	ტეხილი
 	Attachment	დანართი
@@ -1207,7 +1207,7 @@
 	Checked	მონიშნული
 	Unchecked	მოუნიშნავი
 	Marked	აღნიშნული
-	Locked	დაბლოკილი
+	Locked	ჩაკეტილი
 	Search comments	კომენტარების ძებნა
 	Add a comment	კომენტარის დამატება
 	No comments yet.	კომენტარები ჯერ არ არის.
@@ -1221,7 +1221,7 @@
 	Add a reply	პასუხის დამატება
 	Post	გამოქვეყნება
 	Page {label}	გვერდი {label}
-	{kind} — click to show it on the page	{kind} — დააწკაპუნეთ, რომ გვერდზე ნახოთ
+	{kind} — click to show it on the page	{kind} — დაწკაპეთ, რომ გვერდზე ნახოთ
 	Set status	სტატუსის დაყენება
 	Copy text	ტექსტის კოპირება
 	Properties…	თვისებები…
@@ -1452,7 +1452,7 @@
 	User password	მომხმარებლის პაროლი
 	Change settings…	პარამეტრების შეცვლა…
 	Printing	ბეჭდვა
-	Not allowed	დაუშვებელია
+	Not allowed	აკრძალულია
 	Allowed	დაშვებულია
 	High resolution	მაღალი გარჩევადობა
 	Low resolution	დაბალი გარჩევადობა
@@ -1627,14 +1627,14 @@
 	The document's security settings don't allow this change	დოკუმენტის უსაფრთხოების პარამეტრები ამ ცვლილებას არ იძლევა
 	Open a document first	ჯერ გახსენით დოკუმენტი
 	Security will be removed when you save	დაცვა შენახვისას მოიხსნება
-	Click text or an image to edit it	დასარედაქტირებლად დააწკაპუნეთ ტექსტზე ან გამოსახულებაზე
-	Drag a rectangle to create a link; double-click a link to edit it	ბმულის შესაქმნელად გადაათრიეთ მართკუთხედი; ბმულის რედაქტირებისთვის ორჯერ დააწკაპუნეთ მასზე
+	Click text or an image to edit it	დასარედაქტირებლად დაწკაპეთ ტექსტზე ან გამოსახულებაზე
+	Drag a rectangle to create a link; double-click a link to edit it	ბმულის შესაქმნელად გადაათრიეთ მართკუთხედი; ბმულის რედაქტირებისთვის ორჯერ დაწკაპეთ მასზე
 	There are no redaction marks to apply	გამოსაყენებელი დაფარვის ნიშნები არ არის
 	Drag to draw the area where the signature should appear.	გადაათრიეთ, რომ მონიშნოთ არე, სადაც ხელმოწერა უნდა გამოჩნდეს.
 	Couldn't fit the visible content: {e}	ხილულ შიგთავსზე მორგება ვერ მოხერხდა: {e}
 	Drag a rectangle around the area to copy	გადაათრიეთ მართკუთხედი დასაკოპირებელი არის გარშემო
-	Click on the page to add a {tool}, or drag to set its size	{tool}-ის დასამატებლად დააწკაპუნეთ გვერდზე, ან ზომის მისაცემად გადაათრიეთ
-	Drag a rectangle on a page to crop it; double-click a page for Set Page Boxes	ჩამოსაჭრელად გადაათრიეთ მართკუთხედი გვერდზე; გვერდის ჩარჩოების დასაყენებლად ორჯერ დააწკაპუნეთ გვერდზე
+	Click on the page to add a {tool}, or drag to set its size	{tool}-ის დასამატებლად დაწკაპეთ გვერდზე, ან ზომის მისაცემად გადაათრიეთ
+	Drag a rectangle on a page to crop it; double-click a page for Set Page Boxes	ჩამოსაჭრელად გადაათრიეთ მართკუთხედი გვერდზე; გვერდის ჩარჩოების დასაყენებლად ორჯერ დაწკაპეთ გვერდზე
 	Keep tool selected: on	ხელსაწყოს არჩეულად დატოვება: ჩართულია
 	Keep tool selected	ხელსაწყოს არჩეულად დატოვება
 	Opacity	გაუმჭვირვალობა
@@ -1776,7 +1776,7 @@
 	Delete comment	კომენტარის წაშლა
 	Edit comment	კომენტარის რედაქტირება
 	Erase	წაშლა
-	Lock comment	კომენტარის დაბლოკვა
+	Lock comment	კომენტარის ჩაკეტვა
 	Unlock comment	კომენტარის განბლოკვა
 	Move comment	კომენტარის გადატანა
 	Resize comment	კომენტარის ზომის შეცვლა
@@ -1862,10 +1862,10 @@
 	Snapping	მიბმა
 	Export measurements	გაზომვების ექსპორტი
 	Open a PDF to measure it.	გასაზომად გახსენით PDF.
-	Click vertices. Enter or double-click finishes a perimeter or area. Click the first point to close an area.	დააწკაპუნეთ წვეროებზე. Enter ან ორმაგი დაწკაპუნება ასრულებს პერიმეტრს ან ფართობს. ფართობის დასახურად დააწკაპუნეთ პირველ წერტილზე.
+	Click vertices. Enter or double-click finishes a perimeter or area. Click the first point to close an area.	დაწკაპეთ წვეროებზე. Enter ან ორმაგი დაწკაპუნება ასრულებს პერიმეტრს ან ფართობს. ფართობის დასახურად დაწკაპეთ პირველ წერტილზე.
 	Shift constrains to 45 degrees. Backspace removes a vertex. Escape cancels.	Shift ზღუდავს 45 გრადუსამდე. Backspace შლის წვეროს. Escape აუქმებს.
 	Angle	კუთხე
-	Click the first point to begin.	დასაწყებად დააწკაპუნეთ პირველ წერტილზე.
+	Click the first point to begin.	დასაწყებად დაწკაპეთ პირველ წერტილზე.
 	Snap to drawing	ნახაზზე მიბმა
 	Endpoints	ბოლო წერტილები
 	Midpoints	შუა წერტილები
@@ -1983,7 +1983,7 @@
 	All open documents	ყველა გახსნილი დოკუმენტი
 	Can't be read: {e}	ვერ იკითხება: {e}
 	Check the pages of {name}: {why}	შეამოწმეთ {name}-ის გვერდები: {why}
-	Click to sort, drag to move the column. Drag its edge to resize it.	დააწკაპუნეთ სორტირებისთვის, გადაათრიეთ სვეტის გადასატანად. ზომის შესაცვლელად გადაათრიეთ მისი კიდე.
+	Click to sort, drag to move the column. Drag its edge to resize it.	დაწკაპეთ სორტირებისთვის, გადაათრიეთ სვეტის გადასატანად. ზომის შესაცვლელად გადაათრიეთ მისი კიდე.
 	Drag to reorder	გადაათრიეთ რიგის შესაცვლელად
 	Drop PDFs or folders here, or choose them.	ჩააგდეთ აქ PDF-ები ან საქაღალდეები, ან აირჩიეთ ისინი.
 	Enter the password that opens it	შეიყვანეთ პაროლი, რომლითაც ის იხსნება
@@ -2121,11 +2121,11 @@ action wizard	Start	დაწყება
 	Mixed	შერეული
 	Custom font	საკუთარი შრიფტი
 	Only checked properties will change. Mixed means the selected fields have different values.	შეიცვლება მხოლოდ მონიშნული თვისებები. „შერეული“ ნიშნავს, რომ მონიშნულ ველებს განსხვავებული მნიშვნელობები აქვს.
-	Shift- or Ctrl/Command-click to select several fields.	რამდენიმე ველის მოსანიშნად დააწკაპუნეთ Shift-ით ან Ctrl/Command-ით.
+	Shift- or Ctrl/Command-click to select several fields.	რამდენიმე ველის მოსანიშნად დაწკაპეთ Shift-ით ან Ctrl/Command-ით.
 	Font size 0 uses automatic sizing.	შრიფტის ზომა 0 ავტომატურ ზომას იყენებს.
 	Character limit:	სიმბოლოების ლიმიტი:
 	Character limit 0 means no limit. A comb of characters needs a limit.	სიმბოლოების ლიმიტი 0 ნიშნავს ლიმიტის გარეშე. უჯრებად დაყოფას ლიმიტი სჭირდება.
-	To change locked fields, also set Locked to No.	დაბლოკილი ველების შესაცვლელად „დაბლოკილი“ ასევე „არა“-ზე დააყენეთ.
+	To change locked fields, also set Locked to No.	ჩაკეტილი ველების შესაცვლელად „ჩაკეტილი“ ასევე „არა“-ზე დააყენეთ.
 	Comb of characters	სიმბოლოების უჯრებად დაყოფა
 	The document changed while you were editing field properties.	ველის თვისებების რედაქტირებისას დოკუმენტი შეიცვალა.
 	The document is no longer open.	დოკუმენტი აღარ არის გახსნილი.
@@ -2151,7 +2151,7 @@ key	Space	ჰარი
 	Column select	სვეტის მონიშვნა
 @plural	{n} object selected|{n} objects selected	მონიშნულია {n} ობიექტი
 	Drag the selection to move it. Esc clears the selection.	მონიშნულის გადასაადგილებლად გადაათრიეთ. Esc მონიშვნას ხსნის.
-	Shift-click to select several objects. Drag empty space to select an area.	რამდენიმე ობიექტის მოსანიშნად დააწკაპუნეთ Shift-ით. არის მოსანიშნად გადაათრიეთ ცარიელ ადგილზე.
+	Shift-click to select several objects. Drag empty space to select an area.	რამდენიმე ობიექტის მოსანიშნად დაწკაპეთ Shift-ით. არის მოსანიშნად გადაათრიეთ ცარიელ ადგილზე.
 	Select at most 1000 objects at a time.	ერთდროულად მონიშნეთ მაქსიმუმ 1000 ობიექტი.
 	Finish or discard the text being edited before selecting several objects.	რამდენიმე ობიექტის მონიშვნამდე დაასრულეთ ან გააუქმეთ რედაქტირებადი ტექსტი.
 	Move object	ობიექტის გადაადგილება
@@ -2570,15 +2570,15 @@ calendar date	September	სექტემბერი
 	ΔLOC	ΔLOC
 @plural	Downloaded {n} PDF|Downloaded {n} PDFs	ჩამოიტვირთა PDF: {n}
 @plural	{n} comment|{n} comments	{n} კომენტარი
-@plural	{n} field name collides with earlier files and will be renamed: {list}|{n} field names collide with earlier files and will be renamed: {list}	წინა ფაილებთან დამთხვეული ველის დასახელებები გადაერქმევა ({n}): {list}
+@plural	{n} field name collides with earlier files and will be renamed: {list}|{n} field names collide with earlier files and will be renamed: {list}	წინა ფაილებთან დამთხვეული ველის სახელები გადაერქმევა ({n}): {list}
 @plural	{n} file|{n} files	{n} ფაილი
 @plural	{n} result|{n} results	{n} შედეგი
 animation effects	Off	გამორთული
 animation effects	On	ჩართული
 calendar weekday	Fr	პარ
-calendar weekday	Mo	ორ
+calendar weekday	Mo	ორშ
 calendar weekday	Sa	შაბ
-calendar weekday	Su	კვ
+calendar weekday	Su	კვი
 calendar weekday	Th	ხუთ
 calendar weekday	Tu	სამ
 calendar weekday	We	ოთხ
@@ -2593,8 +2593,8 @@ certificate	SHA-1 digest	SHA-1 დაიჯესტი
 certificate	SHA-256 digest	SHA-256 დაიჯესტი
 certificate	Self-signed	თვითხელმოწერილი
 certificate	Serial number	სერიული ნომერი
-certificate	Valid from	მოქმედების დასაწყისი
-certificate	Valid to	მოქმედების დასასრული
+certificate	Valid from	ვალიდურია თარიღიდან
+certificate	Valid to	ვალიდურია თარიღამდე
 certificate	Validity ends	მოქმედების დასასრული
 certificate	Validity starts	მოქმედების დასაწყისი
 certificate	Version	ვერსია

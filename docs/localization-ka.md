@@ -43,7 +43,7 @@ they are translated.
 | File / Edit / View | ფაილი / რედაქტირება / ჩვენება |
 | All tools / Tools | ყველა ხელსაწყო / ხელსაწყოები |
 | Preferences… / Interface language | პარამეტრები… / ინტერფეისის ენა |
-| Save as… | შენახვა სხვა სახელით… |
+| Save as… | შენახვა როგორც… |
 | Undo / Redo | დაბრუნება / ხელახლა შესრულება |
 | Find… / Print… | ძებნა… / დაბეჭდვა… |
 | Zoom in / Zoom out | გადიდება / დაპატარავება |
