@@ -66,7 +66,7 @@ none has translated help.
 | Greek | `el` | 2,341 entries | partial | no |
 | Turkish | `tr` | 2,313 entries | partial | yes |
 | Lithuanian | `lt` | 2,578 entries | partial; community native-speaker review ([#1401](https://github.com/storytold/pdfcraft/pull/1401)) | no |
-| Georgian | `ka` | 2,578 (every key of the current catalogs, 2026-10-13; [notes](localization-ka.md)) | partial (desktop only: drawn with an installed Georgian system face; the web build has none) | no |
+| Georgian | `ka` | 2,590 (every key of the current catalogs, 2026-10-13; [notes](localization-ka.md)) | partial (desktop only: drawn with an installed Georgian system face; the web build has none) | no |
 
 **14 other languages** ship (21 catalogs plus English, 22 interface languages in Preferences).
 The entry counts without percentages were measured on 2026-10-12; they are not percentages of the older 2,143-key snapshot above. Their presence does not imply a detailed linguistic or runtime review.

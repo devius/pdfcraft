@@ -1,6 +1,6 @@
 # Georgian interface
 
-> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-13 · **Change:** minor (Georgian catalog brought up to date with main, 2,578 entries; previously minor: Georgian interface catalog, dates and font fallback) · **Target:** PdfCraft 0.7.1
+> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-13 · **Change:** minor (Georgian catalog brought up to date with main, 2,590 entries; previously minor: Georgian interface catalog, dates and font fallback) · **Target:** PdfCraft 0.7.1
 
 Choose **Menu › Edit › Preferences… › Interface language › ქართული**, or leave it on **Auto** and
 follow a Georgian system language (`ka`, `ka-GE`, `ka_GE.UTF-8` in `LC_ALL`, `LC_MESSAGES` or `LANG`,
@@ -10,7 +10,7 @@ headless `shot` example. The choice is saved with the other preferences. Documen
 command ids, CLI/MCP responses and file names do not change. **Preferences › Date format ›
 Language › ქართული** writes Georgian month and weekday names (`crates/engine/src/dates.rs`).
 
-`crates/ui-egui/src/i18n/ka.tsv` has 2,578 entries: every key of the other bundled catalogs, so every
+`crates/ui-egui/src/i18n/ka.tsv` has 2,590 entries: every key of the other bundled catalogs, so every
 command, menu, All tools label, `tl!` literal, contextual label (calendar weekdays, certificate
 fields) and engine wording. It is written from the meaning of the English labels; no proprietary
 translation resources were consulted. Product, format and standard names (PDF, OCR, JavaScript,
@@ -85,5 +85,6 @@ A native-speaker skim of the catalog is welcome.
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-13 | patch | Synced with main: 12 new strings (window buttons, system title bar, local-PDF link prompt, Digital ID removal, tag order); 2,590 entries |
 | 2026-10-13 | minor | Synced with main: 165 new strings (Tags panel, Copy Image, reading colours, browser printing, Scan tab, calendar and certificate contexts), 2 obsolete rows removed; 2,578 entries |
 | 2026-10-12 | minor | Georgian catalog (2,415 entries), dates, system font fallback and casing guard |

@@ -2598,3 +2598,17 @@ certificate	Valid to	ვალიდურია თარიღამდე
 certificate	Validity ends	მოქმედების დასასრული
 certificate	Validity starts	მოქმედების დასაწყისი
 certificate	Version	ვერსია
+
+# Added upstream (sync 2026-10-13).
+	Remove "{name}" from this list? The file itself is not deleted.	ამოიშალოს „{name}“ ამ სიიდან? თავად ფაილი არ წაიშლება.
+	Minimize	ჩაკეცვა
+	Maximize	გაშლა
+	Restore	აღდგენა
+	Use system title bar	სისტემის სათაურის ზოლის გამოყენება
+	Show a basic title bar for the window buttons instead of the tab strip. GNOME doesn't draw title bars for apps, so this one doesn't follow its theme.	ჩანართების ზოლის ნაცვლად ფანჯრის ღილაკებისთვის მარტივი სათაურის ზოლის ჩვენება. GNOME აპლიკაციებს სათაურის ზოლებს არ უხატავს, ამიტომ ეს ზოლი მის თემას არ მიჰყვება.
+	Allow	დაშვება
+	Only allow this if you trust the source document.	დაუშვით მხოლოდ მაშინ, თუ საწყის დოკუმენტს ენდობით.
+	Open this local PDF?	გაიხსნას ეს ლოკალური PDF?
+	This document is trying to open a local file:	ეს დოკუმენტი ლოკალური ფაილის გახსნას ცდილობს:
+	Move tag earlier	ტეგის წინ გადატანა
+	Move tag later	ტეგის უკან გადატანა
