@@ -1,6 +1,6 @@
 # Localization parity
 
-> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-13 · **Change:** minor (Georgian interface catalog; previously minor: Vietnamese 100% of current key union; native-speaker community review; twelve-language mean ≈68%) · **Target:** Adobe Acrobat Pro (Acrobat DC, continuous track 26.002.21931, macOS)
+> **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-13 · **Change:** minor (Vietnamese 100% of current key union; native-speaker community review; twelve-language mean ≈68%) · **Target:** Adobe Acrobat Pro (Acrobat DC, continuous track 26.002.21931, macOS)
 > **Last reviewed:** 2026-10-10 · **Last updated:** 2026-10-14 · **Change:** minor (Italian count after completing its catalog) · **Target:** Adobe Acrobat Pro (Acrobat DC, continuous track 26.002.21931, macOS)
 
 Per-language status of PdfCraft's interface against Acrobat Pro's. How translations work and how to
@@ -69,11 +69,10 @@ none has translated help. Vietnamese's **To `full`** hours are therefore residua
 | Slovenian | `sl` | 2,324 entries | partial | no |
 | Greek | `el` | 2,341 entries | partial | no |
 | Turkish | `tr` | 2,313 entries | partial | yes |
-| Lithuanian | `lt` | 2,578 entries | partial; community native-speaker review ([#1401](https://github.com/storytold/pdfcraft/pull/1401)) | no |
-| Georgian | `ka` | 2,590 (every key of the current catalogs, 2026-10-13; [notes](localization-ka.md)) | partial (desktop only: drawn with an installed Georgian system face; the web build has none) | no |
+| Georgian | `ka` | 2,668 (every key of the current catalogs, 2026-10-15; [notes](localization-ka.md)) | partial (desktop only: drawn with an installed Georgian system face; the web build has none) | no |
 | Lithuanian | `lt` | 2,585 entries | partial; community native-speaker review ([#1401](https://github.com/storytold/pdfcraft/pull/1401)) | no |
 
-**14 other languages** ship (22 catalogs plus English = **23** interface languages in Preferences).
+**14 other languages** ship (23 catalogs plus English = **24** interface languages in Preferences).
 The entry counts without percentages were measured on 2026-10-12–13; they are not percentages of the older 2,143-key snapshot above. Their presence does not imply a detailed linguistic or runtime review.
 Acrobat languages PdfCraft lacks: Danish, Dutch, Finnish, Norwegian, Swedish, Hebrew. Vietnamese is shipped here but not by Acrobat.
 **14 other languages** ship (21 catalogs plus English, 22 interface languages in Preferences).
