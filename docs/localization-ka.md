@@ -1,6 +1,6 @@
 # Georgian interface
 
-> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-15 · **Change:** patch (Georgian catalog brought up to date with main, 2,668 entries; previously minor: Georgian interface catalog, dates and font fallback) · **Target:** PdfCraft 0.7.1
+> **Last reviewed:** 2026-10-13 · **Last updated:** 2026-10-19 · **Change:** patch (Georgian catalog brought up to date with main, 2,672 entries; previously minor: Georgian interface catalog, dates and font fallback) · **Target:** PdfCraft 0.7.1
 
 Choose **Menu › Edit › Preferences… › Interface language › ქართული**, or leave it on **Auto** and
 follow a Georgian system language (`ka`, `ka-GE`, `ka_GE.UTF-8` in `LC_ALL`, `LC_MESSAGES` or `LANG`,
@@ -10,7 +10,7 @@ headless `shot` example. The choice is saved with the other preferences. Documen
 command ids, CLI/MCP responses and file names do not change. **Preferences › Date format ›
 Language › ქართული** writes Georgian month and weekday names (`crates/engine/src/dates.rs`).
 
-`crates/ui-egui/src/i18n/ka.tsv` has 2,668 entries: every key of the other bundled catalogs, so every
+`crates/ui-egui/src/i18n/ka.tsv` has 2,672 entries: every key of the other bundled catalogs, so every
 command, menu, All tools label, `tl!` literal, contextual label (calendar weekdays, certificate
 fields) and engine wording. It is written from the meaning of the English labels; no proprietary
 translation resources were consulted. Product, format and standard names (PDF, OCR, JavaScript,
@@ -85,6 +85,7 @@ A native-speaker skim of the catalog is welcome.
 
 | Date | Change | Summary |
 |---|---|---|
+| 2026-10-19 | patch | Synced with main: 1 new string (the zoom field hint); section titles keep Georgian uncased under the new `upper_label`; 2,672 entries |
 | 2026-10-15 | patch | Synced with main: 78 new strings (word count, untagged-content finder, artifact marking, image crop, label printing, print as image, Full Screen prompt, save-over-changed-file warning, redaction mark look), 2 obsolete rows removed; 2,668 entries |
 | 2026-10-14 | patch | Synced with main: 2 new strings (Next tab, Previous tab); 2,592 entries |
 | 2026-10-13 | patch | Synced with main: 12 new strings (window buttons, system title bar, local-PDF link prompt, Digital ID removal, tag order); 2,590 entries |
