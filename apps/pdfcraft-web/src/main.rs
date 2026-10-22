@@ -9,13 +9,6 @@ fn main() {
     use pdfcraft_ui_egui::PdfCraftApp;
 
     let options = eframe::WebOptions { renderer: eframe::Renderer::Glow, ..Default::default() };
-    // Auto follows `?lang=` in the address, then the browser's languages; a language chosen in
-    // the app still wins.
-    let mut languages: Vec<String> = query_param("lang").into_iter().collect();
-    if let Some(w) = web_sys::window() {
-        languages.extend(w.navigator().languages().iter().filter_map(|v| v.as_string()));
-    }
-    pdfcraft_ui_egui::i18n::set_system_locales(languages);
     wasm_bindgen_futures::spawn_local(async move {
         let Some(canvas) = web_sys::window()
             .and_then(|w| w.document())
