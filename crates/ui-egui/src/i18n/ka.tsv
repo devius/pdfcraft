@@ -2351,6 +2351,8 @@ scroll speed	Fast	სწრაფი
 	The certificate of {} does not allow this many CA certificates below it (path length), so it is not used to vouch for {}.	{}-ის სერტიფიკატი თავის ქვემოთ ამდენ CA სერტიფიკატს არ უშვებს (ჯაჭვის სიგრძე), ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
 	The certificate of {} is not a CA certificate that may issue certificates, so it is not used to vouch for {}.	{}-ის სერტიფიკატი არ არის CA სერტიფიკატი, რომელსაც სერტიფიკატების გაცემა შეუძლია, ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
 	The certificate of {} was not valid at the time of signing, so it is not used to vouch for {}.	{}-ის სერტიფიკატი ხელმოწერის დროს არ მოქმედებდა, ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
+	The certificate of {} has critical extensions PdfCraft does not recognize, so it is not used to vouch for {}.	{}-ის სერტიფიკატს აქვს კრიტიკული გაფართოებები, რომლებსაც PdfCraft ვერ ცნობს, ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
+	The timestamp authority's certificate is not issued for time stamping.	დროის შტამპის ორგანოს სერტიფიკატი დროის შტამპის დასასმელად არ არის გაცემული.
 	The checker found problems which may prevent the document from being fully accessible.	შემმოწმებელმა იპოვა პრობლემები, რომლებმაც შეიძლება დოკუმენტის სრულ ხელმისაწვდომობას შეუშალოს ხელი.
 	The document has been altered or corrupted since the signature was applied.	ხელმოწერის შემდეგ დოკუმენტი შეიცვალა ან დაზიანდა.
 	The document has been altered or corrupted since the timestamp was applied.	დროის შტამპის შემდეგ დოკუმენტი შეიცვალა ან დაზიანდა.
