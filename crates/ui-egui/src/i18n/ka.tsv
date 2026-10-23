@@ -2785,3 +2785,5 @@ theme	Appearance	იერსახე
 	a table has 1 to {max} rows	ცხრილს 1-დან {max}-მდე სტრიქონი აქვს
 	the area, the spacing and the column widths must be numbers, the spacing 0 or more and each width more than 0	ფართობი, დაშორება და სვეტების სიგანეები რიცხვები უნდა იყოს: დაშორება 0 ან მეტი, თითოეული სიგანე კი 0-ზე მეტი
 	the first row number can be at most {max}	პირველი სტრიქონის ნომერი მაქსიმუმ {max} შეიძლება იყოს
+	Page templates	გვერდის შაბლონები
+	Print pages	გვერდების დაბეჭდვა
