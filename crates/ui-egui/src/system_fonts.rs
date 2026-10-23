@@ -319,22 +319,16 @@ fn candidates(need: Need) -> Vec<PathBuf> {
 }
 
 /// Faces with Georgian the operating system ships: SF Georgian (macOS), Sylfaen and Segoe UI
-/// (Windows), Noto Sans Georgian or DejaVu Sans (Linux, BSD).
+/// (Windows), Noto Sans Georgian (Linux, BSD). DejaVu Sans is left out: it has the replacement
+/// glyph, so placed early in a family it becomes egui's replacement face and every character it
+/// draws counts as missing. It can still draw Georgian as the general installed fallback.
 fn georgian_candidates() -> Vec<PathBuf> {
     if cfg!(windows) {
         ["sylfaen.ttf", "segoeui.ttf"].iter().map(|f| windows_fonts().join(f)).collect()
     } else if cfg!(target_os = "macos") {
         ["/System/Library/Fonts/SFGeorgian.ttf", "/System/Library/Fonts/Supplemental/Arial Unicode.ttf"].iter().map(PathBuf::from).collect()
     } else {
-        unix_fonts(&[
-            "truetype/noto/NotoSansGeorgian-Regular.ttf",
-            "noto/NotoSansGeorgian-Regular.ttf",
-            "google-noto/NotoSansGeorgian-Regular.ttf",
-            "truetype/dejavu/DejaVuSans.ttf",
-            "TTF/DejaVuSans.ttf",
-            "dejavu/DejaVuSans.ttf",
-            "dejavu-sans-fonts/DejaVuSans.ttf",
-        ])
+        unix_fonts(&["truetype/noto/NotoSansGeorgian-Regular.ttf", "noto/NotoSansGeorgian-Regular.ttf", "google-noto/NotoSansGeorgian-Regular.ttf"])
     }
 }
 
