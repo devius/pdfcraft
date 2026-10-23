@@ -210,7 +210,7 @@ fn georgian_ui_uses_an_installed_georgian_face() {
         let own = stack.iter().position(|n| n.starts_with("Inter") || n == "JetBrainsMono").expect("the app's own font");
         assert!(own < georgian, "{family:?}: {stack:?}");
     }
-    let mut letters: Vec<char> = include_str!("../src/i18n/ka.tsv")
+    let mut letters: Vec<char> = include_str!("../../src/i18n/ka.tsv")
         .lines()
         .filter(|l| !l.starts_with('#'))
         .filter_map(|l| l.split('\t').nth(2))
