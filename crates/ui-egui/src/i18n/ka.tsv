@@ -2799,3 +2799,12 @@ theme	Appearance	იერსახე
 	Scale	მასშტაბი
 	Show a notice when a document is secured	შეტყობინების ჩვენება, როცა დოკუმენტი დაცულია
 	Today	დღეს
+	Collapse all tools	ყველა ხელსაწყოს აკეცვა
+	Create & Edit	შექმნა და რედაქტირება
+	Customize & Automate	მორგება და ავტომატიზაცია
+	Expand all tools	ყველა ხელსაწყოს ჩამოშლა
+	Forms & Signatures	ფორმები და ხელმოწერები
+	No tools match your search.	თქვენს ძიებას არცერთი ხელსაწყო არ შეესაბამება.
+	Protect & Standardize	დაცვა და სტანდარტიზაცია
+	Review & Compare	განხილვა და შედარება
+@plural	{n} reply|{n} replies	{n} პასუხი
