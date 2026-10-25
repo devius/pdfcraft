@@ -267,6 +267,17 @@ pub static DATE_LANGUAGES: [DateLanguage; 35] = [
         days: CKB_DAYS,
         days_short: CKB_DAYS,
     },
+    // Persian (Farsi); Gregorian month and weekday names, right to left like Arabic and Kurdish.
+    // Persian does not change the month form after a day number, so `months_with_day` is `None`.
+    DateLanguage {
+        code: "fa",
+        name: "فارسی",
+        months: ["ژانویه", "فوریه", "مارس", "آوریل", "مه", "ژوئن", "ژوئیه", "اوت", "سپتامبر", "اکتبر", "نوامبر", "دسامبر"],
+        months_with_day: None,
+        months_short: ["ژانویه", "فوریه", "مارس", "آوریل", "مه", "ژوئن", "ژوئیه", "اوت", "سپتامبر", "اکتبر", "نوامبر", "دسامبر"],
+        days: ["یکشنبه", "دوشنبه", "سه‌شنبه", "چهارشنبه", "پنج‌شنبه", "جمعه", "شنبه"],
+        days_short: ["یک", "دو", "سه", "چه", "پن", "جم", "شن"],
+    },
     DateLanguage {
         code: "pl",
         name: "Polski",
