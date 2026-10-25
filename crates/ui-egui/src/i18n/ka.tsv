@@ -2808,3 +2808,9 @@ theme	Appearance	იერსახე
 	Protect & Standardize	დაცვა და სტანდარტიზაცია
 	Review & Compare	განხილვა და შედარება
 @plural	{n} reply|{n} replies	{n} პასუხი
+	Page tools	გვერდების ხელსაწყოები
+	Insert pages from a file after the selection…	ფაილიდან გვერდების ჩასმა მონიშნულის შემდეგ…
+	Rotate the selected pages counterclockwise	მონიშნული გვერდების შემობრუნება საათის ისრის საწინააღმდეგოდ
+	Rotate the selected pages clockwise	მონიშნული გვერდების შემობრუნება საათის ისრის მიმართულებით
+	Extract the selected pages…	მონიშნული გვერდების ამოღება…
+	Delete the selected pages	მონიშნული გვერდების წაშლა
