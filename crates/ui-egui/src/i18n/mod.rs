@@ -383,6 +383,7 @@ impl Lang {
             "th" => "Thai",
             "ca" => "Catalan",
             "ro" => "Romanian",
+            "ka" => "Georgian",
             "lo" => "Lao",
             "hi" => "Hindi",
             "ko" => "Korean",
