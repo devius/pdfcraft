@@ -89,7 +89,7 @@
 	Print ({key})	დაბეჭდვა ({key})
 	Save (M4)	შენახვა (M4)
 	Document properties ({key})	დოკუმენტის თვისებები ({key})
-	Find tools and commands	ხელსაწყოებისა და ბრძანებების ძებნა
+	Find tools and commands	ძებნა ხელსაწყოებში
 	Fit to height	სიმაღლეში ჩატევა
 	Zoom in	გადიდება
 	Zoom out	დაპატარავება
@@ -179,9 +179,9 @@
 	Prepare for distribution…	გავრცელებისთვის მომზადება…
 	Optimize scanned documents…	სკანირებული დოკუმენტების ოპტიმიზაცია…
 	Compare files…	ფაილების შედარება…
-	Detect form fields	ფორმის ველების ამოცნობა
+	Detect form fields	ველების ამოცნობა
 	Merge data files into spreadsheet…	მონაცემთა ფაილების ელცხრილში გაერთიანება…
-	Flatten form fields	ფორმის ველების გვერდში ჩაშენება
+	Flatten form fields	ველების ჩაშენება
 	Prepare a form	ფორმის მომზადება
 	Tab order: by rows	ტაბულაციის რიგი: სტრიქონების მიხედვით
 	Tab order: by columns	ტაბულაციის რიგი: სვეტების მიხედვით
@@ -193,7 +193,7 @@
 	Remove all links	ყველა ბმულის წაშლა
 	Add Bates numbering…	ბეიტსის დანომვრის დამატება…
 	Add image…	გამოსახულების დამატება…
-	Redact text and images	ტექსტისა და გამოსახულებების დაფარვა
+	Redact text and images	შიგთავსის დაფარვა
 	Redact pages…	გვერდების დაფარვა…
 	Find text and redact…	ტექსტის მოძებნა და დაფარვა…
 	Redaction properties…	დაფარვის თვისებები…
@@ -252,7 +252,7 @@
 	Protect using password…	პაროლით დაცვა…
 	Remove security	დაცვის მოხსნა
 	Security properties…	უსაფრთხოების თვისებები…
-	Organize pages	გვერდების ორგანიზება
+	Organize pages	გვერდების მოწყობა
 	New bookmark	ახალი სანიშნე
 	New bookmarks from structure	ახალი სანიშნეები სტრუქტურიდან
 	Rotate pages clockwise	გვერდების შემობრუნება საათის ისრის მიმართულებით
@@ -295,7 +295,7 @@
 	Date	თარიღი
 	Signature	ხელმოწერა
 	Initials	ინიციალები
-	Edit a PDF	PDF-ის რედაქტირება
+	Edit a PDF	რედაქტირება
 	Modify page	გვერდის შეცვლა
 	Rotate pages	გვერდების შემობრუნება
 	Insert pages	გვერდების ჩასმა
@@ -331,7 +331,7 @@
 	Set page boxes	გვერდის ჩარჩოების დაყენება
 	Page labels	გვერდის ჭდეები
 	Page transitions	გვერდების გადასვლები
-	Add comments	კომენტარების დამატება
+	Add comments	კომენტირება
 	Markup	მარკირება
 	Sticky note	შენიშვნა
 	Underline	ხაზგასმა
@@ -359,10 +359,10 @@
 	Advanced options	დამატებითი პარამეტრები
 	Encrypt with certificate	სერტიფიკატით დაშიფვრა
 	Security properties	უსაფრთხოების თვისებები
-	Redact a PDF	PDF-ში ინფორმაციის დაფარვა
+	Redact a PDF	PDF-ის დაფარვა
 	Redact	დაფარვა
 	Redact pages	გვერდების დაფარვა
-	Find text and redact	ტექსტის მოძებნა და დაფარვა
+	Find text and redact	ძებნა და დაფარვა
 	Set properties	თვისებების დაყენება
 	Sanitize document	დოკუმენტის გაწმენდა
 	Compress a PDF	PDF-ის შეკუმშვა
@@ -372,8 +372,8 @@
 	Audit space usage	სივრცის გამოყენების ანალიზი
 	Field list	ველების სია
 	Field properties	ველის თვისებები
-	Tab order by rows	ტაბულაციის რიგი სტრიქონების მიხედვით
-	Tab order by columns	ტაბულაციის რიგი სვეტების მიხედვით
+	Tab order by rows	ტაბი: სტრიქონებით
+	Tab order by columns	ტაბი: სვეტებით
 	Import data	მონაცემების იმპორტი
 	Export data	მონაცემების ექსპორტი
 	Add form components	ფორმის კომპონენტების დამატება
@@ -391,7 +391,7 @@
 	Use a certificate	სერტიფიკატის გამოყენება
 	Certificates	სერტიფიკატები
 	Timestamp	დროის შტამპი
-	Use print production	საბეჭდი წარმოების გამოყენება
+	Use print production	საბეჭდი წარმოება
 	Print production	საბეჭდი წარმოება
 	Output preview	გამოტანის წინასწარი ნახვა
 	Preflight	ბეჭდვისწინა შემოწმება
@@ -404,14 +404,14 @@
 	Geospatial location	გეოსივრცული მდებარეობა
 	Compare files	ფაილების შედარება
 	Select files to compare	შესადარებელი ფაილების არჩევა
-	Use guided actions	მართვადი ქმედებების გამოყენება
+	Use guided actions	მართვადი ქმედებები
 	Actions list	ქმედებების სია
 	Action Wizard	ქმედებების ოსტატი
 	Make accessible	ხელმისაწვდომად გადაკეთება
 	Prepare for distribution	გავრცელებისთვის მომზადება
 	Optimize scanned documents	სკანირებული დოკუმენტების ოპტიმიზაცია
 	Archive documents	დოკუმენტების დაარქივება
-	Prepare for accessibility	ხელმისაწვდომობისთვის მომზადება
+	Prepare for accessibility	ხელმისაწვდომობა
 	Accessibility	ხელმისაწვდომობა
 	Automatically tag PDF	PDF-ის ავტომატური მონიშვნა ტეგებით
 	Change reading options	კითხვის პარამეტრების შეცვლა
@@ -434,7 +434,7 @@
 	AI assistant	AI ასისტენტი
 	Bring your own model (off by default)	საკუთარი მოდელის გამოყენება (ნაგულისხმევად გამორთულია)
 	Summarize	შეჯამება
-	Ask about this document	შეკითხვა ამ დოკუმენტის შესახებ
+	Ask about this document	კითხვა დოკუმენტზე
 	Translate	თარგმნა
 	pages	გვერდი
 	Planned	დაგეგმილი
@@ -2744,7 +2744,7 @@ theme	Appearance	იერსახე
 	Less	ნაკლები
 	Other options	სხვა პარამეტრები
 	Add text field table	ტექსტური ველების ცხრილის დამატება
-	Text field table	ტექსტური ველების ცხრილი
+	Text field table	ველების ცხრილი
 	Text Field Table	ტექსტური ველების ცხრილი
 	Columns	სვეტები
 	Row spacing	სტრიქონებს შორის დაშორება
