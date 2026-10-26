@@ -89,7 +89,7 @@
 	Print ({key})	დაბეჭდვა ({key})
 	Save (M4)	შენახვა (M4)
 	Document properties ({key})	დოკუმენტის თვისებები ({key})
-	Find tools and commands	ძებნა ხელსაწყოებში
+	Find tools and commands	ხელსაწყოებისა და ბრძანებების ძებნა
 	Fit to height	სიმაღლეში ჩატევა
 	Zoom in	გადიდება
 	Zoom out	დაპატარავება
@@ -179,9 +179,9 @@
 	Prepare for distribution…	გავრცელებისთვის მომზადება…
 	Optimize scanned documents…	სკანირებული დოკუმენტების ოპტიმიზაცია…
 	Compare files…	ფაილების შედარება…
-	Detect form fields	ველების ამოცნობა
+	Detect form fields	ფორმის ველების ამოცნობა
 	Merge data files into spreadsheet…	მონაცემთა ფაილების ელცხრილში გაერთიანება…
-	Flatten form fields	ველების ჩაშენება
+	Flatten form fields	ფორმის ველების გვერდში ჩაშენება
 	Prepare a form	ფორმის მომზადება
 	Tab order: by rows	ტაბულაციის რიგი: სტრიქონების მიხედვით
 	Tab order: by columns	ტაბულაციის რიგი: სვეტების მიხედვით
@@ -193,7 +193,7 @@
 	Remove all links	ყველა ბმულის წაშლა
 	Add Bates numbering…	ბეიტსის დანომვრის დამატება…
 	Add image…	გამოსახულების დამატება…
-	Redact text and images	შიგთავსის დაფარვა
+	Redact text and images	ტექსტისა და გამოსახულებების დაფარვა
 	Redact pages…	გვერდების დაფარვა…
 	Find text and redact…	ტექსტის მოძებნა და დაფარვა…
 	Redaction properties…	დაფარვის თვისებები…
@@ -252,7 +252,7 @@
 	Protect using password…	პაროლით დაცვა…
 	Remove security	დაცვის მოხსნა
 	Security properties…	უსაფრთხოების თვისებები…
-	Organize pages	გვერდების მოწყობა
+	Organize pages	გვერდების ორგანიზება
 	New bookmark	ახალი სანიშნე
 	New bookmarks from structure	ახალი სანიშნეები სტრუქტურიდან
 	Rotate pages clockwise	გვერდების შემობრუნება საათის ისრის მიმართულებით
@@ -295,7 +295,7 @@
 	Date	თარიღი
 	Signature	ხელმოწერა
 	Initials	ინიციალები
-	Edit a PDF	რედაქტირება
+	Edit a PDF	PDF-ის რედაქტირება
 	Modify page	გვერდის შეცვლა
 	Rotate pages	გვერდების შემობრუნება
 	Insert pages	გვერდების ჩასმა
@@ -331,7 +331,7 @@
 	Set page boxes	გვერდის ჩარჩოების დაყენება
 	Page labels	გვერდის ჭდეები
 	Page transitions	გვერდების გადასვლები
-	Add comments	კომენტირება
+	Add comments	კომენტარების დამატება
 	Markup	მარკირება
 	Sticky note	შენიშვნა
 	Underline	ხაზგასმა
@@ -359,10 +359,10 @@
 	Advanced options	დამატებითი პარამეტრები
 	Encrypt with certificate	სერტიფიკატით დაშიფვრა
 	Security properties	უსაფრთხოების თვისებები
-	Redact a PDF	PDF-ის დაფარვა
+	Redact a PDF	PDF-ში ინფორმაციის დაფარვა
 	Redact	დაფარვა
 	Redact pages	გვერდების დაფარვა
-	Find text and redact	ძებნა და დაფარვა
+	Find text and redact	ტექსტის მოძებნა და დაფარვა
 	Set properties	თვისებების დაყენება
 	Sanitize document	დოკუმენტის გაწმენდა
 	Compress a PDF	PDF-ის შეკუმშვა
@@ -372,8 +372,8 @@
 	Audit space usage	სივრცის გამოყენების ანალიზი
 	Field list	ველების სია
 	Field properties	ველის თვისებები
-	Tab order by rows	ტაბი: სტრიქონებით
-	Tab order by columns	ტაბი: სვეტებით
+	Tab order by rows	ტაბულაციის რიგი სტრიქონების მიხედვით
+	Tab order by columns	ტაბულაციის რიგი სვეტების მიხედვით
 	Import data	მონაცემების იმპორტი
 	Export data	მონაცემების ექსპორტი
 	Add form components	ფორმის კომპონენტების დამატება
@@ -391,7 +391,7 @@
 	Use a certificate	სერტიფიკატის გამოყენება
 	Certificates	სერტიფიკატები
 	Timestamp	დროის შტამპი
-	Use print production	საბეჭდი წარმოება
+	Use print production	საბეჭდი წარმოების გამოყენება
 	Print production	საბეჭდი წარმოება
 	Output preview	გამოტანის წინასწარი ნახვა
 	Preflight	ბეჭდვისწინა შემოწმება
@@ -404,14 +404,14 @@
 	Geospatial location	გეოსივრცული მდებარეობა
 	Compare files	ფაილების შედარება
 	Select files to compare	შესადარებელი ფაილების არჩევა
-	Use guided actions	მართვადი ქმედებები
+	Use guided actions	მართვადი ქმედებების გამოყენება
 	Actions list	ქმედებების სია
 	Action Wizard	ქმედებების ოსტატი
 	Make accessible	ხელმისაწვდომად გადაკეთება
 	Prepare for distribution	გავრცელებისთვის მომზადება
 	Optimize scanned documents	სკანირებული დოკუმენტების ოპტიმიზაცია
 	Archive documents	დოკუმენტების დაარქივება
-	Prepare for accessibility	ხელმისაწვდომობა
+	Prepare for accessibility	ხელმისაწვდომობისთვის მომზადება
 	Accessibility	ხელმისაწვდომობა
 	Automatically tag PDF	PDF-ის ავტომატური მონიშვნა ტეგებით
 	Change reading options	კითხვის პარამეტრების შეცვლა
@@ -434,7 +434,7 @@
 	AI assistant	AI ასისტენტი
 	Bring your own model (off by default)	საკუთარი მოდელის გამოყენება (ნაგულისხმევად გამორთულია)
 	Summarize	შეჯამება
-	Ask about this document	კითხვა დოკუმენტზე
+	Ask about this document	შეკითხვა ამ დოკუმენტის შესახებ
 	Translate	თარგმნა
 	pages	გვერდი
 	Planned	დაგეგმილი
@@ -2352,6 +2352,7 @@ scroll speed	Fast	სწრაფი
 	The certificate of {} is not a CA certificate that may issue certificates, so it is not used to vouch for {}.	{}-ის სერტიფიკატი არ არის CA სერტიფიკატი, რომელსაც სერტიფიკატების გაცემა შეუძლია, ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
 	The certificate of {} was not valid at the time of signing, so it is not used to vouch for {}.	{}-ის სერტიფიკატი ხელმოწერის დროს არ მოქმედებდა, ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
 	The certificate of {} has critical extensions PdfCraft does not recognize, so it is not used to vouch for {}.	{}-ის სერტიფიკატს აქვს კრიტიკული გაფართოებები, რომლებსაც PdfCraft ვერ ცნობს, ამიტომ {}-ის დასადასტურებლად არ გამოიყენება.
+	The timestamp authority's certificate is not issued for time stamping.	დროის შტამპის ორგანოს სერტიფიკატი დროის შტამპის დასასმელად არ არის გაცემული.
 	The checker found problems which may prevent the document from being fully accessible.	შემმოწმებელმა იპოვა პრობლემები, რომლებმაც შეიძლება დოკუმენტის სრულ ხელმისაწვდომობას შეუშალოს ხელი.
 	The document has been altered or corrupted since the signature was applied.	ხელმოწერის შემდეგ დოკუმენტი შეიცვალა ან დაზიანდა.
 	The document has been altered or corrupted since the timestamp was applied.	დროის შტამპის შემდეგ დოკუმენტი შეიცვალა ან დაზიანდა.
@@ -2402,7 +2403,6 @@ scroll speed	Fast	სწრაფი
 	The signer's identity is unknown because it has not been included in your list of trusted certificates and none of its parent certificates are trusted certificates.	ხელმომწერის ვინაობა უცნობია, რადგან ის თქვენს სანდო სერტიფიკატების სიაში არ არის და არცერთი მისი მშობელი სერტიფიკატი სანდო არ არის.
 	The signer's identity is valid.	ხელმომწერის ვინაობა ვალიდურია.
 	The timestamp authority's certificate was not valid at the time of timestamping.	დროის შტამპის ორგანოს სერტიფიკატი შტამპის დასმის დროს არ მოქმედებდა.
-	The timestamp authority's certificate is not issued for time stamping.	დროის შტამპის ორგანოს სერტიფიკატი დროის შტამპის დასასმელად არ არის გაცემული.
 	The timestamp contents are not hexadecimal.	დროის შტამპის შიგთავსი თექვსმეტობითი არ არის.
 	The timestamp has no valid byte range.	დროის შტამპს ბაიტების ვალიდური დიაპაზონი არ აქვს.
 	The timestamp token could not be read ({}).	დროის შტამპის ტოკენის წაკითხვა ვერ მოხერხდა ({}).
@@ -2744,7 +2744,7 @@ theme	Appearance	იერსახე
 	Less	ნაკლები
 	Other options	სხვა პარამეტრები
 	Add text field table	ტექსტური ველების ცხრილის დამატება
-	Text field table	ველების ცხრილი
+	Text field table	ტექსტური ველების ცხრილი
 	Text Field Table	ტექსტური ველების ცხრილი
 	Columns	სვეტები
 	Row spacing	სტრიქონებს შორის დაშორება
@@ -2785,39 +2785,46 @@ theme	Appearance	იერსახე
 	a table has 1 to {max} rows	ცხრილს 1-დან {max}-მდე სტრიქონი აქვს
 	the area, the spacing and the column widths must be numbers, the spacing 0 or more and each width more than 0	ფართობი, დაშორება და სვეტების სიგანეები რიცხვები უნდა იყოს: დაშორება 0 ან მეტი, თითოეული სიგანე კი 0-ზე მეტი
 	the first row number can be at most {max}	პირველი სტრიქონის ნომერი მაქსიმუმ {max} შეიძლება იყოს
-	Applying a scale switches units to m / mm.	მასშტაბის გამოყენებისას ერთეულები მ / მმ-ზე გადაირთვება.
+	Page templates	გვერდის შაბლონები
+	Print pages	გვერდების დაბეჭდვა
+	Added text	დამატებული ტექსტი
+	Applying a scale switches units to m / mm.	მასშტაბის გამოყენება ერთეულებს m / mm-ზე გადართავს.
 	Attach a file…	ფაილის მიმაგრება…
 	Attach {name}	მიმაგრება: {name}
-	Attaching files is not available on the web yet	ვებში ფაილების მიმაგრება ჯერ არ არის ხელმისაწვდომი
-	Common scales	ხშირად გამოყენებული მასშტაბები
-	Delete attachment	დანართის წაშლა
-	Delete attachment {key}	დანართის წაშლა: {key}
-	Don't show again	აღარ აჩვენო
-	Enter a scale such as 1:50.	შეიყვანეთ მასშტაბი, მაგალითად 1:50.
-	In streams that use LZW encoding, use Flate instead	LZW-ით კოდირებულ ნაკადებში მის ნაცვლად Flate-ის გამოყენება
-	Restore the last view (page, zoom and page display) when a document is opened again	ბოლო ხედის (გვერდი, მასშტაბი და გვერდების ჩვენება) აღდგენა დოკუმენტის ხელახლა გახსნისას
-	Scale	მასშტაბი
-	Show a notice when a document is secured	შეტყობინების ჩვენება, როცა დოკუმენტი დაცულია
-	Today	დღეს
+	Attaching files is not available on the web yet	ფაილების მიმაგრება ვებში ჯერ მიუწვდომელია
 	Collapse all tools	ყველა ხელსაწყოს აკეცვა
+	Common scales	გავრცელებული მასშტაბები
 	Create & Edit	შექმნა და რედაქტირება
 	Customize & Automate	მორგება და ავტომატიზაცია
-	Expand all tools	ყველა ხელსაწყოს ჩამოშლა
-	Forms & Signatures	ფორმები და ხელმოწერები
-	No tools match your search.	თქვენს ძიებას არცერთი ხელსაწყო არ შეესაბამება.
-	Protect & Standardize	დაცვა და სტანდარტიზაცია
-	Review & Compare	განხილვა და შედარება
-@plural	{n} reply|{n} replies	{n} პასუხი
-	Page tools	გვერდების ხელსაწყოები
-	Insert pages from a file after the selection…	ფაილიდან გვერდების ჩასმა მონიშნულის შემდეგ…
-	Rotate the selected pages counterclockwise	მონიშნული გვერდების შემობრუნება საათის ისრის საწინააღმდეგოდ
-	Rotate the selected pages clockwise	მონიშნული გვერდების შემობრუნება საათის ისრის მიმართულებით
-	Extract the selected pages…	მონიშნული გვერდების ამოღება…
+	Delete attachment	დანართის წაშლა
+	Delete attachment {key}	დანართის წაშლა: {key}
 	Delete the selected pages	მონიშნული გვერდების წაშლა
-	Added text	დამატებული ტექსტი
+	Don't show again	აღარ აჩვენო
+	Enter a scale such as 1:50.	შეიყვანეთ მასშტაბი, მაგალითად 1:50.
+	Expand all tools	ყველა ხელსაწყოს ჩამოშლა
+	Extract the selected pages…	მონიშნული გვერდების ამოღება…
+	Forms & Signatures	ფორმები და ხელმოწერები
+	In streams that use LZW encoding, use Flate instead	ნაკადებში LZW კოდირების ნაცვლად Flate-ის გამოყენება
+	Insert pages from a file after the selection…	ფაილიდან გვერდების ჩასმა მონიშნულის შემდეგ…
 	Link URL	ბმულის URL
+	No tools match your search.	ძიების შესაბამისი ხელსაწყო არ მოიძებნა.
+	Page tools	გვერდების ხელსაწყოები
+	Protect & Standardize	დაცვა და სტანდარტიზაცია
+	Restore the last view (page, zoom and page display) when a document is opened again	ბოლო ხედის (გვერდი, მასშტაბი, გვერდების ჩვენება) აღდგენა დოკუმენტის ხელახლა გახსნისას
+	Review & Compare	განხილვა და შედარება
+	Rotate the selected pages clockwise	მონიშნული გვერდების შემობრუნება საათის ისრის მიმართულებით
+	Rotate the selected pages counterclockwise	მონიშნული გვერდების შემობრუნება საათის ისრის საწინააღმდეგოდ
+	Scale	მასშტაბი
 	Search tools and commands	ხელსაწყოებისა და ბრძანებების ძიება
+	Show a notice when a document is secured	შეტყობინების ჩვენება, როცა დოკუმენტი დაცულია
 	Text editing line	ტექსტის რედაქტირების სტრიქონი
 	Text to place	განსათავსებელი ტექსტი
+	Today	დღეს
 	Tooltip	მინიშნება
 	Words or phrases to redact	დასაფარი სიტყვები ან ფრაზები
+@plural	{n} reply|{n} replies	{n} პასუხი
+	Custom scale	საკუთარი მასშტაბი
+	Reset side panels	გვერდითი პანელების ჩამოყრა
+	Show or hide the Tools panel	ხელსაწყოების პანელის ჩვენება ან დამალვა
+	Show or hide the side panel	გვერდითი პანელის ჩვენება ან დამალვა
+	Window	ფანჯარა
