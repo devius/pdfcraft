@@ -2787,3 +2787,39 @@ theme	Appearance	იერსახე
 	the first row number can be at most {max}	პირველი სტრიქონის ნომერი მაქსიმუმ {max} შეიძლება იყოს
 	Page templates	გვერდის შაბლონები
 	Print pages	გვერდების დაბეჭდვა
+	Added text	დამატებული ტექსტი
+	Applying a scale switches units to m / mm.	მასშტაბის გამოყენება ერთეულებს m / mm-ზე გადართავს.
+	Attach a file…	ფაილის მიმაგრება…
+	Attach {name}	მიმაგრება: {name}
+	Attaching files is not available on the web yet	ფაილების მიმაგრება ვებში ჯერ მიუწვდომელია
+	Collapse all tools	ყველა ხელსაწყოს აკეცვა
+	Common scales	გავრცელებული მასშტაბები
+	Create & Edit	შექმნა და რედაქტირება
+	Customize & Automate	მორგება და ავტომატიზაცია
+	Delete attachment	დანართის წაშლა
+	Delete attachment {key}	დანართის წაშლა: {key}
+	Delete the selected pages	მონიშნული გვერდების წაშლა
+	Don't show again	აღარ აჩვენო
+	Enter a scale such as 1:50.	შეიყვანეთ მასშტაბი, მაგალითად 1:50.
+	Expand all tools	ყველა ხელსაწყოს ჩამოშლა
+	Extract the selected pages…	მონიშნული გვერდების ამოღება…
+	Forms & Signatures	ფორმები და ხელმოწერები
+	In streams that use LZW encoding, use Flate instead	ნაკადებში LZW კოდირების ნაცვლად Flate-ის გამოყენება
+	Insert pages from a file after the selection…	ფაილიდან გვერდების ჩასმა მონიშნულის შემდეგ…
+	Link URL	ბმულის URL
+	No tools match your search.	ძიების შესაბამისი ხელსაწყო არ მოიძებნა.
+	Page tools	გვერდების ხელსაწყოები
+	Protect & Standardize	დაცვა და სტანდარტიზაცია
+	Restore the last view (page, zoom and page display) when a document is opened again	ბოლო ხედის (გვერდი, მასშტაბი, გვერდების ჩვენება) აღდგენა დოკუმენტის ხელახლა გახსნისას
+	Review & Compare	განხილვა და შედარება
+	Rotate the selected pages clockwise	მონიშნული გვერდების შემობრუნება საათის ისრის მიმართულებით
+	Rotate the selected pages counterclockwise	მონიშნული გვერდების შემობრუნება საათის ისრის საწინააღმდეგოდ
+	Scale	მასშტაბი
+	Search tools and commands	ხელსაწყოებისა და ბრძანებების ძიება
+	Show a notice when a document is secured	შეტყობინების ჩვენება, როცა დოკუმენტი დაცულია
+	Text editing line	ტექსტის რედაქტირების სტრიქონი
+	Text to place	განსათავსებელი ტექსტი
+	Today	დღეს
+	Tooltip	მინიშნება
+	Words or phrases to redact	დასაფარი სიტყვები ან ფრაზები
+@plural	{n} reply|{n} replies	{n} პასუხი
