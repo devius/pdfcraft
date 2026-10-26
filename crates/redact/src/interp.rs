@@ -26,7 +26,19 @@ use pdfcraft_cos::{CosError, DecodeBudget, Dict, Document, MAX_PAGE_FORMS, ObjRe
 use crate::{RedactError, Report, image, page_streams, tags};
 use pdfcraft_fonts::pdf::Metrics;
 
-const MAX_DEPTH: usize = 12;
+/// How deep this pass follows form XObjects. A form past it is removed rather than walked, which
+/// is the fail-safe choice for a redaction -- marked content inside a form we cannot read would
+/// otherwise survive -- but it also removes whatever else that form drew, marked or not. So the
+/// limit has to reach as deep as anything the reader can see: the renderer follows forms to 50
+/// (`MAX_NESTED_INTERPRETATION_DEPTH`) and so does Edit text's reader (`text::MAX_FORM_DEPTH`).
+/// At 12, a page with a 13-deep chain lost the text of its innermost form even with nothing in it
+/// marked (#3645); past 50 nothing is drawn by any of the three, so removing it costs nothing
+/// visible.
+pub(crate) const MAX_DEPTH: usize = 50;
+
+// A form a reader still shows must be walkable here, or a redaction removes content that is
+// visible; the build says so rather than a test, so the two limits cannot drift apart.
+const _: () = assert!(MAX_DEPTH >= pdfcraft_edit::text::MAX_FORM_DEPTH);
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub(crate) enum Mode {
@@ -465,6 +477,7 @@ fn content_draws(doc: &Document, content: &[Vec<u8>], xo: &Dict, name: &[u8], de
 /// left as it is for them. Retired properties are likewise unlinked only when none of the
 /// holder's pages or inheriting forms names them. Fails closed when use cannot be determined.
 pub(crate) fn unlink_doomed(doc: &mut Document, doomed: &[ObjRef], retired_properties: &[Object]) -> Result<(), RedactError> {
+    crate::type3::unlink_type3(doc)?;
     if doomed.is_empty() && retired_properties.is_empty() {
         return Ok(());
     }
@@ -616,14 +629,7 @@ fn unlink_from_forms(doc: &mut Document, holders: &[ObjRef], doomed: &HashSet<Ob
                 continue;
             }
             let data = form.decoded()?;
-            let mut pruned = false;
-            for name in doomed_names {
-                match content_draws(doc, std::slice::from_ref(&data), &xo, &name, 0, &mut HashSet::new()) {
-                    Some(true) => {}
-                    Some(false) => pruned |= xo.remove(&name).is_some(),
-                    None => return Err(CosError::Syntax { offset: 0, detail: "redaction could not fully inspect shared form resources".into() }),
-                }
-            }
+            let mut pruned = prune_doomed_xobjects(doc, std::slice::from_ref(&data), &mut xo, &doomed_names)?;
             if pruned {
                 res.set(b"XObject".to_vec(), Object::Dict(xo));
             }
@@ -635,6 +641,18 @@ fn unlink_from_forms(doc: &mut Document, holders: &[ObjRef], doomed: &HashSet<Ob
         }
     }
     Ok(())
+}
+
+fn prune_doomed_xobjects(doc: &Document, content: &[Vec<u8>], xo: &mut Dict, doomed_names: &[Vec<u8>]) -> Result<bool, CosError> {
+    let mut pruned = false;
+    for name in doomed_names {
+        match content_draws(doc, content, xo, name, 0, &mut HashSet::new()) {
+            Some(true) => {}
+            Some(false) => pruned |= xo.remove(name).is_some(),
+            None => return Err(CosError::Syntax { offset: 0, detail: "redaction could not fully inspect shared form resources".into() }),
+        }
+    }
+    Ok(pruned)
 }
 
 /// The clip that hides everything inside each region: one even-odd clip per region (a big
@@ -660,7 +678,7 @@ fn clip_out(rects: &[[f64; 4]], ctm: &Matrix, around: [f64; 4]) -> Option<Vec<Op
     Some(ops)
 }
 
-fn resource_ops(doc: &Document, res: &Dict, content: &[Vec<u8>]) -> Result<Vec<Op>, CosError> {
+pub(crate) fn resource_ops(doc: &Document, res: &Dict, content: &[Vec<u8>]) -> Result<Vec<Op>, CosError> {
     let parsed = Pieces::join(content).parse();
     if parsed.skipped > 0 || parsed.ops.len() > 2_000_000 {
         return Err(CosError::Syntax { offset: 0, detail: "redaction could not fully inspect property resources".into() });
@@ -867,37 +885,14 @@ fn process_from(doc: &mut Document, scope: &mut Scope<'_>, streams: &[Vec<u8>], 
                 }
                 let b = bbox.unwrap_or_default();
                 changed = true;
-                if scope.covered(b) {
-                    scope.report.paths_removed += 1;
-                    if clips {
-                        // Keep the clipping, drop the painting.
-                        ops.extend(body);
-                        ops.push(Op::new("n", vec![]));
-                    }
-                } else if clips {
-                    // A clip-and-paint path can't be wrapped in q/Q without losing its clip:
-                    // paint it clipped, then set its clip with a no-op path.
-                    scope.report.paths_clipped += 1;
-                    if let Some(c) = clip_out(scope.rects, &gs.ctm, b) {
-                        let plain: Vec<Op> = body.iter().filter(|p| !p.is("W") && !p.is("W*")).cloned().collect();
-                        ops.push(Op::new("q", vec![]));
-                        ops.extend(c);
-                        ops.extend(plain);
-                        ops.push(op);
-                        ops.push(Op::new("Q", vec![]));
-                    }
+                scope.report.paths_removed += 1;
+                if scope.covered(b) && clips {
+                    // Keep the clipping, drop the painting.
                     ops.extend(body);
                     ops.push(Op::new("n", vec![]));
-                } else {
-                    scope.report.paths_clipped += 1;
-                    if let Some(c) = clip_out(scope.rects, &gs.ctm, b) {
-                        ops.push(Op::new("q", vec![]));
-                        ops.extend(c);
-                        ops.extend(body);
-                        ops.push(op);
-                        ops.push(Op::new("Q", vec![]));
-                    }
                 }
+                // Partial vector redaction must not retain underlying drawing commands
+                // behind clipping (F-008). Refuse partial clip retention and remove the path.
                 continue;
             }
             if !path.is_empty() {
@@ -1264,6 +1259,9 @@ fn xobject(
             {
                 return None;
             }
+            // Too deep: this form cannot be read, so it goes (Apply) or the page is left alone
+            // (Verify), as a form that will not decode does. The page's decode budget below is what
+            // keeps a fan-out or a cycle from costing 2^50 walks.
             if scope.depth >= MAX_DEPTH {
                 if scope.mode == Mode::Verify {
                     // Sanitization removes a Form it cannot enter, so the verification scan
@@ -1359,6 +1357,10 @@ fn xobject(
                     }
                 }
                 if let Err(error) = prune_form_resources(doc, &mut cleaned_res, content) {
+                    out.error = Some(error);
+                    return None;
+                }
+                if let Err(error) = crate::type3::prune_type3_from_resources(doc, &mut cleaned_res, content) {
                     out.error = Some(error);
                     return None;
                 }
