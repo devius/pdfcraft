@@ -2823,3 +2823,8 @@ theme	Appearance	იერსახე
 	Tooltip	მინიშნება
 	Words or phrases to redact	დასაფარი სიტყვები ან ფრაზები
 @plural	{n} reply|{n} replies	{n} პასუხი
+	Custom scale	საკუთარი მასშტაბი
+	Reset side panels	გვერდითი პანელების ჩამოყრა
+	Show or hide the Tools panel	ხელსაწყოების პანელის ჩვენება ან დამალვა
+	Show or hide the side panel	გვერდითი პანელის ჩვენება ან დამალვა
+	Window	ფანჯარა
