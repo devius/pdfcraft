@@ -1,6 +1,6 @@
 # Georgian (ka) catalog. Format: see the header of ja.tsv
 # (context <TAB> source <TAB> translation; @id, @plural and other contexts; escapes \n \t \\).
-# Plural forms (see `plural_none` in i18n/mod.rs): one form. Georgian nouns stay singular after a
+# Plural forms (see `plural_none` in i18n.rs): one form. Georgian nouns stay singular after a
 # numeral (`5 გვერდი`), and fixed-count messages use count-neutral wording (`გვერდი: {n}`).
 #
 # Clean-room: every entry was written from the plain meaning of the English label using ordinary
