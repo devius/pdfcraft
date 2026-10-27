@@ -251,7 +251,9 @@ pub static LANGUAGES: [LangInfo; 36] = [
     LangInfo { code: "lt", name: "Lietuvių", source: include_str!("i18n/lt.tsv"), plural: plural_lithuanian, rtl: false, catalog: OnceLock::new() },
     // Georgian; every `ka-*` locale (`ka-GE`, `ka_GE.UTF-8`) resolves here. Nouns stay singular after
     // a numeral, so one plural form.
-    LangInfo { code: "ka", name: "ქართული", source: include_str!("i18n/ka.tsv"), plural: plural_none, rtl: false, catalog: OnceLock::new() },
+    LangInfo {
+        code: "ka", name: "ქართული", source: include_str!("i18n/ka.tsv"), plural: plural_none, rtl: false, catalog: OnceLock::new()
+    },
     // Indonesian; every `id-*` locale (`id-ID`, `id_ID.UTF-8`) resolves here. CLDR `id` counts have
     // one form ("other"), so `@plural` entries list a single form.
     LangInfo { code: "id", name: "Bahasa Indonesia", source: include_str!("i18n/id.tsv"), plural: plural_none, rtl: false, catalog: OnceLock::new() },
