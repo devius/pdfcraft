@@ -2828,3 +2828,20 @@ theme	Appearance	იერსახე
 	Show or hide the Tools panel	ხელსაწყოების პანელის ჩვენება ან დამალვა
 	Show or hide the side panel	გვერდითი პანელის ჩვენება ან დამალვა
 	Window	ფანჯარა
+	New bookmarks from text styles…	ახალი სანიშნეები ტექსტის სტილებიდან…
+	New bookmarks from text styles	ახალი სანიშნეები ტექსტის სტილებიდან
+	Page properties…	გვერდის თვისებები…
+	Page Properties	გვერდის თვისებები
+	Tab Order	ტაბულაციის რიგი
+	Use Row Order	მწკრივების რიგის გამოყენება
+	Use Column Order	სვეტების რიგის გამოყენება
+	Use Document Structure	დოკუმენტის სტრუქტურის გამოყენება
+	Unspecified	მითითებული არ არის
+	Level {n}	დონე {n}
+	{font}, {size} pt	{font}, {size} პტ
+	bold	მუქი
+	italic	დახრილი
+	1 line	1 სტრიქონი
+	{n} lines	{n} სტრიქონი
+	This document has no text to make bookmarks from.	ამ დოკუმენტში სანიშნეების შესაქმნელი ტექსტი არ არის.
+	Every line set in the style chosen for a level becomes a bookmark of that level, under a new first bookmark.	დონისთვის არჩეული სტილით აწყობილი თითოეული სტრიქონი ამ დონის სანიშნე ხდება, ახალი პირველი სანიშნის ქვეშ.
