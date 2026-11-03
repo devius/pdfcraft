@@ -2914,6 +2914,11 @@ theme	Appearance	იერსახე
 	Add tools to hotbar	ხელსაწყოების დამატება სწრაფი წვდომის ზოლზე
 	Remove from hotbar	სწრაფი წვდომის ზოლიდან ამოშლა
 	Drag hotbar	სწრაფი წვდომის ზოლის გადათრევა
+	Add Tools to Hotbar	ხელსაწყოების დამატება სწრაფი წვდომის ზოლზე
+	Layout & Sizing	განლაგება და ზომა
+	Float	თავისუფალი
+	Invert middle-button drag	შუა ღილაკით გადათრევის მიმართულების შებრუნება
+	Panning or auto-scrolling with the middle (wheel) button moves the page the other way.	შუა ღილაკით (ბორბლით) ხედის გადაადგილება ან ავტომატური გადახვევა გვერდს საპირისპირო მიმართულებით ამოძრავებს.
 	Search all tools…	ყველა ხელსაწყოს ძიება…
 	Toolbar size	ხელსაწყოთა ზოლის ზომა
 	Vertical layout	ვერტიკალური განლაგება
