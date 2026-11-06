@@ -855,6 +855,7 @@ fn catalog_rows_keep_the_source_spacing_and_ellipsis() {
 /// registered command, menu, All tools label and `tl!` literal, with no English left over.
 #[test]
 fn georgian_is_registered_and_complete() {
+    needs_catalogs!();
     let ka = Lang::from_code("ka").expect("ka registered");
     assert_eq!(ka.name(), "ქართული");
     for tag in ["ka", "ka_GE", "ka_GE.UTF-8", "ka-GE"] {
@@ -922,17 +923,14 @@ fn georgian_is_registered_and_complete() {
         // The distinguished name of a certificate, abbreviated as in X.500.
         "DN: ",
     ];
-    let (entries, errors) = parse_entries(ka.0.source, ka.0.plural_forms());
-    assert!(errors.is_empty(), "Georgian catalog errors: {errors:?}");
-    for e in &entries {
+    for (context, source, translation) in rows(app_catalog("ka")) {
         assert!(
-            e.source != e.translation
-                || KEEP_AS_IS.contains(&e.source.as_str())
-                || (e.context == "key" && ["Ctrl", "Shift", "Delete", "Esc", "Home", "End"].contains(&e.source.as_str())),
-            "{:?} is untranslated",
-            e.source
+            source != translation
+                || KEEP_AS_IS.contains(&source.as_str())
+                || (context == "key" && ["Ctrl", "Shift", "Delete", "Esc", "Home", "End"].contains(&source.as_str())),
+            "{source:?} is untranslated"
         );
-        assert!(!e.translation.chars().any(|c| matches!(c, '\u{1C90}'..='\u{1CBF}')), "no Mtavruli capitals: {:?}", e.translation);
+        assert!(!translation.chars().any(|c| matches!(c, '\u{1C90}'..='\u{1CBF}')), "no Mtavruli capitals: {translation:?}");
     }
     let mut app = crate::PdfCraftApp::default();
     app.set_option("language", "ka").unwrap();
