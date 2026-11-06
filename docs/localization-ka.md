@@ -10,7 +10,7 @@ headless `shot` example. The choice is saved with the other preferences. Documen
 command ids, CLI/MCP responses and file names do not change. **Preferences › Date format ›
 Language › ქართული** writes Georgian month and weekday names (`crates/engine/src/dates.rs`).
 
-`crates/ui-egui/src/i18n/ka.tsv` has 2,672 entries: every key of the other bundled catalogs, so every
+`locales/ka/pdfcraft.tsv` in craft-i18n has the entries: every key of the other bundled catalogs, so every
 command, menu, All tools label, `tl!` literal, contextual label (calendar weekdays, certificate
 fields) and engine wording. It is written from the meaning of the English labels; no proprietary
 translation resources were consulted. Product, format and standard names (PDF, OCR, JavaScript,
@@ -71,7 +71,7 @@ not the imperative, and no label uses Mtavruli capitals.
 
 ## Maintenance
 
-Add a row to `ka.tsv` (`context <TAB> English <TAB> Georgian`, format in the header of `ja.tsv`) for
+Add a row to craft-i18n's `locales/ka/pdfcraft.tsv` (`context <TAB> English <TAB> Georgian`, format in the header of `ja.tsv`) for
 each new English label. Keep placeholders (`{n}`, `{name}`, `{}`), shortcuts (`⌘G`), `…` and `\n`
 exactly. `cargo test -p pdfcraft-ui-egui --lib i18n::tests::georgian_is_registered_and_complete`
 fails on any command, menu, tool, `tl!` literal or engine wording without a Georgian row, on a row
