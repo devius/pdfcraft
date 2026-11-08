@@ -898,6 +898,7 @@ fn georgian_is_registered_and_complete() {
     const KEEP_AS_IS: &[&str] = &[
         "OK",
         "PDF/A…",
+        "PDF/X…",
         "JavaScript",
         "ZIP",
         "Microsoft Word (.docx)",
